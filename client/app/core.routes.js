@@ -2,9 +2,7 @@
     'use strict';
 
     var core = angular.module('app.core');
-
     core.config(routeConfig);
-
     routeConfig.$inject = ['$routeProvider', '$locationProvider'];
 
     /* @ngInject */

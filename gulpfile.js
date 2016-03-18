@@ -28,6 +28,7 @@
         sassSrc: client + 'styles/**/*.scss',
         cssSrc: server + 'styles/*.css',
         appSrc: client + 'app/**/*.js',
+        htmlSrc: client + 'views/*.html',
         cssOrder: []
     };
 
@@ -115,6 +116,9 @@
             .pipe(gulp.dest(config.server));
     });
 
+    gulp.task('watch', function() {
+        gulp.watch([config.sassSrc, config.appSrc, config.htmlSrc], ['build']);
+    });
 })();
 
 
