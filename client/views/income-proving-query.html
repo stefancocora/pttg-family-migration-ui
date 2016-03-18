@@ -18,16 +18,21 @@
             </p>
         </div>
         <form name="vm.queryForm" ng-submit="vm.submit()">
-            <div ng-show="!vm.queryForm.$valid" class="error-summary"
+            <div ng-show="!vm.queryForm.$valid || vm.restError" class="error-summary"
                  role="group" aria-labelledby="error-summary-heading-example-2" tabindex="-1" >
 
                 <h1 class="heading-medium error-summary-heading" id="error-summary-heading-example-2">
                     There's some missing information
                 </h1>
 
-                <p>Make sure all the fields have been completed including the to and from dates.</p>
+                <p>Make sure all the fields have been completed including the National Insurance Number and the application received date.</p>
 
                 <ul class="error-summary-list">
+
+                    <li ng-show="vm.ninoNotFoundError">
+                        <a href="#nino">National Insurance Number was not found</a></li>
+                    <li ng-show="vm.ninoInvalidError">
+                        <a href="#nino">National Insurance Number is invalid</a></li>
                     <li ng-show="vm.ninoMissingError">
                         <a href="#nino">National Insurance Number is missing</a></li>
                     <li ng-show="vm.dateError">
@@ -36,17 +41,16 @@
             </div>
 
             <div>
-                <div class="form-group" ng-class="{error : vm.ninoMissingError}">
+                <div class="form-group" ng-class="{error : vm.restError}">
                     <label for="nino" class="form-label-bold">
                         National Insurance number
                     </label>
                     <span class="form-hint">For example, 'QQ 12 34 56 C'.</span>
                         <span id="nino-error" class="error-message"
-                              ng-show="!vm.queryForm.nino.$valid" >Please provide a National Insurance Number</span>
+                              ng-show="vm.ninoMissingError" >Please provide a National Insurance Number</span>
 
-                        <span id="nino-length-error" class="error-message"
-                              data-bind="visible: $parent.errorFields.indexOf('nino-length') >= 0"
-                              style="display: none">Please provide a valid National Insurance Number</span>
+                        <span id="nino-length-error" class="error-message"  ng-show="vm.ninoInvalidError || vm.ninoNotFoundError">
+                            Please provide a valid National Insurance Number</span>
                     <input type="text" id="nino" name="nino" class="form-control" ng-model="vm.model.nino">
                 </div>
 

@@ -20,8 +20,8 @@
                 return response.data;
             }
 
-            function fail(e) {
-                throw e;
+            function fail(error) {
+                throw error;
             }
         }
     }

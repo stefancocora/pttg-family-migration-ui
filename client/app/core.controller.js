@@ -29,6 +29,8 @@
         };
         vm.dateError = false;
         vm.ninoMissingError = false;
+        vm.ninoInvalidError = false;
+        vm.ninoNotFoundError = false;
         vm.serverError = '';
 
         vm.formatAmount = function() {
@@ -50,8 +52,16 @@
                         vm.model.applicant = data.application.applicant;
                         vm.model.applicationDate = moment(data.application.applicationDate).format('DD/MM/YYYY');
                         $location.path('/income-proving-result');
-                    }).catch(function(e) {
-                        vm.serverError = e.statusText;
+                    }).catch(function(error) {
+                        if (error.status === 400 && error.data.error.code === "0001"){
+                            vm.ninoInvalidError = true;
+                            vm.restError = true;
+                        } else if (error.status === 404) {
+                            vm.ninoNotFoundError = true;
+                            vm.restError = true;
+                        } else {
+                            vm.serverError = e.statusText;
+                        }
                    });
              } else {
                 vm.queryForm.$setValidity(false);
@@ -63,6 +73,9 @@
         };
 
         function clearErrors() {
+            vm.ninoNotFoundError = false;
+            vm.ninoInvalidError = false;
+            vm.restError = false;
             vm.ninoMissingError = false;
             vm.dateError = false;
             vm.serverError = '';
