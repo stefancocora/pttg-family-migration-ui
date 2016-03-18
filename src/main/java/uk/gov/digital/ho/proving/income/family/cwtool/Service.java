@@ -22,9 +22,10 @@ public class Service {
     private Client client = Client.create();
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity getTemporaryMigrationFamilyApplication(@RequestParam(value = "nino", required = true) String nino, @RequestParam(value = "applicationDate", required = true) String applicationDate) {
+    public ResponseEntity getMigrationFamilyApplication(@RequestParam(value = "nino") String nino,
+                                                        @RequestParam(value = "applicationReceivedDate") String applicationReceivedDate) {
 
-        String url = "http://localhost:8080/application?nino=" + nino + "&applicationDate=" + applicationDate;
+        String url = "http://localhost:8080/application?nino=" + nino + "&applicationReceivedDate=" + applicationReceivedDate;
         LOGGER.debug(url);
 
         WebResource webResource = client.resource(url);

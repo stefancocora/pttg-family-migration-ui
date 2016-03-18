@@ -20,7 +20,7 @@
                 amount: 0,
                 isoCurrencyCode: 'GBP'
             },
-            applicationDate: '2016-01-01',
+            applicationReceivedDate: '2016-01-01',
             applicant : {
                 title: '',
                 forename: '',
@@ -50,7 +50,7 @@
                         vm.model.meetsFinancialRequirements = data.application.financialRequirementsCheck.met;
                         vm.model.threshold = data.application.threshold;
                         vm.model.applicant = data.application.applicant;
-                        vm.model.applicationDate = moment(data.application.applicationDate).format('DD/MM/YYYY');
+                        vm.model.applicationReceivedDate = moment(data.application.applicationReceivedDate).format('DD/MM/YYYY');
                         vm.model.checkedFrom = moment(data.application.financialRequirementsCheck.checkedFrom).format('DD/MM/YYYY');
                         vm.model.checkedTo = moment(data.application.financialRequirementsCheck.checkedTo).format('DD/MM/YYYY');
                         $location.path('/income-proving-result');
