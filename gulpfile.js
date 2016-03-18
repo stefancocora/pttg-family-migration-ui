@@ -117,7 +117,7 @@
     });
 
     gulp.task('watch', function() {
-        gulp.watch([config.sassSrc, config.appSrc, config.htmlSrc], ['build']);
+        gulp.watch([config.sassSrc, config.appSrc, config.htmlSrc, config.indexPage], ['build']);
     });
 })();
 
