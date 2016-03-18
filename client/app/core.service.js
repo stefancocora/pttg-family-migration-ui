@@ -11,8 +11,8 @@
         return {
             checkApplication : checkApplication
         };
-        function checkApplication(nino, receivedDate) {
-            return $http.get('http://localhost:8000/application?nino='+nino)
+        function checkApplication(nino, applicationDate) {
+            return $http.get('http://localhost:8000/application?nino='+nino+'&applicationDate='+applicationDate)
                 .then(success)
                 .catch(fail);
 

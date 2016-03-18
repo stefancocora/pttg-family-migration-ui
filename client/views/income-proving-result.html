@@ -10,11 +10,11 @@
 
 <div class="govuk-box-highlight" ng-show="vm.model.meetsFinancialRequirements">
     <h1 class="bold-large">Yes, {{vm.model.applicant.forename}} {{vm.model.applicant.surname}} meets the {{ vm.formatAmount() }} threshold</h1>
-    <p>between 30/5/1899 and {{vm.model.applicationDate}}</p>
+    <p>between {{vm.model.checkedFrom}} and {{vm.model.checkedTo}}</p>
 </div>
 <div class="govuk-box-highlight panel-fail" ng-show="!vm.model.meetsFinancialRequirements">
     <h1 class="bold-large">No, {{vm.model.applicant.forename}} {{vm.model.applicant.surname}} earns £17,345.50</h1>
-    <p>between 30/5/1899 and {{vm.model.applicationDate}}</p>
+    <p>between {{vm.model.checkedFrom}} and {{vm.model.checkedTo}}</p>
 </div>
 <h2 class="heading-medium">
     Your search

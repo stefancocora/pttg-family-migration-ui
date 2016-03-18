@@ -18,7 +18,7 @@
             meetsFinancialRequirements: false,
             threshold: {
                 amount: 0,
-                isoCurrencyCode: "GBP"
+                isoCurrencyCode: 'GBP'
             },
             applicationDate: '2016-01-01',
             applicant : {
@@ -38,29 +38,31 @@
         };
 
         vm.getFullDate = function() {
-            return vm.model.fromDateDay+'/'+vm.model.fromDateMonth+'/'+fromDateYear;
+            return vm.model.fromDateYear+'-'+vm.model.fromDateMonth+'-'+vm.model.fromDateDay;
         };
 
         vm.submit = function() {
 
             if (validateForm()) {
 
-                restService.checkApplication(vm.model.nino, vm.getFullDate)
+                restService.checkApplication(vm.model.nino, vm.getFullDate())
                     .then(function(data) {
-                        vm.model.meetsFinancialRequirements = data.application.meetsFinancialRequirements;
+                        vm.model.meetsFinancialRequirements = data.application.financialRequirementsCheck.met;
                         vm.model.threshold = data.application.threshold;
                         vm.model.applicant = data.application.applicant;
                         vm.model.applicationDate = moment(data.application.applicationDate).format('DD/MM/YYYY');
+                        vm.model.checkedFrom = moment(data.application.financialRequirementsCheck.checkedFrom).format('DD/MM/YYYY');
+                        vm.model.checkedTo = moment(data.application.financialRequirementsCheck.checkedTo).format('DD/MM/YYYY');
                         $location.path('/income-proving-result');
                     }).catch(function(error) {
-                        if (error.status === 400 && error.data.error.code === "0001"){
+                        if (error.status === 400 && error.data.error.code === '0001'){
                             vm.ninoInvalidError = true;
                             vm.restError = true;
                         } else if (error.status === 404) {
                             vm.ninoNotFoundError = true;
                             vm.restError = true;
                         } else {
-                            vm.serverError = e.statusText;
+                            vm.serverError = error.statusText;
                         }
                    });
              } else {
@@ -84,6 +86,9 @@
         function validateForm(){
             var validated = true;
             clearErrors();
+
+            vm.model.nino =  vm.model.nino.replace(/ /g,'')
+
             if (vm.model.nino === '') {
                 vm.queryForm.nino.$setValidity(false);
                 vm.ninoMissingError = true;
@@ -102,7 +107,6 @@
 
             return validated;
         }
-
     }
 
 })();
