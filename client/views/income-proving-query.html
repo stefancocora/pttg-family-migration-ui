@@ -1,0 +1,92 @@
+<div class="error-summary" ng-show="vm.serverError !== ''">
+    <h1 class="heading-medium error-summary-heading" id="error-summary-heading">
+        Connection Problem
+    </h1>
+    <p id="serverError"> {{vm.serverError}}</p>
+</div>
+
+<div class="column-full-width">
+    <div id="page1" >
+        <h1 class="form-title heading-large">
+            Applicant details
+        </h1>
+
+        <div class="text">
+            <p class="lede">
+                You can check an applicant (without dependants) meets the required threshold using a National
+                Insurance Number.
+            </p>
+        </div>
+        <form name="vm.queryForm" ng-submit="vm.submit()">
+            <div ng-show="!vm.queryForm.$valid" class="error-summary"
+                 role="group" aria-labelledby="error-summary-heading-example-2" tabindex="-1" >
+
+                <h1 class="heading-medium error-summary-heading" id="error-summary-heading-example-2">
+                    There's some missing information
+                </h1>
+
+                <p>Make sure all the fields have been completed including the to and from dates.</p>
+
+                <ul class="error-summary-list">
+                    <li ng-show="vm.ninoMissingError">
+                        <a href="#nino">National Insurance Number is missing</a></li>
+                    <li ng-show="vm.dateError">
+                        <a href="#fromDateDay">Application received date is missing</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="form-group" ng-class="{error : vm.ninoMissingError}">
+                    <label for="nino" class="form-label-bold">
+                        National Insurance number
+                    </label>
+                    <span class="form-hint">For example, 'QQ 12 34 56 C'.</span>
+                        <span id="nino-error" class="error-message"
+                              ng-show="!vm.queryForm.nino.$valid" >Please provide a National Insurance Number</span>
+
+                        <span id="nino-length-error" class="error-message"
+                              data-bind="visible: $parent.errorFields.indexOf('nino-length') >= 0"
+                              style="display: none">Please provide a valid National Insurance Number</span>
+                    <input type="text" id="nino" name="nino" class="form-control" ng-model="vm.model.nino">
+                </div>
+
+                <div class="form-group " id="to-date" ng-class="{error : vm.dateError}">
+
+                    <fieldset>
+                        <legend class="form-label-bold">When was the application received?</legend>
+
+                        <div class="form-date">
+
+                            <p class="form-hint">For example, 31 3 1980</p>
+                                <span id="from-date-error" class="error-message"
+                                      ng-show="">Please enter the date the application was received</span>
+                            <div class="form-group form-group-day">
+                                <label for="fromDateDay">Day</label>
+                                <input class="form-control" name="fromDateDay" id="fromDateDay" type="number"
+                                       pattern="[0-9]*" min="0" max="31" ng-model="vm.model.fromDateDay">
+                            </div>
+
+                            <div class="form-group form-group-month">
+                                <label for="fromDateMonth">Month</label>
+                                <input class="form-control" name="fromDateMonth" id="fromDateMonth"
+                                       type="number" pattern="[0-9]*" min="0" max="12"
+                                       ng-model="vm.model.fromDateMonth">
+                            </div>
+
+                            <div class="form-group form-group-year">
+                                <label for="fromDateYear">Year</label>
+                                <input class="form-control" name="fromDateYear" id="fromDateYear" type="number"
+                                       pattern="[0-9]*" min="0" max="2016" ng-model="vm.model.fromDateYear">
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+
+                <input name="search" type="submit" class="button">
+
+            </div>
+        </form>
+    </div>
+</div>
+

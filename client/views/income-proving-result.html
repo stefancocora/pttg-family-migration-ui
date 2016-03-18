@@ -1,0 +1,37 @@
+<h1 class="form-title heading-large">
+    Threshold check
+</h1>
+<p class="lede">Does the applicant meet the threshold of {{ vm.formatAmount() }} ?</p>
+
+<div class="govuk-box-highlight" ng-show="vm.model.meetsFinancialRequirements">
+    <h1 class="bold-large">Yes, {{vm.model.applicant.forename}} {{vm.model.applicant.surname}} meets the {{ vm.formatAmount() }} threshold</h1>
+    <p>between 30/5/1899 and {{vm.model.applicationDate}}</p>
+</div>
+<div class="govuk-box-highlight panel-fail" ng-show="!vm.model.meetsFinancialRequirements">
+    <h1 class="bold-large">No, {{vm.model.applicant.forename}} {{vm.model.applicant.surname}} earns £17,345.50</h1>
+    <p>between 30/5/1899 and {{vm.model.applicationDate}}</p>
+</div>
+<h2 class="heading-medium">
+    Your search
+</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th scope="col">Applicant</th>
+        <th scope="col">National Insurance Number</th>
+        <th scope="col">Application date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{vm.model.applicant.title}} {{vm.model.applicant.forename}} {{vm.model.applicant.surname}}</td>
+        <td>{{vm.model.nino}}</td>
+        <td>{{vm.model.applicationDate}}</td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<div class="form-group">
+        <input type="submit" class="button" value="Start a new search" ng-click="vm.newSearch()">
+</div>
