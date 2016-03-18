@@ -3,6 +3,8 @@ package uk.gov.digital.ho.proving.income.family.cwtool;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +17,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/application")
 public class Service {
 
-    Client client = Client.create();
+    private static Logger LOGGER = LoggerFactory.getLogger(Service.class);
+
+    private Client client = Client.create();
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity getTemporaryMigrationFamilyApplication(@RequestParam(value = "nino", required = false) String nino) {
+    public ResponseEntity getTemporaryMigrationFamilyApplication(@RequestParam(value = "nino", required = true) String nino, @RequestParam(value = "applicationDate", required = true) String applicationDate) {
 
-        WebResource webResource = client.resource("http://localhost:8080/application?nino="+nino);
-        ClientResponse response = webResource.accept("application/json")
-                .get(ClientResponse.class);
+        String url = "http://localhost:8080/application?nino=" + nino + "&applicationDate=" + applicationDate;
+        LOGGER.debug(url);
+
+        WebResource webResource = client.resource(url);
+        ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
 
         HttpHeaders headers = new HttpHeaders();
 
