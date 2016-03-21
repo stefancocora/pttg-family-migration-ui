@@ -32,7 +32,7 @@
                     <li ng-show="vm.ninoNotFoundError">
                         <a href="" ng-click="vm.scrollTo('nino')" >National Insurance Number was not found</a></li>
                     <li ng-show="vm.ninoInvalidError">
-                        <a href="" ng-click="vm.scrollTo('nino')">target="_self">National Insurance Number is invalid</a></li>
+                        <a href="" ng-click="vm.scrollTo('nino')">National Insurance Number is invalid</a></li>
                     <li ng-show="vm.ninoMissingError">
                         <a href="" ng-click="vm.scrollTo('nino')">National Insurance Number is missing</a></li>
                     <li ng-show="vm.dateMissingError">
@@ -43,7 +43,7 @@
             </div>
 
             <div>
-                <div class="form-group" ng-class="{error : vm.restError}">
+                <div class="form-group" ng-class="{error : vm.restError || vm.ninoInvalidError }">
                     <label for="nino" class="form-label-bold">
                         National Insurance number
                     </label>

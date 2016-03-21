@@ -10,6 +10,12 @@
     function coreController($rootScope, $location, restService, $anchorScroll) {
         var vm = this;
 
+        var NINO_REGEX = /^[a-zA-Z]{2}[0-9]{6}[a-zA-Z]{1}$/;
+        var CURRENCY_SYMBOL = '£';
+        var DATE_DISPLAY_FORMAT = 'DD/MM/YYYY';
+        var DATE_VALIDATE_FORMAT = 'YYYY-M-D';
+        var INVALID_NINO_NUMBER = '0001';
+
         vm.model = {
             nino: '',
             fromDateDay: 1,
@@ -36,7 +42,7 @@
         vm.serverError = '';
 
         vm.formatAmount = function() {
-            return accounting.formatMoney(vm.model.threshold.amount, { symbol: '£', precision: 0});
+            return accounting.formatMoney(vm.model.threshold.amount, { symbol: CURRENCY_SYMBOL, precision: 0});
         };
 
         vm.getFullDate = function() {
@@ -56,12 +62,12 @@
                         vm.model.meetsFinancialRequirements = data.application.financialRequirementsCheck.met;
                         vm.model.threshold = data.application.threshold;
                         vm.model.applicant = data.application.applicant;
-                        vm.model.applicationReceivedDate = moment(data.application.applicationReceivedDate).format('DD/MM/YYYY');
-                        vm.model.checkedFrom = moment(data.application.financialRequirementsCheck.checkedFrom).format('DD/MM/YYYY');
-                        vm.model.checkedTo = moment(data.application.financialRequirementsCheck.checkedTo).format('DD/MM/YYYY');
+                        vm.model.applicationReceivedDate = moment(data.application.applicationReceivedDate).format(DATE_DISPLAY_FORMAT);
+                        vm.model.checkedFrom = moment(data.application.financialRequirementsCheck.checkedFrom).format(DATE_DISPLAY_FORMAT);
+                        vm.model.checkedTo = moment(data.application.financialRequirementsCheck.checkedTo).format(DATE_DISPLAY_FORMAT);
                         $location.path('/income-proving-result');
                     }).catch(function(error) {
-                        if (error.status === 400 && error.data.error.code === '0001'){
+                        if (error.status === 400 && error.data.error.code === INVALID_NINO_NUMBER){
                             vm.ninoInvalidError = true;
                             vm.restError = true;
                         } else if (error.status === 404) {
@@ -100,6 +106,13 @@
                 vm.queryForm.nino.$setValidity(false);
                 vm.ninoMissingError = true;
                 validated =  false;
+            } else {
+
+                if (!NINO_REGEX.test(vm.model.nino)) {
+                    vm.ninoInvalidError = true;
+                    vm.queryForm.nino.$setValidity(false);
+                    validated = false;
+                }
             }
 
             if (vm.model.fromDateDay === null ||
@@ -110,7 +123,7 @@
                 vm.queryForm.fromDateYear.$setValidity(false);
                 vm.dateMissingError = true;
                 validated = false;
-            } else  if (!moment(vm.getFullDate(), "YYYY-M-D", true).isValid()){
+            } else  if (!moment(vm.getFullDate(), DATE_VALIDATE_FORMAT, true).isValid()){
                 vm.dateInvalidError = true;
                 validated = false;
             }
