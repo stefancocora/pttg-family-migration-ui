@@ -30,15 +30,15 @@
                 <ul class="error-summary-list">
 
                     <li ng-show="vm.ninoNotFoundError">
-                        <a href="#nino">National Insurance Number was not found</a></li>
+                        <a href="" ng-click="vm.scrollTo('nino')" >National Insurance Number was not found</a></li>
                     <li ng-show="vm.ninoInvalidError">
-                        <a href="#nino">National Insurance Number is invalid</a></li>
+                        <a href="" ng-click="vm.scrollTo('nino')">target="_self">National Insurance Number is invalid</a></li>
                     <li ng-show="vm.ninoMissingError">
-                        <a href="#nino">National Insurance Number is missing</a></li>
+                        <a href="" ng-click="vm.scrollTo('nino')">National Insurance Number is missing</a></li>
                     <li ng-show="vm.dateMissingError">
-                        <a href="#fromDateDay">Application received date is missing</a></li>
+                        <a href="" ng-click="vm.scrollTo('fromDateDay')">Application received date is missing</a></li>
                     <li ng-show="vm.dateInvalidError">
-                        <a href="#fromDateDay">Application received date is invalid</a></li>
+                        <a href="" ng-click="vm.scrollTo('fromDateDay')">Application received date is invalid</a></li>
                 </ul>
             </div>
 

@@ -5,9 +5,9 @@
         .module('app.core')
         .controller('coreController', coreController);
 
-    coreController.$inject = ['$rootScope','$location','restService'];
+    coreController.$inject = ['$rootScope','$location','restService','$anchorScroll'];
     /* @ngInject */
-    function coreController($rootScope, $location, restService) {
+    function coreController($rootScope, $location, restService, $anchorScroll) {
         var vm = this;
 
         vm.model = {
@@ -41,6 +41,10 @@
 
         vm.getFullDate = function() {
             return vm.model.fromDateYear+'-'+vm.model.fromDateMonth+'-'+vm.model.fromDateDay;
+        };
+
+        vm.scrollTo = function(anchor){
+            $anchorScroll(anchor);
         };
 
         vm.submit = function() {
@@ -106,11 +110,9 @@
                 vm.queryForm.fromDateYear.$setValidity(false);
                 vm.dateMissingError = true;
                 validated = false;
-            }
-            console.log(vm.getFullDate());
-            if (!moment(vm.getFullDate(), "YYYY-M-D", true).isValid()){
+            } else  if (!moment(vm.getFullDate(), "YYYY-M-D", true).isValid()){
                 vm.dateInvalidError = true;
-                return false;
+                validated = false;
             }
 
             return validated;
