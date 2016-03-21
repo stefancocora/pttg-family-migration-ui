@@ -8,13 +8,16 @@
 </h1>
 <p class="lede">Does the applicant meet the threshold of {{ vm.formatAmount() }}?</p>
 
-<div class="govuk-box-highlight" ng-show="vm.model.meetsFinancialRequirements">
-    <h1 class="bold-large">Yes, {{vm.model.applicant.forename}} {{vm.model.applicant.surname}} meets the {{ vm.formatAmount() }} threshold</h1>
-    <p>between {{vm.model.checkedFrom}} and {{vm.model.checkedTo}}</p>
+<div class="govuk-box-highlight" ng-show="vm.model.meetsFinancialRequirements" id="outcome">
+    <h1 class="bold-large">Yes, <span id="outcomeBoxName">{{vm.model.applicant.forename}} {{vm.model.applicant.surname}}</span> meets the
+        <span id="outcomeEmploymentThreshold">{{ vm.formatAmount() }}</span> threshold</h1>
+    <p>between <span id="outcomeFromDate">{{vm.model.checkedFrom}}</span>  and
+        <span id="outcomeToDate">{{vm.model.checkedTo}}</span></p>
 </div>
-<div class="govuk-box-highlight panel-fail" ng-show="!vm.model.meetsFinancialRequirements">
-    <h1 class="bold-large">No, {{vm.model.applicant.forename}} {{vm.model.applicant.surname}} earns £17,345.50</h1>
-    <p>between {{vm.model.checkedFrom}} and {{vm.model.checkedTo}}</p>
+<div class="govuk-box-highlight panel-fail" ng-show="!vm.model.meetsFinancialRequirements" id="outcome">
+    <h1 class="bold-large">No, <span id="outcomeBoxName">{{vm.model.applicant.forename}} {{vm.model.applicant.surname}}</span> earns £17,345.50</h1>
+    <p>between <span id="outcomeFromDate">{{vm.model.checkedFrom}}</span> and
+                <span id="outcomeToDate">{{vm.model.checkedTo}}</span></p>
 </div>
 <h2 class="heading-medium">
     Your search
@@ -30,9 +33,9 @@
     </thead>
     <tbody>
     <tr>
-        <td>{{vm.model.applicant.forename}} {{vm.model.applicant.surname}}</td>
-        <td>{{vm.model.nino}}</td>
-        <td>{{vm.model.applicationReceivedDate}}</td>
+        <td><span id="yourSearchIndividualName">{{vm.model.applicant.forename}} {{vm.model.applicant.surname}}</span></td>
+        <td><span id="yourSearchNationalInsuranceNumber">{{vm.model.nino}}</span></td>
+        <td><span id="yourSearchApplicationReceivedDate">{{vm.model.applicationReceivedDate}}</span></td>
     </tr>
     </tbody>
 </table>
