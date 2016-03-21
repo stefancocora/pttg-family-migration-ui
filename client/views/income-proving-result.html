@@ -9,13 +9,13 @@
 <p class="lede">Does the applicant meet the threshold of {{ vm.formatAmount() }}?</p>
 
 <div class="govuk-box-highlight" ng-show="vm.model.meetsFinancialRequirements" id="outcome">
-    <h1 class="bold-large">Yes, <span id="outcomeBoxName">{{vm.model.applicant.forename}} {{vm.model.applicant.surname}}</span> meets the
+    <h1 class="bold-large">Yes, <span id="outcomeBoxIndividualName">{{vm.model.applicant.forename}} {{vm.model.applicant.surname}}</span> meets the
         <span id="outcomeEmploymentThreshold">{{ vm.formatAmount() }}</span> threshold</h1>
     <p>between <span id="outcomeFromDate">{{vm.model.checkedFrom}}</span>  and
         <span id="outcomeToDate">{{vm.model.checkedTo}}</span></p>
 </div>
 <div class="govuk-box-highlight panel-fail" ng-show="!vm.model.meetsFinancialRequirements" id="outcome">
-    <h1 class="bold-large">No, <span id="outcomeBoxName">{{vm.model.applicant.forename}} {{vm.model.applicant.surname}}</span> earns £17,345.50</h1>
+    <h1 class="bold-large">No, <span id="outcomeBoxIndividualName">{{vm.model.applicant.forename}} {{vm.model.applicant.surname}}</span> earns £17,345.50</h1>
     <p>between <span id="outcomeFromDate">{{vm.model.checkedFrom}}</span> and
                 <span id="outcomeToDate">{{vm.model.checkedTo}}</span></p>
 </div>
