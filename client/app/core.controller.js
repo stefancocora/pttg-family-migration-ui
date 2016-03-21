@@ -27,7 +27,9 @@
                 surname: ''
             }
         };
-        vm.dateError = false;
+
+        vm.dateInvalidError = false;
+        vm.dateMissingError = false;
         vm.ninoMissingError = false;
         vm.ninoInvalidError = false;
         vm.ninoNotFoundError = false;
@@ -79,7 +81,8 @@
             vm.ninoInvalidError = false;
             vm.restError = false;
             vm.ninoMissingError = false;
-            vm.dateError = false;
+            vm.dateMissingError = false;
+            vm.dateInvalidError = false;
             vm.serverError = '';
         }
 
@@ -87,7 +90,7 @@
             var validated = true;
             clearErrors();
 
-            vm.model.nino =  vm.model.nino.replace(/ /g,'')
+            vm.model.nino =  vm.model.nino.replace(/ /g,'');
 
             if (vm.model.nino === '') {
                 vm.queryForm.nino.$setValidity(false);
@@ -101,8 +104,13 @@
                 vm.queryForm.fromDateDay.$setValidity(false);
                 vm.queryForm.fromDateMonth.$setValidity(false);
                 vm.queryForm.fromDateYear.$setValidity(false);
-                vm.dateError = true;
+                vm.dateMissingError = true;
                 validated = false;
+            }
+            console.log(vm.getFullDate());
+            if (!moment(vm.getFullDate(), "YYYY-M-D", true).isValid()){
+                vm.dateInvalidError = true;
+                return false;
             }
 
             return validated;
