@@ -30,13 +30,15 @@
                 <ul class="error-summary-list">
 
                     <li ng-show="vm.ninoNotFoundError">
-                        <a href="#nino">National Insurance Number was not found</a></li>
+                        <a href="" ng-click="vm.scrollTo('nino')" >National Insurance Number was not found</a></li>
                     <li ng-show="vm.ninoInvalidError">
-                        <a href="#nino">National Insurance Number is invalid</a></li>
+                        <a href="" ng-click="vm.scrollTo('nino')">target="_self">National Insurance Number is invalid</a></li>
                     <li ng-show="vm.ninoMissingError">
-                        <a href="#nino">National Insurance Number is missing</a></li>
-                    <li ng-show="vm.dateError">
-                        <a href="#fromDateDay">Application received date is missing</a></li>
+                        <a href="" ng-click="vm.scrollTo('nino')">National Insurance Number is missing</a></li>
+                    <li ng-show="vm.dateMissingError">
+                        <a href="" ng-click="vm.scrollTo('fromDateDay')">Application received date is missing</a></li>
+                    <li ng-show="vm.dateInvalidError">
+                        <a href="" ng-click="vm.scrollTo('fromDateDay')">Application received date is invalid</a></li>
                 </ul>
             </div>
 
@@ -54,14 +56,14 @@
                     <input type="text" id="nino" name="nino" class="form-control" ng-model="vm.model.nino">
                 </div>
 
-                <div class="form-group " id="to-date" ng-class="{error : vm.dateError}">
+                <div class="form-group " id="to-date" ng-class="{error : vm.dateMissingError || vm.dateInvalidError}">
 
                     <fieldset>
                         <legend class="form-label-bold">When was the application received?</legend>
                         <div class="form-date">
                             <p class="form-hint">For example, 31 3 1980</p>
-                                <span id="from-date-error" class="error-message"
-                                      ng-show="">Please enter the date the application was received</span>
+                                <span id="from-date-error" class="error-message">
+                                    Please enter a valid application received date</span>
                             <div class="form-group form-group-day">
                                 <label for="fromDateDay">Day</label>
                                 <input class="form-control" name="fromDateDay" id="fromDateDay" type="number"

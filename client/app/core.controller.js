@@ -5,9 +5,9 @@
         .module('app.core')
         .controller('coreController', coreController);
 
-    coreController.$inject = ['$rootScope','$location','restService'];
+    coreController.$inject = ['$rootScope','$location','restService','$anchorScroll'];
     /* @ngInject */
-    function coreController($rootScope, $location, restService) {
+    function coreController($rootScope, $location, restService, $anchorScroll) {
         var vm = this;
 
         vm.model = {
@@ -27,7 +27,9 @@
                 surname: ''
             }
         };
-        vm.dateError = false;
+
+        vm.dateInvalidError = false;
+        vm.dateMissingError = false;
         vm.ninoMissingError = false;
         vm.ninoInvalidError = false;
         vm.ninoNotFoundError = false;
@@ -39,6 +41,10 @@
 
         vm.getFullDate = function() {
             return vm.model.fromDateYear+'-'+vm.model.fromDateMonth+'-'+vm.model.fromDateDay;
+        };
+
+        vm.scrollTo = function(anchor){
+            $anchorScroll(anchor);
         };
 
         vm.submit = function() {
@@ -79,7 +85,8 @@
             vm.ninoInvalidError = false;
             vm.restError = false;
             vm.ninoMissingError = false;
-            vm.dateError = false;
+            vm.dateMissingError = false;
+            vm.dateInvalidError = false;
             vm.serverError = '';
         }
 
@@ -87,7 +94,7 @@
             var validated = true;
             clearErrors();
 
-            vm.model.nino =  vm.model.nino.replace(/ /g,'')
+            vm.model.nino =  vm.model.nino.replace(/ /g,'');
 
             if (vm.model.nino === '') {
                 vm.queryForm.nino.$setValidity(false);
@@ -101,7 +108,10 @@
                 vm.queryForm.fromDateDay.$setValidity(false);
                 vm.queryForm.fromDateMonth.$setValidity(false);
                 vm.queryForm.fromDateYear.$setValidity(false);
-                vm.dateError = true;
+                vm.dateMissingError = true;
+                validated = false;
+            } else  if (!moment(vm.getFullDate(), "YYYY-M-D", true).isValid()){
+                vm.dateInvalidError = true;
                 validated = false;
             }
 
