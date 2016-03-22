@@ -12,7 +12,7 @@
             checkApplication : checkApplication
         };
         function checkApplication(nino, applicationReceivedDate) {
-            return $http.get('http://localhost:8000/application?nino='+nino+'&applicationReceivedDate='+applicationReceivedDate)
+            return $http.get('application?nino='+nino+'&applicationReceivedDate='+applicationReceivedDate)
                 .then(success)
                 .catch(fail);
 
