@@ -25,7 +25,7 @@ public class Service {
     public ResponseEntity getMigrationFamilyApplication(@RequestParam(value = "nino") String nino,
                                                         @RequestParam(value = "applicationReceivedDate") String applicationReceivedDate) {
 
-        String url = "http://localhost:8080/application?nino=" + nino + "&applicationReceivedDate=" + applicationReceivedDate;
+        String url = "http://localhost:8081/application?nino=" + nino + "&applicationReceivedDate=" + applicationReceivedDate;
         LOGGER.debug(url);
 
         WebResource webResource = client.resource(url);
