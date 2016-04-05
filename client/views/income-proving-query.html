@@ -1,4 +1,4 @@
-<div class="error-summary" ng-show="vm.serverError !== ''">
+<div class="error-summary" ng-if="vm.serverError !== ''">
     <h1 class="heading-medium error-summary-heading" id="error-summary-heading">
         Connection Problem
     </h1>
@@ -18,7 +18,7 @@
             </p>
         </div>
         <form name="vm.queryForm" ng-submit="vm.submit()">
-            <div ng-show="!vm.queryForm.$valid || vm.restError" class="error-summary"
+            <div ng-if="!vm.queryForm.$valid || vm.restError" class="error-summary"
                  role="group" aria-labelledby="error-summary-heading-example-2" tabindex="-1">
 
                 <h1 class="heading-medium error-summary-heading" id="error-summary-heading-example-2">

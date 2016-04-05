@@ -10,7 +10,7 @@
     function coreController($rootScope, $location, restService, $anchorScroll) {
         var vm = this;
 
-        var NINO_REGEX = /^[a-zA-Z]{2}[0-9]{6}[a-zA-Z]{1}$/;
+        var NINO_REGEX = /^[a-zA-Z]{2}[0-9]{6}[a-dA-D]{1}$/;
         var CURRENCY_SYMBOL = '£';
         var DATE_DISPLAY_FORMAT = 'DD/MM/YYYY';
         var DATE_VALIDATE_FORMAT = 'YYYY-M-D';
