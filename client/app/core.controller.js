@@ -74,7 +74,8 @@
                             vm.ninoNotFoundError = true;
                             vm.restError = true;
                         } else {
-                            vm.serverError = error.statusText;
+                            // vm.serverError = error.statusText;
+                            vm.serverError = 'Unable to process your request, please try again.';
                         }
                    });
              } else {
