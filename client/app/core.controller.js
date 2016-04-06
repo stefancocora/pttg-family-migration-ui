@@ -128,7 +128,7 @@
                 vm.dateInvalidError = true;
                 validated = false;
             }
-
+            vm.model.nino = vm.model.nino.toUpperCase();
             return validated;
         }
     }
