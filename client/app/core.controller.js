@@ -66,7 +66,6 @@
                         } else {
                             vm.model.failureReason = '';
                         }
-                        console.log("Failure reason: " + vm.model.failureReason);
                         vm.model.threshold = data.application.threshold;
                         vm.model.applicant = data.application.applicant;
                         vm.model.applicationReceivedDate = moment(data.application.applicationReceivedDate).format(DATE_DISPLAY_FORMAT);
