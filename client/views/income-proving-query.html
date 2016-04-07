@@ -71,7 +71,7 @@
                         <legend class="form-label-bold">When was the application received?</legend>
                         <div class="form-date">
                             <p class="form-hint">For example, 31 3 1980</p>
-                                <span id="application—received-date-error" class="error-message" ng-if="vm.dateMissingError">
+                                <span id="application—received-date-error" class="error-message" ng-if="vm.dateMissingError || vm.dateInvalidError">
                                     Please provide a valid Application Received Date</span>
                             <div class="form-group form-group-day">
                                 <label for="fromDateDay">Day</label>
