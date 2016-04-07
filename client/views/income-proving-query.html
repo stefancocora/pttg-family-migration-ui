@@ -7,14 +7,18 @@
 
 <div class="column-full-width">
     <div id="page1">
+        <h1 class="heading-xlarge">
+            <span class="heading-secondary">Financial requirement check</span>
+            Family Migration
+        </h1>
         <h1 class="form-title heading-large">
-            Applicant details
+            Individual's details
         </h1>
 
         <div class="text">
             <p class="lede">
-                You can check an applicant (without dependants) meets the required threshold using a National
-                Insurance Number.
+                You can check an individual (without dependants) meets ‘Category A: With current employer for 6 months or more –
+                person residing in the UK’ using a National Insurance Number.
             </p>
         </div>
         <form name="vm.queryForm" ng-submit="vm.submit()">
@@ -47,7 +51,7 @@
                 <div class="form-group"
                      ng-class="{error : vm.restError || vm.ninoInvalidError || vm.ninoMissingError }">
                     <label for="nino" class="form-label-bold">
-                        National Insurance number
+                        National Insurance Number
                     </label>
                     <span class="form-hint">For example, 'QQ 12 34 56 C'.</span>
                         <span id="nino-error" class="error-message"
@@ -67,7 +71,7 @@
                         <legend class="form-label-bold">When was the application received?</legend>
                         <div class="form-date">
                             <p class="form-hint">For example, 31 3 1980</p>
-                                <span id="application—received-date-error" class="error-message">
+                                <span id="application—received-date-error" class="error-message" ng-if="vm.dateMissingError">
                                     Please provide a valid Application Received Date</span>
                             <div class="form-group form-group-day">
                                 <label for="fromDateDay">Day</label>
@@ -98,4 +102,3 @@
         </form>
     </div>
 </div>
-

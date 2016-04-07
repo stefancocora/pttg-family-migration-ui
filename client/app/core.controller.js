@@ -18,15 +18,16 @@
 
         vm.model = {
             nino: '',
-            fromDateDay: 1,
-            fromDateMonth: 1,
-            fromDateYear: 2016,
+            fromDateDay: '',
+            fromDateMonth: '',
+            fromDateYear: '',
             meetsFinancialRequirements: false,
+            failureReason: '',
             threshold: {
                 amount: 0,
                 isoCurrencyCode: 'GBP'
             },
-            applicationReceivedDate: '2016-01-01',
+            applicationReceivedDate: '',
             applicant : {
                 title: '',
                 forename: '',
@@ -60,6 +61,12 @@
                 restService.checkApplication(vm.model.nino, vm.getFullDate())
                     .then(function(data) {
                         vm.model.meetsFinancialRequirements = data.application.financialRequirementsCheck.met;
+                        if (angular.isDefined(data.application.financialRequirementsCheck.failureReason)) {
+                            vm.model.failureReason = data.application.financialRequirementsCheck.failureReason;
+                        } else {
+                            vm.model.failureReason = '';
+                        }
+                        console.log("Failure reason: " + vm.model.failureReason);
                         vm.model.threshold = data.application.threshold;
                         vm.model.applicant = data.application.applicant;
                         vm.model.applicationReceivedDate = moment(data.application.applicationReceivedDate).format(DATE_DISPLAY_FORMAT);
