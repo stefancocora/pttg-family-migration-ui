@@ -19,6 +19,9 @@
             .when('/income-proving-result', {
                 templateUrl : 'views/income-proving-result.html'
             })
+            .when('/income-proving-no-records', {
+                templateUrl : 'views/income-proving-no-records.html'
+            })
             .otherwise({
                 templateUrl: 'views/404.html'
             });

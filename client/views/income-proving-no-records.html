@@ -5,11 +5,11 @@
 </div>
 
 <h1 class="form-title heading-large">
-    There is no record for XXXXXXXXX with HMRC
+    <span id="pageDynamicHeading">There is no record for {{vm.model.nino}} with HMRC</span>
 </h1>
 
-<p class="lede">We couldn't perform the financial requirement check as no income information exists with HMRC for the
-    National Insurance Number XXXXXXXXX.</p>
+<p class="lede"><span id="pageDynamicSubText">We couldn't perform the financial requirement check as no income information exists with HMRC for the
+    National Insurance Number {{vm.model.nino}}.</span></p>
 
 <h2 class="heading-medium">
     Your search
@@ -24,12 +24,12 @@
     </thead>
     <tbody>
     <tr>
-        <td>XXXXXXXXX</td>
-        <td>XX/XX/XXXX</td>
+        <td><span id="yourSearchNationalInsuranceNumber">{{vm.model.nino}}</span></td>
+        <td><span id="yourSearchApplicationReceivedDate">{{vm.model.fromDateDay}}/{{vm.model.fromDateMonth}}/{{vm.model.fromDateYear}}</span></td>
     </tr>
     </tbody>
 </table>
-
+<br/>
 <div class="form-group">
     <input type="submit" class="button" value="Start a new search" ng-click="vm.newSearch()">
 </div>

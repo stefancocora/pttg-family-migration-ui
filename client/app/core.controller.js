@@ -77,8 +77,9 @@
                             vm.ninoInvalidError = true;
                             vm.restError = true;
                         } else if (error.status === 404) {
-                            vm.ninoNotFoundError = true;
-                            vm.restError = true;
+                            //vm.ninoNotFoundError = true;
+                            //vm.restError = true;
+                            $location.path('/income-proving-no-records');
                         } else {
                             // vm.serverError = error.statusText;
                             vm.serverError = 'Unable to process your request, please try again.';
