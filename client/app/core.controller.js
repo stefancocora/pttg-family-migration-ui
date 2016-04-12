@@ -86,7 +86,7 @@
                             $location.path('/income-proving-no-records');
                         } else {
                             // vm.serverError = error.statusText;
-                            vm.serverError = error.status;
+                            vm.serverError = 'Unable to process your request, please try again.';
                         }
                    });
              } else {
