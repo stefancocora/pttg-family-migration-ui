@@ -13,16 +13,11 @@
         };
         function checkApplication(nino, applicationReceivedDate) {
             return $http.get('application?nino='+nino+'&applicationReceivedDate='+applicationReceivedDate)
-                .then(success)
-                .catch(fail);
+                .then(
+                    function success(response) { return response.data },
+                    function error(response) { throw response }
+                );
 
-            function success(response) {
-                return response.data;
-            }
-
-            function fail(error) {
-                throw error;
-            }
         }
     }
 })();

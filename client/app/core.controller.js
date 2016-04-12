@@ -50,6 +50,10 @@
             return vm.model.fromDateYear+'-'+vm.model.fromDateMonth+'-'+vm.model.fromDateDay;
         };
 
+        vm.formatDate = function() {
+            return moment(vm.getFullDate(), DATE_VALIDATE_FORMAT, true).format("DD/MM/YYYY");
+        }
+
         vm.scrollTo = function(anchor){
             $anchorScroll(anchor);
         };
@@ -82,7 +86,7 @@
                             $location.path('/income-proving-no-records');
                         } else {
                             // vm.serverError = error.statusText;
-                            vm.serverError = 'Unable to process your request, please try again.';
+                            vm.serverError = error.status;
                         }
                    });
              } else {
