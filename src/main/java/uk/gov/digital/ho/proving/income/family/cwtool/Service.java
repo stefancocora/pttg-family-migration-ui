@@ -25,8 +25,17 @@ public class Service {
     public ResponseEntity getMigrationFamilyApplication(@RequestParam(value = "nino") String nino,
                                                         @RequestParam(value = "applicationReceivedDate") String applicationReceivedDate) {
 
-        String url = "http://localhost:8081/application?nino=" + nino + "&applicationReceivedDate=" + applicationReceivedDate;
-        LOGGER.debug(url);
+
+        String url = "";
+        // Bit of a hack until we get the proper environments
+        LOGGER.debug(System.getProperty("server.port", "8000"));
+        if (System.getProperty("server.port", "8000").equals("8880")) {
+            url = "http://localhost:8881/application?nino=" + nino + "&applicationReceivedDate=" + applicationReceivedDate;
+        } else {
+            url = "http://localhost:8081/application?nino=" + nino + "&applicationReceivedDate=" + applicationReceivedDate;
+        }
+
+        LOGGER.info("Remote url: " + url);
 
         WebResource webResource = client.resource(url);
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
