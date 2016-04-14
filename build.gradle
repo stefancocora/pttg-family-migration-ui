@@ -56,3 +56,4 @@ dependencies {
 build.dependsOn gulp_build
 
 mainClassName="uk.gov.digital.ho.proving.income.family.cwtool.ServiceRunner"
+//applicationDefaultJvmArgs = ["-Dremote.server.port=8881","-Dserver.port=8880"]
