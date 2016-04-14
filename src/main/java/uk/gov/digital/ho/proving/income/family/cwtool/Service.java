@@ -25,7 +25,7 @@ public class Service {
     public ResponseEntity getMigrationFamilyApplication(@RequestParam(value = "nino") String nino,
                                                         @RequestParam(value = "applicationReceivedDate") String applicationReceivedDate) {
 
-        String remotePort = System.getProperty("remote.server.port", "8001");
+        String remotePort = System.getProperty("remote.server.port", "8081");
 
         String url = "http://localhost:"+ remotePort + "/application?nino=" + nino + "&applicationReceivedDate=" + applicationReceivedDate;
 
