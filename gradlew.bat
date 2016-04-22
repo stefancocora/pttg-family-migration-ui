@@ -1,3 +1,9 @@
+	@FindBy(css="")
+	private WebElement webElement;
+	@FindBy(css="")
+	private WebElement webElement;
+	@FindBy(css="")
+	private WebElement webElement;
 @if "%DEBUG%" == "" @echo off
 @rem ##########################################################################
 @rem

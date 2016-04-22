@@ -1,1 +1,4 @@
 rootProject.name = 'family-case-worker'
+//include 'cw-tool'
+//include 'cw-family-tool'
+
