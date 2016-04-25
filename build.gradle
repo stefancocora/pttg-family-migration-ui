@@ -1,3 +1,5 @@
+import com.wiredforcode.gradle.spawn.*
+
 group 'uk.gov.digital.ho.proving.income.migration.family'
 version '1.0-SNAPSHOT'
 
@@ -12,6 +14,8 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.3.RELEASE")
         classpath("com.moowork.gradle:gradle-node-plugin:0.12")
         classpath("com.moowork.gradle:gradle-gulp-plugin:0.12")
+        classpath 'com.wiredforcode:gradle-spawn-plugin:0.6.0'
+        classpath 'net.serenity-bdd:serenity-gradle-plugin:1.1.31'
     }
 }
 
@@ -20,6 +24,8 @@ apply plugin: 'groovy'
 apply plugin: 'spring-boot'
 apply plugin: 'application'
 apply plugin: 'com.moowork.gulp'
+apply plugin: 'com.wiredforcode.spawn'
+apply plugin: 'net.serenity-bdd.aggregator'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -38,6 +44,27 @@ repositories {
     mavenLocal()    // Pick up the domain jar locally until we have a central repo server.
 }
 
+test {
+    exclude 'acceptance/**'
+}
+
+task accept(type: Test) {
+    include 'acceptance/**'
+}
+
+// --------------------------------------------------------------
+// Automated Testing, start app before testing and shutdown after.
+// --------------------------------------------------------------
+task startServer(type: SpawnProcessTask, dependsOn: 'assemble') {
+    command "java -jar ${projectDir}/build/libs/${jar.baseName}-${jar.version}.jar"
+    ready 'Started ServiceRunner'
+}
+
+task stopServer(type: KillProcessTask) {}
+
+accept.dependsOn startServer
+accept.finalizedBy stopServer, aggregate
+
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web:1.3.3.RELEASE'
     compile 'org.springframework.boot:spring-boot:1.3.3.RELEASE'
@@ -45,12 +72,20 @@ dependencies {
     compile 'ch.qos.logback:logback-core:1.1.3'
     compile 'ch.qos.logback:logback-classic:1.1.3'
     compile 'com.sun.jersey:jersey-client:1.19'
-    compile 'org.codehaus.groovy:groovy-all:2.4.3'
+    compile 'org.codehaus.groovy:groovy-all:2.4.5'
 
-    testCompile 'org.codehaus.groovy:groovy-all:2.4.3'
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    // ++ Serenity BDD
+    testCompile 'net.serenity-bdd:serenity-cucumber:1.1.6'
+    testCompile('junit:junit:4.12')
+    testCompile('org.assertj:assertj-core:1.7.0')
+    testCompile('org.slf4j:slf4j-simple:1.7.7')
+    // -- Serenity BDD
+
+    testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+    testCompile 'org.apache.commons:commons-lang3:3.4'
+    testCompile "org.codehaus.groovy:groovy-all:2.4.5"
     testCompile 'org.springframework:spring-test:4.2.5.RELEASE'
-    testCompile('com.github.detro.ghostdriver:phantomjsdriver:1.1.0')
+
 }
 
 //make sure gulp generates CSS for the build

@@ -1,22 +1,19 @@
-package cucumber
+package steps
 
 import cucumber.api.DataTable
 import cucumber.api.java.en.Given
 import cucumber.api.java.en.Then
 import cucumber.api.java.en.When
 import net.thucydides.core.annotations.Managed
-import org.apache.commons.lang.StringUtils
-import org.apache.commons.lang.WordUtils
+import org.apache.commons.lang3.StringUtils
+import org.apache.commons.lang3.text.WordUtils
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 
 import java.text.SimpleDateFormat
 
-this.metaClass.mixin(cucumber.api.groovy.Hooks)
-this.metaClass.mixin(cucumber.api.groovy.EN)
-
-class PTTestSteps {
+class ProvingThingsTestSteps {
     @Managed
     public WebDriver driver;
 
