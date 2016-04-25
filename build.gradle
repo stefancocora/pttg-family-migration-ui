@@ -62,8 +62,10 @@ task startServer(type: SpawnProcessTask, dependsOn: 'assemble') {
 
 task stopServer(type: KillProcessTask) {}
 
-accept.dependsOn startServer
-accept.finalizedBy stopServer, aggregate
+//accept.dependsOn startServer
+//accept.finalizedBy stopServer, aggregate
+
+accept.finalizedBy aggregate
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web:1.3.3.RELEASE'
