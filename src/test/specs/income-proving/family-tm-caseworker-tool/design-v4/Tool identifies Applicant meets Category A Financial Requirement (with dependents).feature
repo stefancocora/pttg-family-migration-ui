@@ -80,8 +80,8 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
     Then The IPS Family TM Case Worker Tool provides the following result (with dependents):
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Wasim Mohammed |
-		| Outcome From Date                     | 30/11/2014 |
-		| Outcome To Date                       | 30/05/2015 |
+		| Outcome From Date                     | 30/08/2014 |
+		| Outcome To Date                       | 30/02/2015 |
 		| Your Search Individual Name           | Wasim Mohammed |
 		| Your Search Dependent                 | 5 |
 		| Your Search National Insurance Number | WA987654B  |
