@@ -75,7 +75,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependents):
       | NINO      | WA987654B  |
-      | Application received date | 30/05/2015 |
+      | Application received date | 30/02/2015 |
       | Dependent | 5 |
     Then The IPS Family TM Case Worker Tool provides the following result (with dependents):
 		| Outcome                               | Success    |
@@ -85,4 +85,4 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
 		| Your Search Individual Name           | Wasim Mohammed |
 		| Your Search Dependent                 | 5 |
 		| Your Search National Insurance Number | WA987654B  |
-		| Your Search Application Received Date | 30/05/2015 |
+		| Your Search Application Received Date | 30/02/2015 |
