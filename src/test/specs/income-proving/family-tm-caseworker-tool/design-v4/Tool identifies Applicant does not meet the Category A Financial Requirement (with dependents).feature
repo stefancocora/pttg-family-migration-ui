@@ -1,3 +1,4 @@
+@SD102A
 Feature: Tool identifies Applicant does not meet Category A Financial Requirement (with dependents)
 
 		Requirement to meet Category A
@@ -37,7 +38,7 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
 		| Category A check failure reason | they haven't met the required monthly amount. |
 
 		| Your Search Individual Name | Shelly Patel |
-		| Your Search Dependent                 | 4 |
+		| Your Search Dependents                 | 4 |
 		| Your Search National Insurance Number | SP123456B | 
 		| Your Search Application Received Date | 03/02/2015 |
 
@@ -59,7 +60,7 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
 		| Category A check failure reason | they haven't met the required monthly amount. |
 
 		| Your Search Individual Name | Brian Sinclair |
-		| Your Search Dependent                 | 2 |
+		| Your Search Dependents                 | 2 |
 		| Your Search National Insurance Number | BS123456B | 
 		| Your Search Application Received Date | 10/02/2015 |
 
@@ -82,6 +83,6 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
 		| Category A check failure reason | they haven't been with their current employer for 6 months. |
 
 		| Your Search Individual Name | Steve Yu |
-		| Your Search Dependent                 | 3 |
+		| Your Search Dependents                 | 3 |
 		| Your Search National Insurance Number | SY987654C | 
 		| Your Search Application Received Date | 03/09/2015 |
