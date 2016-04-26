@@ -1,3 +1,4 @@
+@SD102
 Feature: Tool identifies Applicant meets Category A Financial Requirement (with dependants)
 
 		Requirement to meet Category A
