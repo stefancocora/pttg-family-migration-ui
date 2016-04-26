@@ -23,22 +23,23 @@ public class Service {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getMigrationFamilyApplication(@RequestParam(value = "nino") String nino,
-                                                        @RequestParam(value = "applicationReceivedDate") String applicationReceivedDate) {
+                                                        @RequestParam(value = "applicationReceivedDate") String applicationReceivedDate,
+                                                        @RequestParam(value = "dependants",required = false) String dependants) {
 
         String remotePort = System.getProperty("remote.server.port", "8081");
 
         String url = "http://localhost:"+ remotePort + "/application?nino=" + nino + "&applicationReceivedDate=" + applicationReceivedDate;
+        if  (dependants != null) {
+            url += "&dependants="+ dependants;
+        }
 
         LOGGER.info("Remote url: " + url);
 
         WebResource webResource = client.resource(url);
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
-
         HttpHeaders headers = new HttpHeaders();
-
         headers.set("Content-type", "application/json");
-
-        return new ResponseEntity<String>(response.getEntity(String.class), headers, HttpStatus.valueOf(response.getStatus()));
+        return new ResponseEntity<>(response.getEntity(String.class), headers, HttpStatus.valueOf(response.getStatus()));
     }
 
 }

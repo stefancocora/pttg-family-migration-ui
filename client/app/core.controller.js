@@ -21,6 +21,7 @@
             fromDateDay: '',
             fromDateMonth: '',
             fromDateYear: '',
+            dependants: '',
             meetsFinancialRequirements: false,
             failureReason: '',
             threshold: {
@@ -35,11 +36,13 @@
             }
         };
 
+        vm.validateError = false;
         vm.dateInvalidError = false;
         vm.dateMissingError = false;
         vm.ninoMissingError = false;
         vm.ninoInvalidError = false;
         vm.ninoNotFoundError = false;
+        vm.dependantsInvalidError = false;
         vm.serverError = '';
 
         vm.formatAmount = function() {
@@ -62,7 +65,7 @@
 
             if (validateForm()) {
 
-                restService.checkApplication(vm.model.nino, vm.getFullDate())
+                restService.checkApplication(vm.model.nino, vm.getFullDate(), vm.model.dependants)
                     .then(function(data) {
                         vm.model.meetsFinancialRequirements = data.application.financialRequirementsCheck.met;
                         if (angular.isDefined(data.application.financialRequirementsCheck.failureReason)) {
@@ -81,16 +84,13 @@
                             vm.ninoInvalidError = true;
                             vm.restError = true;
                         } else if (error.status === 404) {
-                            //vm.ninoNotFoundError = true;
-                            //vm.restError = true;
                             $location.path('/income-proving-no-records');
                         } else {
-                            // vm.serverError = error.statusText;
                             vm.serverError = 'Unable to process your request, please try again.';
                         }
                    });
              } else {
-                vm.queryForm.$setValidity(false);
+                vm.validateError = true;
              }
         };
 
@@ -105,7 +105,9 @@
             vm.ninoMissingError = false;
             vm.dateMissingError = false;
             vm.dateInvalidError = false;
+            vm.dependantsInvalidError = false;
             vm.serverError = '';
+            vm.validateError = false;
         }
 
         function validateForm(){
@@ -130,15 +132,21 @@
             if (vm.model.fromDateDay === null ||
                 vm.model.fromDateMonth === null ||
                 vm.model.fromDateYear === null  ) {
-                vm.queryForm.fromDateDay.$setValidity(false);
-                vm.queryForm.fromDateMonth.$setValidity(false);
-                vm.queryForm.fromDateYear.$setValidity(false);
+                vm.queryForm.applicationReceivedDateDay.$setValidity(false);
+                vm.queryForm.applicationReceivedDateMonth.$setValidity(false);
+                vm.queryForm.applicationReceivedDateYear.$setValidity(false);
                 vm.dateMissingError = true;
                 validated = false;
             } else  if (!moment(vm.getFullDate(), DATE_VALIDATE_FORMAT, true).isValid()){
                 vm.dateInvalidError = true;
                 validated = false;
             }
+
+            if (vm.model.dependants !== null && !(/^\d{0,2}$/.test(vm.model.dependants))){
+                vm.dependantsInvalidError = true;
+                validated = false;
+            }
+
             vm.model.nino = vm.model.nino.toUpperCase();
             return validated;
         }
