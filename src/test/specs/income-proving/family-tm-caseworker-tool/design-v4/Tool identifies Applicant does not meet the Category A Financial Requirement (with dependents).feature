@@ -52,7 +52,7 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | BS123456B  |
-      | Application received date | 10/02/2015 |
+      | Application Received Date | 10/02/2015 |
       | Dependent | 2 |
     Then The IPS Family TM Case Worker Tool provides the following error result (with dependents):
 		| Page dynamic heading | Brian Sinclair doesn't meet the Category A salaried requirement |
@@ -75,7 +75,7 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | SY987654C  |
-      | Application received date | 03/09/2015 |
+      | Application Received Date | 03/09/2015 |
       | Dependent | 3 |
     Then The IPS Family TM Case Worker Tool provides the following error result (with dependents):
 		| Page dynamic heading |Steve Yu doesn't meet the Category A salaried requirement|

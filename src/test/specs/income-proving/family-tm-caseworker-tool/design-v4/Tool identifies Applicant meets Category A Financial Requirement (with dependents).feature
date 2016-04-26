@@ -29,9 +29,9 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | TL123456A  |
-      | Application received date | 23/01/2015 |
+      | Application Received Date | 23/01/2015 |
       | Dependent | 1 |
-    Then The IPS Family TM Case Worker Tool provides the following result (with dependents):
+    Then The IPS Family TM Case Worker Tool provides the following result - with dependents:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Tony Ledo  |
 		| Outcome From Date                     | 23/07/2014 |
@@ -52,9 +52,9 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | SJ123456C  |
-      | Application received date | 8/12/2015 |
+      | Application Received Date | 8/12/2015 |
       | Dependent | 3 |
-    Then The IPS Family TM Case Worker Tool provides the following result (with dependents):
+    Then The IPS Family TM Case Worker Tool provides the following result - with dependents:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Scarlett Jones |
 		| Outcome From Date                     | 08/06/2014 |
@@ -75,9 +75,9 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependents):
       | NINO      | WA987654B  |
-      | Application received date | 30/02/2015 |
+      | Application Received Date | 30/02/2015 |
       | Dependent | 5 |
-    Then The IPS Family TM Case Worker Tool provides the following result (with dependents):
+    Then The IPS Family TM Case Worker Tool provides the following result - with dependents:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Wasim Mohammed |
 		| Outcome From Date                     | 30/08/2014 |
