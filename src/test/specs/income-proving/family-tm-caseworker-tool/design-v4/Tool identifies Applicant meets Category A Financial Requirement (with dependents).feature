@@ -18,7 +18,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
 			7 Dependant children - £18600+£3800+(£2400*6)/12 = £3066.67 
 			ETC
 
-#New scenario - Added in SD103
+#New scenario - Added in SD102
   Scenario: Tony Ledo meets the Category A Financial Requirement with 1 dependent
 
 		Pay date 15th of the month
@@ -35,13 +35,13 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Tony Ledo  |
 		| Outcome From Date                     | 23/07/2014 |
-		| Outcome To Date                       | 23/01/2015   |
+		| Outcome To Date                       | 23/01/2015 |
 		| Your Search Individual Name           | Tony Ledo |
 		| Your Search Dependent                 | 1 |
 		| Your Search National Insurance Number | TL123456A  |
-		| Your Search Application Received Date | 23/01/2015 |g
+		| Your Search Application Received Date | 23/01/2015 |
 
-#New scenario - Added in SD103
+#New scenario - Added in SD102
   Scenario: Scarlett Jones meets the Category A Financial Requirement with 3 dependent
 
 		Pay date 2nd of the month
@@ -64,7 +64,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
 		| Your Search National Insurance Number | SJ123456C  |
 		| Your Search Application Received Date | 08/12/2015 |
 
-#New scenario - Added in SD103
+#New scenario - Added in SD102
   Scenario: Wasim Mohammed meets the Category A Financial Requirement with 5 dependent
 
 		Pay date 30th of the month

@@ -28,16 +28,17 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
 		She earns £2250.00 Monthly Gross Income EVERY of the 6 months prior to the Application Received Date
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query:
+    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | SP123456B  |
       | Application Received Date | 03/11/2015 |
-    Then The service for Cat A Failure provides the following result:
+      | Dependent | 4 |
+    Then The IPS Family TM Case Worker Tool provides the following error result (with dependents):
 		| Page dynamic heading |Shelly Patel doesn't meet the Category A salaried requirement |
 		| Category A check failure reason | they haven't met the required monthly amount. |
 
 		| Your Search Individual Name | Shelly Patel |
 		| Your Search Dependent                 | 4 |
-		| Your Search National Insurance Number | SP123456B |
+		| Your Search National Insurance Number | SP123456B | 
 		| Your Search Application Received Date | 03/11/2015 |
 
 #New scenario - Added in SD102
@@ -49,10 +50,11 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
 		He earns £1416.67 Monthly Gross Income EVERY of the 6 months prior to the Application Received Date
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query:
+    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | BS123456B  |
       | Application received date | 10/07/2015 |
-    Then The service for Cat A Failure provides the following result:
+      | Dependent | 2 |
+    Then The IPS Family TM Case Worker Tool provides the following error result (with dependents):
 		| Page dynamic heading | Brian Sinclair doesn't meet the Category A salaried requirement |
 		| Category A check failure reason | they haven't met the required monthly amount. |
 
@@ -71,10 +73,11 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
 			He worked for a different employer before his current employer
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query:
+    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | SY987654C  |
       | Application received date | 03/09/2015 |
-    Then The service for Cat A Failure provides the following result:
+      | Dependent | 3 |
+    Then The IPS Family TM Case Worker Tool provides the following error result (with dependents):
 		| Page dynamic heading |Steve Yu doesn't meet the Category A salaried requirement|
 		| Category A check failure reason | they haven't been with their current employer for 6 months. |
 
