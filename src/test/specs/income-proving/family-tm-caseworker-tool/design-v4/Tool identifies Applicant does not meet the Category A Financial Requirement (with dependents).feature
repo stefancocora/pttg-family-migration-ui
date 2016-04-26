@@ -37,7 +37,7 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
 
 		| Your Search Individual Name | Shelly Patel |
 		| Your Search Dependent                 | 4 |
-		| Your Search National Insurance Number | JL123456A | 
+		| Your Search National Insurance Number | SP123456B |
 		| Your Search Application Received Date | 03/11/2015 |
 
 #New scenario - Added in SD102
