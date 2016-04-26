@@ -542,4 +542,54 @@ class ProvingThingsTestSteps {
 
     }
 
+//Dependants
+
+    @When("^Robert submits a query to IPS Family TM Case Worker Tool \\(with dependants\\):\$")
+    public void robert_submits_a_query_to_IPS_Family_TM_Case_Worker_Tool_with_dependants(DataTable expectedResult) {
+        Map<String, String> entries = expectedResult.asMap(String.class, String.class)
+
+        driver.sleep(delay)
+
+        String applicationReceivedDate = entries.get("Application Received Date")
+
+        String[] date = applicationReceivedDate.split("/")
+
+        driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
+
+        driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
+
+        driver.findElement(By.id("applicationReceivedDateMonth")).sendKeys(date[1])
+
+        driver.findElement(By.id("applicationReceivedDateYear")).sendKeys(date[2])
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependent"))
+
+        driver.findElement(By.className("button")).click();
+
+    }
+
+    @Then("^The IPS Family TM Case Worker Tool provides the following error result \\(with dependents\\):\$")
+    public void the_IPS_Family_TM_Case_Worker_Tool_provides_the_following_error_result_with_dependents(DataTable expectedResult) {
+
+        Map<String, String> entries = expectedResult.asMap(String.class, String.class)
+
+        WebElement pageDynamicHeading = driver.findElement(By.id("pageDynamicHeading"))
+        WebElement categoryACheckFailureReason = driver.findElement(By.id("categoryACheckFailureReason"))
+        WebElement yourSearchIndividualName = driver.findElement(By.id("yourSearchIndividualName"))
+        //WebElement yourSearchDependents = driver.findElement(By.id("yourSearchDependents"))
+        WebElement yourSearchNationalInsuranceNumber = driver.findElement(By.id("yourSearchNationalInsuranceNumber"))
+        WebElement yourSearchApplicationReceivedDate = driver.findElement(By.id("yourSearchApplicationReceivedDate"))
+
+        assert entries.get("Page dynamic heading").contains(pageDynamicHeading.getText())
+        assert entries.get("Category A check failure reason").contains(categoryACheckFailureReason.getText())
+        assert entries.get("Your Search Individual Name").contains(yourSearchIndividualName.getText())
+       // assert entries.get("Your Search Dependents").contains(yourSearchDependents.getText())
+        assert entries.get("Your Search National Insurance Number").contains(yourSearchNationalInsuranceNumber.getText())
+        assert entries.get("Your Search Application Received Date").contains(yourSearchApplicationReceivedDate.getText())
+
+    }
+
+
+
+
+
 }
