@@ -41,6 +41,7 @@
     <thead>
     <tr>
         <th scope="col">Applicant</th>
+        <th ng-if="vm.model.dependants>0" scope="col">Dependants</th>
         <th scope="col">National Insurance Number</th>
         <th scope="col">Application date</th>
     </tr>
@@ -48,6 +49,7 @@
     <tbody>
     <tr>
         <td><span id="yourSearchIndividualName">{{vm.model.applicant.forename}} {{vm.model.applicant.surname}}</span></td>
+        <td ng-if="vm.model.dependants>0"><span id="yourSearchDependants">{{vm.model.dependants}}</span></td>
         <td><span id="yourSearchNationalInsuranceNumber">{{vm.model.applicant.nino}}</span></td>
         <td><span id="yourSearchApplicationReceivedDate">{{vm.model.applicationReceivedDate}}</span></td>
     </tr>

@@ -22,7 +22,7 @@
             </p>
         </div>
         <form name="vm.queryForm" ng-submit="vm.submit()">
-            <div ng-if="!vm.queryForm.$valid || vm.restError" class="error-summary"
+            <div ng-if="vm.validateError || vm.restError" class="error-summary"
                  role="group" aria-labelledby="error-summary-heading-example-2" tabindex="-1">
 
                 <h1 class="heading-medium error-summary-heading" id="error-summary-heading-example-2">
@@ -44,6 +44,9 @@
                         <a href="" ng-click="vm.scrollTo('applicationReceivedDateDay')">Application received date is missing</a></li>
                     <li ng-if="vm.dateInvalidError">
                         <a href="" ng-click="vm.scrollTo('applicationReceivedDateDay')">Application received date is invalid</a></li>
+
+                    <li ng-if="vm.dependantsInvalidError">
+                        <a href="" ng-click="vm.scrollTo('applicationReceivedDateDay')">The number of dependants is invalid</a></li>
                 </ul>
             </div>
 
@@ -63,6 +66,17 @@
                             Please provide a valid National Insurance Number</span>
                     <input type="text" id="nino" name="nino" class="form-control" ng-model="vm.model.nino"
                            autocomplete="off">
+                </div>
+
+                <div class="form-group" ng-class="{error : vm.dependantsInvalidError }">
+                    <label class="form-label-bold" for="dependants" id="no-dependants">
+                        Number of Dependants
+                        <span class="form-hint">You can leave this blank for no dependants.</span>
+                    </label>
+                    <span id="dependants-error" class="error-message" ng-if="vm.dependantsInvalidError">
+                                    The number or dependants is invalid</span>
+                    <input type="number" class="form-control form-control-1-8" name="dependants" id="dependants"
+                           ng-model="vm.model.dependants" autocomplete="off">
                 </div>
 
                 <div class="form-group " id="to-date" ng-class="{error : vm.dateMissingError || vm.dateInvalidError}">
