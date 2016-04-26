@@ -30,7 +30,7 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | SP123456B  |
-      | Application Received Date | 03/11/2015 |
+      | Application Received Date | 03/02/2015 |
       | Dependent | 4 |
     Then The IPS Family TM Case Worker Tool provides the following error result (with dependents):
 		| Page dynamic heading |Shelly Patel doesn't meet the Category A salaried requirement |
@@ -39,7 +39,7 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
 		| Your Search Individual Name | Shelly Patel |
 		| Your Search Dependent                 | 4 |
 		| Your Search National Insurance Number | SP123456B | 
-		| Your Search Application Received Date | 03/11/2015 |
+		| Your Search Application Received Date | 03/02/2015 |
 
 #New scenario - Added in SD102
   Scenario: Brian does not meet the Category A Financial Requirement (He has earned < the Cat A financial threshold)
@@ -52,7 +52,7 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | BS123456B  |
-      | Application received date | 10/07/2015 |
+      | Application received date | 10/02/2015 |
       | Dependent | 2 |
     Then The IPS Family TM Case Worker Tool provides the following error result (with dependents):
 		| Page dynamic heading | Brian Sinclair doesn't meet the Category A salaried requirement |
@@ -61,7 +61,7 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
 		| Your Search Individual Name | Brian Sinclair |
 		| Your Search Dependent                 | 2 |
 		| Your Search National Insurance Number | BS123456B | 
-		| Your Search Application Received Date | 10/07/2015 |
+		| Your Search Application Received Date | 10/02/2015 |
 
 #New scenario - Added in SD102
   Scenario: Steve does not meet the Category A employment duration Requirement (He has worked for his current employer for only 5 months)
