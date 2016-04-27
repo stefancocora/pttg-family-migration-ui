@@ -58,7 +58,7 @@ class ProvingThingsTestSteps {
             if (e > 0){
                 nextString = keys[e].toLowerCase()
                 firstChar = nextString.charAt(0)
-                nextString = nextString.replace(firstChar,firstChar.toUpperCase())
+                nextString = nextString.replaceFirst(firstChar.toString(), firstChar.toString().toUpperCase())
                 sbr.append(nextString)
             }
 
