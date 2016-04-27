@@ -1,4 +1,4 @@
-@SD102-Tool_identifies_Applicant_Does_Not_Neet_CAT_A_Dependent
+@SD102-Tool_identifies_Applicant_Does_Not_Meet_CAT_A_Dependent
 Feature: Tool identifies Applicant does not meet Category A Financial Requirement (with dependents)
 
 		Requirement to meet Category A
