@@ -561,7 +561,7 @@ class ProvingThingsTestSteps {
         driver.findElement(By.id("applicationReceivedDateMonth")).sendKeys(date[1])
 
         driver.findElement(By.id("applicationReceivedDateYear")).sendKeys(date[2])
-        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependent"))
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.className("button")).click();
 
@@ -575,14 +575,14 @@ class ProvingThingsTestSteps {
         WebElement pageDynamicHeading = driver.findElement(By.id("pageDynamicHeading"))
         WebElement categoryACheckFailureReason = driver.findElement(By.id("categoryACheckFailureReason"))
         WebElement yourSearchIndividualName = driver.findElement(By.id("yourSearchIndividualName"))
-        //WebElement yourSearchDependents = driver.findElement(By.id("yourSearchDependents"))
+        WebElement yourSearchDependants = driver.findElement(By.id("yourSearchDependants"))
         WebElement yourSearchNationalInsuranceNumber = driver.findElement(By.id("yourSearchNationalInsuranceNumber"))
         WebElement yourSearchApplicationReceivedDate = driver.findElement(By.id("yourSearchApplicationReceivedDate"))
 
         assert entries.get("Page dynamic heading").contains(pageDynamicHeading.getText())
         assert entries.get("Category A check failure reason").contains(categoryACheckFailureReason.getText())
         assert entries.get("Your Search Individual Name").contains(yourSearchIndividualName.getText())
-       // assert entries.get("Your Search Dependents").contains(yourSearchDependents.getText())
+        assert entries.get("Your Search Dependants").contains(yourSearchDependants.getText())
         assert entries.get("Your Search National Insurance Number").contains(yourSearchNationalInsuranceNumber.getText())
         assert entries.get("Your Search Application Received Date").contains(yourSearchApplicationReceivedDate.getText())
 
