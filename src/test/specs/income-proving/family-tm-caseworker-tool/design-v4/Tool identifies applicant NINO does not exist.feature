@@ -1,3 +1,4 @@
+@SD108_Nino_Does_Not_Exist
 Feature: Tool identifies applicant NINO does not exist
 
 #Changed Scenario - Changed Application received date to Application raised date - SD108
