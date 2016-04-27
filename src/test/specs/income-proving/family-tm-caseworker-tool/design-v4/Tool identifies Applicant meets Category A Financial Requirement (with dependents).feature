@@ -1,3 +1,4 @@
+@SD102-Tool_identifies_Applicant_Meet_CAT_A_Dependent
 Feature: Tool identifies Applicant meets Category A Financial Requirement (with dependants)
 
 		Requirement to meet Category A
@@ -30,14 +31,14 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | TL123456A  |
       | Application Received Date | 23/01/2015 |
-      | Dependent | 1 |
+      | Dependants | 1 |
     Then The IPS Family TM Case Worker Tool provides the following result - with dependents:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Tony Ledo  |
 		| Outcome From Date                     | 23/07/2014 |
 		| Outcome To Date                       | 23/01/2015 |
 		| Your Search Individual Name           | Tony Ledo |
-		| Your Search Dependent                 | 1 |
+		| Your Search Dependants                 | 1 |
 		| Your Search National Insurance Number | TL123456A  |
 		| Your Search Application Received Date | 23/01/2015 |
 
@@ -53,14 +54,14 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | SJ123456C  |
       | Application Received Date | 8/12/2015 |
-      | Dependent | 3 |
+      | Dependants | 3 |
     Then The IPS Family TM Case Worker Tool provides the following result - with dependents:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Scarlett Jones |
 		| Outcome From Date                     | 08/06/2014 |
 		| Outcome To Date                       | 08/12/2015 |
 		| Your Search Individual Name           | Scarlett Jones |
-		| Your Search Dependent                 | 3 |
+		| Your Search Dependants                 | 3 |
 		| Your Search National Insurance Number | SJ123456C  |
 		| Your Search Application Received Date | 08/12/2015 |
 
@@ -76,13 +77,13 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | WA987654B  |
       | Application Received Date | 28/02/2015 |
-      | Dependent | 5 |
+      | Dependants | 5 |
     Then The IPS Family TM Case Worker Tool provides the following result - with dependents:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Wasim Mohammed |
 		| Outcome From Date                     | 30/08/2014 |
 		| Outcome To Date                       | 28/02/2015 |
 		| Your Search Individual Name           | Wasim Mohammed |
-		| Your Search Dependent                 | 5 |
+		| Your Search Dependants                 | 5 |
 		| Your Search National Insurance Number | WA987654B  |
 		| Your Search Application Received Date | 28/02/2015 |
