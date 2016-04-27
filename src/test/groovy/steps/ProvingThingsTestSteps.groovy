@@ -579,12 +579,12 @@ class ProvingThingsTestSteps {
         WebElement yourSearchNationalInsuranceNumber = driver.findElement(By.id("yourSearchNationalInsuranceNumber"))
         WebElement yourSearchApplicationReceivedDate = driver.findElement(By.id("yourSearchApplicationReceivedDate"))
 
-        assert entries.get("Page dynamic heading").contains(pageDynamicHeading.getText())
-        assert entries.get("Category A check failure reason").contains(categoryACheckFailureReason.getText())
-        assert entries.get("Your Search Individual Name").contains(yourSearchIndividualName.getText())
-        assert entries.get("Your Search Dependants").contains(yourSearchDependants.getText())
-        assert entries.get("Your Search National Insurance Number").contains(yourSearchNationalInsuranceNumber.getText())
-        assert entries.get("Your Search Application Received Date").contains(yourSearchApplicationReceivedDate.getText())
+        assert entries.get("Page dynamic heading").equals(pageDynamicHeading.getText())
+        assert entries.get("Category A check failure reason").equals(categoryACheckFailureReason.getText())
+        assert entries.get("Your Search Individual Name").equals(yourSearchIndividualName.getText())
+        assert entries.get("Your Search Dependants").equals(yourSearchDependants.getText())
+        assert entries.get("Your Search National Insurance Number").equals(yourSearchNationalInsuranceNumber.getText())
+        assert entries.get("Your Search Application Received Date").equals(yourSearchApplicationReceivedDate.getText())
 
     }
 
