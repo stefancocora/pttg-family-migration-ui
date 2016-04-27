@@ -1,3 +1,4 @@
+@SD108_Tool_identifies_Applicant_Does_Not_Neet_CAT_A_Req_No_Dependent
 Feature: Tool identifies Applicant does not meet the Category A Financial Requirement
 
 		Requirement to meet Category A
