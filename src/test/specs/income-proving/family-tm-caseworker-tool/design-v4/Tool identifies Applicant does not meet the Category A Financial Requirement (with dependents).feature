@@ -1,4 +1,4 @@
-@SD102A
+@SD102-Tool_identifies_Applicant_Does_Not_Neet_CAT_A_Dependent
 Feature: Tool identifies Applicant does not meet Category A Financial Requirement (with dependents)
 
 		Requirement to meet Category A
@@ -32,13 +32,13 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | SP123456B  |
       | Application Received Date | 03/02/2015 |
-      | Dependent | 4 |
+      | Dependants | 4 |
     Then The IPS Family TM Case Worker Tool provides the following error result (with dependents):
 		| Page dynamic heading |Shelly Patel doesn't meet the Category A salaried requirement |
 		| Category A check failure reason | they haven't met the required monthly amount. |
 
 		| Your Search Individual Name | Shelly Patel |
-		| Your Search Dependents                 | 4 |
+		| Your Search Dependants                 | 4 |
 		| Your Search National Insurance Number | SP123456B | 
 		| Your Search Application Received Date | 03/02/2015 |
 
@@ -54,13 +54,13 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | BS123456B  |
       | Application Received Date | 10/02/2015 |
-      | Dependent | 2 |
+      | Dependants | 2 |
     Then The IPS Family TM Case Worker Tool provides the following error result (with dependents):
 		| Page dynamic heading | Brian Sinclair doesn't meet the Category A salaried requirement |
 		| Category A check failure reason | they haven't met the required monthly amount. |
 
 		| Your Search Individual Name | Brian Sinclair |
-		| Your Search Dependents                 | 2 |
+		| Your Search Dependants                 | 2 |
 		| Your Search National Insurance Number | BS123456B | 
 		| Your Search Application Received Date | 10/02/2015 |
 
@@ -77,12 +77,12 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | SY987654C  |
       | Application Received Date | 03/09/2015 |
-      | Dependent | 3 |
+      | Dependants | 3 |
     Then The IPS Family TM Case Worker Tool provides the following error result (with dependents):
 		| Page dynamic heading |Steve Yu doesn't meet the Category A salaried requirement|
 		| Category A check failure reason | they haven't been with their current employer for 6 months. |
 
 		| Your Search Individual Name | Steve Yu |
-		| Your Search Dependents                 | 3 |
+		| Your Search Dependants                 | 3 |
 		| Your Search National Insurance Number | SY987654C | 
 		| Your Search Application Received Date | 03/09/2015 |
