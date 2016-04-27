@@ -71,6 +71,7 @@ class ProvingThingsTestSteps {
                     sendKeys(driver.findElement(By.id(key + "Day")), String.valueOf(parsedDate.getAt(Calendar.DAY_OF_MONTH)))
                     sendKeys(driver.findElement(By.id(key + "Month")), String.valueOf(parsedDate.getAt(Calendar.MONTH) + 1))
                     sendKeys(driver.findElement(By.id(key + "Year")), String.valueOf(parsedDate.getAt(Calendar.YEAR)))
+
                 } else {
                     driver.findElement(By.id(key + "Day")).clear()
                     driver.findElement(By.id(key + "Month")).clear()
@@ -589,7 +590,16 @@ class ProvingThingsTestSteps {
     }
 
 
+    @Then("^The IPS Family TM Case Worker Tool provides the following result - with dependents:\$")
+    public void the_IPS_Family_TM_Case_Worker_Tool_provides_the_following_result_with_dependents(DataTable expectedResult) throws Throwable {
 
+        Map<String, String> entries = expectedResult.asMap(String.class, String.class)
+
+
+
+
+
+    }
 
 
 }
