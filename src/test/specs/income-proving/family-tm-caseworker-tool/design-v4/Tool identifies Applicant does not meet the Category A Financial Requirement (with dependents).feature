@@ -6,7 +6,7 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
 
 		Financial income regulation to pass this Feature File
 			Income required amount no dependent child = £18600 (£1550 per month or above for EACH of the previous 6 months from the Application Received Date)
-			Additional funds for 1 dependent child = £3800 on top of employment threshold 
+			Additional funds for 1 dependent child = £3800 on top of employment threshold
 			Additional funds for EVERY subsequent dependent child = £2400 on top of employment threshold per child
 
 		Financial income calculation to pass this Feature File
@@ -14,10 +14,10 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
 
 			1 dependent child - £18600+£3800/12 = £1866.67
 			2 dependent children - £18600+£3800+£2400/12 = £2066.67
-			3 dependent children - £18600+£3800+(£2400*2)/12 = £2266.67 
-			4 dependent children - £18600+£3800+(£2400*3)/12 = £2466.67 
-			5 dependent children - £18600+£3800+(£2400*4)/12 = £2666.67 
-			7 dependent children - £18600+£3800+(£2400*6)/12 = £3066.67 
+			3 dependent children - £18600+£3800+(£2400*2)/12 = £2266.67
+			4 dependent children - £18600+£3800+(£2400*3)/12 = £2466.67
+			5 dependent children - £18600+£3800+(£2400*4)/12 = £2666.67
+			7 dependent children - £18600+£3800+(£2400*6)/12 = £3066.67
 			ETC
 
 #New scenario - Added in SD102
@@ -39,13 +39,13 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
 
 		| Your Search Individual Name | Shelly Patel |
 		| Your Search Dependants                 | 4 |
-		| Your Search National Insurance Number | SP123456B | 
+		| Your Search National Insurance Number | SP123456B |
 		| Your Search Application Received Date | 03/02/2015 |
 
 #New scenario - Added in SD102
   Scenario: Brian does not meet the Category A Financial Requirement (He has earned < the Cat A financial threshold)
 
-		Pay date 10th of the month 
+		Pay date 10th of the month
 		On the same day of application received date
 		He has 2 Thai dependants
 		He earns £1416.67 Monthly Gross Income EVERY of the 6 months prior to the Application Received Date
@@ -61,7 +61,7 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
 
 		| Your Search Individual Name | Brian Sinclair |
 		| Your Search Dependants                 | 2 |
-		| Your Search National Insurance Number | BS123456B | 
+		| Your Search National Insurance Number | BS123456B |
 		| Your Search Application Received Date | 10/02/2015 |
 
 #New scenario - Added in SD102
@@ -84,5 +84,27 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
 
 		| Your Search Individual Name | Steve Yu |
 		| Your Search Dependants                 | 3 |
-		| Your Search National Insurance Number | SY987654C | 
+		| Your Search National Insurance Number | SY987654C |
 		| Your Search Application Received Date | 03/09/2015 |
+
+#New scenario - Added in SD102
+	Scenario: Scarlett Jones does not meets the Category A Financial Requirement with 3 dependent
+
+	Pay date 2nd of the month
+	Before day of application received date
+	He earns £3333.33 Monthly Gross Income EVERY of the 6 months prior to the Application Received Date
+	He has 3 dependent child
+
+		Given Caseworker is using the Income Proving Service Case Worker Tool
+		When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
+			| NINO      | SJ123456C  |
+			| Application Received Date |3/1/2016|
+			| Dependants | 3 |
+		Then The IPS Family TM Case Worker Tool provides the following error result (with dependents):
+			| Page dynamic heading |Scarlett Jones doesn't meet the Category A salaried requirement|
+			| Category A check failure reason | they haven't been with their current employer for 6 months. |
+
+			| Your Search Individual Name | Scarlett Jones |
+			| Your Search Dependants                 | 3 |
+			| Your Search National Insurance Number | SJ123456C |
+			| Your Search Application Received Date |  03/01/2016 |
