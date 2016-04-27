@@ -38,6 +38,36 @@ class ProvingThingsTestSteps {
         }
     }
 
+    public String camelCase(String tableKey){
+
+        StringBuilder sbr = new StringBuilder()
+        String firstString
+        String nextString
+        String finalString
+        char firstChar
+
+        String[] keys = tableKey.split(" ")
+
+        for(int e = 0; e < keys.length; e++ ){
+
+            if(e == 0) {
+                firstString = keys[0].toLowerCase()
+                sbr.append(firstString)
+            }
+
+            if (e > 0){
+                nextString = keys[e].toLowerCase()
+                firstChar = nextString.charAt(0)
+                nextString = nextString.replace(firstChar,firstChar.toUpperCase())
+                sbr.append(nextString)
+            }
+
+            finalString = sbr.toString()
+        }
+        return finalString
+
+    }
+
     // ---------------------------------------
     // Income Proving Service Case Worker Tool
     // ---------------------------------------
