@@ -73,7 +73,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
 		He has 5 dependent child
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool (with dependents):
+    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | WA987654B  |
       | Application Received Date | 28/02/2015 |
       | Dependent | 5 |
