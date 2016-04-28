@@ -19,7 +19,7 @@ Feature: Tool identifies Applicant does not meet the Category A Financial Requir
 			| NINO                    | JL123456A  |
 			| Application Raised Date | 15/01/2015 |
 		Then The service for Cat A Failure provides the following result:
-			| Page dynamic heading                  | Jill Lewondoski doesn't meet the Category A requirement |
+			| Page dynamic heading                  | Jill Lewondoski doesn't meet the Category A salaried requirement |
 			| Category A check failure reason       | they haven't met the required monthly amount.           |
 
 			| Your Search Individual Name           | Jill Lewondoski                                         |
@@ -38,7 +38,7 @@ Feature: Tool identifies Applicant does not meet the Category A Financial Requir
 			| NINO                    | FL123456B  |
 			| Application Raised Date | 28/03/2015 |
 		Then The service for Cat A Failure provides the following result:
-			| Page dynamic heading                  | Francois Leblanc doesn't meet the Category A requirement |
+			| Page dynamic heading                  | Francois Leblanc doesn't meet the Category A salaried requirement |
 			| Category A check failure reason       | they haven't met the required monthly amount.            |
 
 			| Your Search Individual Name           | Francois Leblanc                                         |
@@ -58,7 +58,7 @@ Feature: Tool identifies Applicant does not meet the Category A Financial Requir
 			| NINO                    | KS123456C  |
 			| Application Raised Date | 03/07/2015 |
 		Then The service for Cat A Failure provides the following result:
-			| Page dynamic heading                  | Kumar Sangakkara Dilshan doesn't meet the Category A requirement |
+			| Page dynamic heading                  | Kumar Sangakkara Dilshan doesn't meet the Category A salaried requirement |
 			| Category A check failure reason       | they haven't been with their current employer for 6 months.      |
 
 			| Your Search Individual Name           | Kumar Sangakkara Dilshan                                         |
