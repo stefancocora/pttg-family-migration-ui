@@ -337,7 +337,7 @@ class ProvingThingsTestSteps {
 
         driver.sleep(delay)
 
-        String applicationRaisedDate = entries.get("Application Raised date")
+        String applicationRaisedDate = entries.get("Application Raised Date")
 
         String[] date = applicationRaisedDate.split("/")
 
