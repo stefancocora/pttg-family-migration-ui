@@ -316,7 +316,6 @@ class ProvingThingsTestSteps {
             }
 
 
-
         }
 
     }
@@ -607,7 +606,7 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependent"))
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
 
