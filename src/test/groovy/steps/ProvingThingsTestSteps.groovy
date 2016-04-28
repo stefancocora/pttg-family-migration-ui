@@ -130,8 +130,6 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependent"))
-
         driver.findElement(By.id("applicationReceivedDateDay")).clear()
         driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
 
@@ -158,8 +156,6 @@ class ProvingThingsTestSteps {
         String[] date = applicationReceivedDate.split("/")
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
-
-        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependent"))
 
         driver.findElement(By.id("applicationReceivedDateDay")).clear()
         driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
@@ -188,8 +184,6 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependent"))
-
         driver.findElement(By.id("applicationReceivedDateDay")).clear()
         driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
 
@@ -216,8 +210,6 @@ class ProvingThingsTestSteps {
         String[] date = applicationReceivedDate.split("/")
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
-
-        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependent"))
 
         driver.findElement(By.id("applicationReceivedDateDay")).clear()
         driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
@@ -343,8 +335,6 @@ class ProvingThingsTestSteps {
         String[] date = applicationReceivedDate.split("/")
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
-
-        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependent"))
 
         driver.findElement(By.id("applicationReceivedDateDay")).clear()
         driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
@@ -614,7 +604,6 @@ class ProvingThingsTestSteps {
         driver.findElement(By.id("applicationReceivedDateMonth")).sendKeys(date[1])
 
         driver.findElement(By.id("applicationReceivedDateYear")).sendKeys(date[2])
-        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
 
@@ -679,9 +668,6 @@ class ProvingThingsTestSteps {
         assert entries.get("Your Search National Insurance Number").equals(yourSearchNationalInsuranceNumber.getText())
         assert entries.get("Your Search Application Received Date").equals(yourSearchApplicationReceivedDate.getText())
 
-
     }
-
-
 
 }
