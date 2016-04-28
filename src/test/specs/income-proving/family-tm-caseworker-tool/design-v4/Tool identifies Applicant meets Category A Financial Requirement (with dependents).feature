@@ -31,7 +31,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | TL123456A  |
       | Application Received Date | 23/01/2015 |
-      | Dependent | 1 |
+      | Dependants | 1 |
     Then The IPS Family TM Case Worker Tool provides the following result - with dependents:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Tony Ledo  |
@@ -54,7 +54,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | SJ123456C  |
       | Application Received Date | 8/12/2015 |
-      | Dependent | 3 |
+      | Dependants | 3 |
     Then The IPS Family TM Case Worker Tool provides the following result - with dependents:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Scarlett Jones |
@@ -77,7 +77,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement (with 
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | WA987654B  |
       | Application Received Date | 28/02/2015 |
-      | Dependent | 5 |
+      | Dependants | 5 |
     Then The IPS Family TM Case Worker Tool provides the following result - with dependents:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Wasim Mohammed |
