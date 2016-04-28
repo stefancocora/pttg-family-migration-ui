@@ -130,6 +130,8 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependent"))
+
         driver.findElement(By.id("applicationReceivedDateDay")).clear()
         driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
 
@@ -139,7 +141,9 @@ class ProvingThingsTestSteps {
         driver.findElement(By.id("applicationReceivedDateYear")).clear()
         driver.findElement(By.id("applicationReceivedDateYear")).sendKeys(date[2])
 
-        driver.findElement(By.className("button")).click();
+        driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
+
+        //driver.findElement(By.className("button")).click();
     }
 
     @When("^an incorrect NINO is entered:\$")
@@ -155,6 +159,8 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependent"))
+
         driver.findElement(By.id("applicationReceivedDateDay")).clear()
         driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
 
@@ -164,7 +170,9 @@ class ProvingThingsTestSteps {
         driver.findElement(By.id("applicationReceivedDateYear")).clear()
         driver.findElement(By.id("applicationReceivedDateYear")).sendKeys(date[2])
 
-        driver.findElement(By.className("button")).click();
+        driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
+
+        //driver.findElement(By.className("button")).click();
     }
 
     @When("^Application Received Date is not entered:\$")
@@ -180,6 +188,8 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependent"))
+
         driver.findElement(By.id("applicationReceivedDateDay")).clear()
         driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
 
@@ -189,7 +199,9 @@ class ProvingThingsTestSteps {
         driver.findElement(By.id("applicationReceivedDateYear")).clear()
         driver.findElement(By.id("applicationReceivedDateYear")).sendKeys(date[2])
 
-        driver.findElement(By.className("button")).click();
+        driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
+
+        //driver.findElement(By.className("button")).click();
     }
 
     @When("^an incorrect Application Received Date is entered:\$")
@@ -205,6 +217,8 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependent"))
+
         driver.findElement(By.id("applicationReceivedDateDay")).clear()
         driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
 
@@ -214,7 +228,9 @@ class ProvingThingsTestSteps {
         driver.findElement(By.id("applicationReceivedDateYear")).clear()
         driver.findElement(By.id("applicationReceivedDateYear")).sendKeys(date[2])
 
-        driver.findElement(By.className("button")).click();
+        driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
+
+        //driver.findElement(By.className("button")).click();
     }
 
     @Then("^The service provides the following result:\$")
@@ -328,6 +344,8 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependent"))
+
         driver.findElement(By.id("applicationReceivedDateDay")).clear()
         driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
 
@@ -339,7 +357,9 @@ class ProvingThingsTestSteps {
 
         entries.get("NINO") + "_" + applicationReceivedDate.replace('/', '-')
 
-        driver.findElement(By.className("button")).click();
+        driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
+
+        //driver.findElement(By.className("button")).click();
     }
 
     @Then("^The IPS Family TM Case Worker Tool provides the following result:\$")
@@ -574,7 +594,7 @@ class ProvingThingsTestSteps {
     }
 
 //Dependants
-
+//Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
     @When("^Robert submits a query to IPS Family TM Case Worker Tool \\(with dependants\\):\$")
     public void robert_submits_a_query_to_IPS_Family_TM_Case_Worker_Tool_with_dependants(DataTable expectedResult) {
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
@@ -587,14 +607,19 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependent"))
+
         driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
 
         driver.findElement(By.id("applicationReceivedDateMonth")).sendKeys(date[1])
 
         driver.findElement(By.id("applicationReceivedDateYear")).sendKeys(date[2])
-        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
+        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
-        driver.findElement(By.className("button")).click();
+        driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
+
+        //driver.sleep(delay)
+        //driver.findElement(By.className("button")).click();
 
     }
 
@@ -619,17 +644,44 @@ class ProvingThingsTestSteps {
 
     }
 
-
     @Then("^The IPS Family TM Case Worker Tool provides the following result - with dependents:\$")
-    public void the_IPS_Family_TM_Case_Worker_Tool_provides_the_following_result_with_dependents(DataTable expectedResult) throws Throwable {
+    public void the_IPS_Family_TM_Case_Worker_Tool_provides_the_following_result_with_dependents(DataTable expectedResult)  {
+
+        println expectedResult
 
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
+        String[] tableKey = entries.keySet()
 
 
+        WebElement outcomeBoxIndividualName = driver.findElement(By.id("outcomeBoxIndividualName"))
+        WebElement outcomeFromDate = driver.findElement(By.id("outcomeFromDate"))
+        WebElement outcomeToDate = driver.findElement(By.id("outcomeToDate"))
+        WebElement yourSearchIndividualName = driver.findElement(By.id("yourSearchIndividualName"))
+        WebElement yourSearchDependants = driver.findElement(By.id("yourSearchDependants"))
+        WebElement yourSearchNationalInsuranceNumber = driver.findElement(By.id("yourSearchNationalInsuranceNumber"))
+        WebElement yourSearchApplicationReceivedDate = driver.findElement(By.id("yourSearchApplicationReceivedDate"))
 
+        for (String s : tableKey) {
+
+            if (s == "Outcome Box Individual Name") {
+
+                assert entries.get(s).contains(outcomeBoxIndividualName.getText())
+                println "Outcome Box Individual Name: " + outcomeBoxIndividualName.getText()
+            }
+
+        }
+
+        assert entries.get("Outcome Box Individual Name").equals(outcomeBoxIndividualName.getText())
+        assert entries.get("Outcome From Date").equals(outcomeFromDate.getText())
+        assert entries.get("Outcome To Date").equals(outcomeToDate.getText())
+        assert entries.get("Your Search Individual Name").equals(yourSearchIndividualName.getText())
+        assert entries.get("Your Search Dependants").equals(yourSearchDependants.getText())
+        assert entries.get("Your Search National Insurance Number").equals(yourSearchNationalInsuranceNumber.getText())
+        assert entries.get("Your Search Application Received Date").equals(yourSearchApplicationReceivedDate.getText())
 
 
     }
+
 
 
 }
