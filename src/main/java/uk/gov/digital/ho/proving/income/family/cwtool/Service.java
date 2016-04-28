@@ -23,12 +23,12 @@ public class Service {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getMigrationFamilyApplication(@RequestParam(value = "nino") String nino,
-                                                        @RequestParam(value = "applicationReceivedDate") String applicationReceivedDate,
+                                                        @RequestParam(value = "applicationRaisedDate") String applicationRaisedDate,
                                                         @RequestParam(value = "dependants",required = false) String dependants) {
 
         String remotePort = System.getProperty("remote.server.port", "8081");
 
-        String url = "http://localhost:"+ remotePort + "/application?nino=" + nino + "&applicationReceivedDate=" + applicationReceivedDate;
+        String url = "http://localhost:"+ remotePort + "/application?nino=" + nino + "&applicationRaisedDate=" + applicationRaisedDate;
         if  (dependants != null) {
             url += "&dependants="+ dependants;
         }

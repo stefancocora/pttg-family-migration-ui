@@ -124,20 +124,22 @@ class ProvingThingsTestSteps {
 
         Map<String, String> entries = arg1.asMap(String.class, String.class)
 
-        String applicationReceivedDate = entries.get("Application Received Date")
+        String applicationRaisedDate = entries.get("Application Raised Date")
 
-        String[] date = applicationReceivedDate.split("/")
+        String[] date = applicationRaisedDate.split("/")
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        driver.findElement(By.id("applicationReceivedDateDay")).clear()
-        driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
-        driver.findElement(By.id("applicationReceivedDateMonth")).clear()
-        driver.findElement(By.id("applicationReceivedDateMonth")).sendKeys(date[1])
+        driver.findElement(By.id("applicationRaisedDateDay")).clear()
+        driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
 
-        driver.findElement(By.id("applicationReceivedDateYear")).clear()
-        driver.findElement(By.id("applicationReceivedDateYear")).sendKeys(date[2])
+        driver.findElement(By.id("applicationRaisedDateMonth")).clear()
+        driver.findElement(By.id("applicationRaisedDateMonth")).sendKeys(date[1])
+
+        driver.findElement(By.id("applicationRaisedDateYear")).clear()
+        driver.findElement(By.id("applicationRaisedDateYear")).sendKeys(date[2])
 
         driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
 
@@ -151,74 +153,80 @@ class ProvingThingsTestSteps {
 
         Map<String, String> entries = arg1.asMap(String.class, String.class)
 
-        String applicationReceivedDate = entries.get("Application Received Date")
+        String applicationRaisedDate = entries.get("Application Raised Date")
 
-        String[] date = applicationReceivedDate.split("/")
+        String[] date = applicationRaisedDate.split("/")
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        driver.findElement(By.id("applicationReceivedDateDay")).clear()
-        driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
-        driver.findElement(By.id("applicationReceivedDateMonth")).clear()
-        driver.findElement(By.id("applicationReceivedDateMonth")).sendKeys(date[1])
+        driver.findElement(By.id("applicationRaisedDateDay")).clear()
+        driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
 
-        driver.findElement(By.id("applicationReceivedDateYear")).clear()
-        driver.findElement(By.id("applicationReceivedDateYear")).sendKeys(date[2])
+        driver.findElement(By.id("applicationRaisedDateMonth")).clear()
+        driver.findElement(By.id("applicationRaisedDateMonth")).sendKeys(date[1])
+
+        driver.findElement(By.id("applicationRaisedDateYear")).clear()
+        driver.findElement(By.id("applicationRaisedDateYear")).sendKeys(date[2])
 
         driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
 
         //driver.findElement(By.className("button")).click();
     }
 
-    @When("^Application Received Date is not entered:\$")
-    public void application_received_date_not_entered(DataTable arg1) {
+    @When("^Application Raised Date is not entered:\$")
+    public void application_raised_date_not_entered(DataTable arg1) {
 
         driver.sleep(delay)
 
         Map<String, String> entries = arg1.asMap(String.class, String.class)
 
-        String applicationReceivedDate = entries.get("Application Received Date")
+        String applicationRaisedDate = entries.get("Application Raised Date")
 
-        String[] date = applicationReceivedDate.split("/")
+        String[] date = applicationRaisedDate.split("/")
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        driver.findElement(By.id("applicationReceivedDateDay")).clear()
-        driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
-        driver.findElement(By.id("applicationReceivedDateMonth")).clear()
-        driver.findElement(By.id("applicationReceivedDateMonth")).sendKeys(date[1])
+        driver.findElement(By.id("applicationRaisedDateDay")).clear()
+        driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
 
-        driver.findElement(By.id("applicationReceivedDateYear")).clear()
-        driver.findElement(By.id("applicationReceivedDateYear")).sendKeys(date[2])
+        driver.findElement(By.id("applicationRaisedDateMonth")).clear()
+        driver.findElement(By.id("applicationRaisedDateMonth")).sendKeys(date[1])
+
+        driver.findElement(By.id("applicationRaisedDateYear")).clear()
+        driver.findElement(By.id("applicationRaisedDateYear")).sendKeys(date[2])
 
         driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
 
         //driver.findElement(By.className("button")).click();
     }
 
-    @When("^an incorrect Application Received Date is entered:\$")
-    public void an_incorrent_received_date_is_entered(DataTable arg1) {
+    @When("^an incorrect Application Raised Date is entered:\$")
+    public void an_incorrent_raised_date_is_entered(DataTable arg1) {
 
         driver.sleep(delay)
 
         Map<String, String> entries = arg1.asMap(String.class, String.class)
 
-        String applicationReceivedDate = entries.get("Application Received Date")
+        String applicationRaisedDate = entries.get("Application Raised Date")
 
-        String[] date = applicationReceivedDate.split("/")
+        String[] date = applicationRaisedDate.split("/")
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        driver.findElement(By.id("applicationReceivedDateDay")).clear()
-        driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
-        driver.findElement(By.id("applicationReceivedDateMonth")).clear()
-        driver.findElement(By.id("applicationReceivedDateMonth")).sendKeys(date[1])
+        driver.findElement(By.id("applicationRaisedDateDay")).clear()
+        driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
 
-        driver.findElement(By.id("applicationReceivedDateYear")).clear()
-        driver.findElement(By.id("applicationReceivedDateYear")).sendKeys(date[2])
+        driver.findElement(By.id("applicationRaisedDateMonth")).clear()
+        driver.findElement(By.id("applicationRaisedDateMonth")).sendKeys(date[1])
+
+        driver.findElement(By.id("applicationRaisedDateYear")).clear()
+        driver.findElement(By.id("applicationRaisedDateYear")).sendKeys(date[2])
 
         driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
 
@@ -329,22 +337,24 @@ class ProvingThingsTestSteps {
 
         driver.sleep(delay)
 
-        String applicationReceivedDate = entries.get("Application received date")
+        String applicationRaisedDate = entries.get("Application Raised date")
 
-        String[] date = applicationReceivedDate.split("/")
+        String[] date = applicationRaisedDate.split("/")
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        driver.findElement(By.id("applicationReceivedDateDay")).clear()
-        driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
-        driver.findElement(By.id("applicationReceivedDateMonth")).clear()
-        driver.findElement(By.id("applicationReceivedDateMonth")).sendKeys(date[1])
+        driver.findElement(By.id("applicationRaisedDateDay")).clear()
+        driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
 
-        driver.findElement(By.id("applicationReceivedDateYear")).clear()
-        driver.findElement(By.id("applicationReceivedDateYear")).sendKeys(date[2])
+        driver.findElement(By.id("applicationRaisedDateMonth")).clear()
+        driver.findElement(By.id("applicationRaisedDateMonth")).sendKeys(date[1])
 
-        entries.get("NINO") + "_" + applicationReceivedDate.replace('/', '-')
+        driver.findElement(By.id("applicationRaisedDateYear")).clear()
+        driver.findElement(By.id("applicationRaisedDateYear")).sendKeys(date[2])
+
+        entries.get("NINO") + "_" + applicationRaisedDate.replace('/', '-')
 
         driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
 
@@ -465,7 +475,7 @@ class ProvingThingsTestSteps {
         WebElement categoryACheckFailureReason = driver.findElement(By.id("categoryACheckFailureReason"))
         WebElement yourSearchIndividualName = driver.findElement(By.id("yourSearchIndividualName"))
         WebElement yourSearchNationalInsuranceNumber = driver.findElement(By.id("yourSearchNationalInsuranceNumber"))
-        WebElement yourSearchApplicationReceivedDate = driver.findElement(By.id("yourSearchApplicationReceivedDate"))
+        WebElement yourSearchApplicationRaisedDate = driver.findElement(By.id("yourSearchApplicationRaisedDate"))
 
         for (String s : tableKey) {
 
@@ -500,10 +510,10 @@ class ProvingThingsTestSteps {
                 println "Your Search National Insurance Number: " + yourSearchNationalInsuranceNumber.getText()
             }
 
-            if (s == "Your Search Application Received Date") {
+            if (s == "Your Search Application Raised Date") {
 
-                assert yourSearchApplicationReceivedDate.getText() == entries.get(s)
-                println "Your Search Application Received Date: " + yourSearchApplicationReceivedDate.getText()
+                assert yourSearchApplicationRaisedDate.getText() == entries.get(s)
+                println "Your Search Application Raised Date: " + yourSearchApplicationRaisedDate.getText()
 
             }
 
@@ -521,7 +531,7 @@ class ProvingThingsTestSteps {
         driver.sleep(delay)
         WebElement yourSearchNationalInsuranceNumber = driver.findElement(By.id("yourSearchNationalInsuranceNumber"))
         driver.sleep(delay)
-        WebElement yourSearchApplicationReceivedDate = driver.findElement(By.id("yourSearchApplicationReceivedDate"))
+        WebElement yourSearchApplicationRaisedDate = driver.findElement(By.id("yourSearchApplicationRaisedDate"))
 
         for (String s : tableKey) {
             // driver.sleep(delay)
@@ -546,10 +556,10 @@ class ProvingThingsTestSteps {
                 println "Your Search National Insurance Number :" + yourSearchNationalInsuranceNumber.getText()
             }
 
-            if (s == "Your Search Application Received Date") {
+            if (s == "Your Search Application Raised Date") {
                 driver.sleep(delay)
-                assert entries.get(s).contains(yourSearchApplicationReceivedDate.getText())
-                println "Your Search Application Received Date :" + yourSearchApplicationReceivedDate.getText()
+                assert entries.get(s).contains(yourSearchApplicationRaisedDate.getText())
+                println "Your Search Application Raised Date :" + yourSearchApplicationRaisedDate.getText()
             }
 
         }
@@ -590,19 +600,20 @@ class ProvingThingsTestSteps {
 
         driver.sleep(delay)
 
-        String applicationReceivedDate = entries.get("Application Received Date")
+        String applicationRaisedDate = entries.get("Application Raised Date")
 
-        String[] date = applicationReceivedDate.split("/")
+        String[] date = applicationRaisedDate.split("/")
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
         driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
-        driver.findElement(By.id("applicationReceivedDateDay")).sendKeys(date[0])
+        driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
 
-        driver.findElement(By.id("applicationReceivedDateMonth")).sendKeys(date[1])
+        driver.findElement(By.id("applicationRaisedDateMonth")).sendKeys(date[1])
 
-        driver.findElement(By.id("applicationReceivedDateYear")).sendKeys(date[2])
+        driver.findElement(By.id("applicationRaisedDateYear")).sendKeys(date[2])
+        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
 
@@ -611,8 +622,8 @@ class ProvingThingsTestSteps {
 
     }
 
-    @Then("^The IPS Family TM Case Worker Tool provides the following error result \\(with dependents\\):\$")
-    public void the_IPS_Family_TM_Case_Worker_Tool_provides_the_following_error_result_with_dependents(DataTable expectedResult) {
+    @Then("^The IPS Family TM Case Worker Tool provides the following error result \\(with dependants\\):\$")
+    public void the_IPS_Family_TM_Case_Worker_Tool_provides_the_following_error_result_with_dependants(DataTable expectedResult) {
 
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
 
@@ -621,19 +632,19 @@ class ProvingThingsTestSteps {
         WebElement yourSearchIndividualName = driver.findElement(By.id("yourSearchIndividualName"))
         WebElement yourSearchDependants = driver.findElement(By.id("yourSearchDependants"))
         WebElement yourSearchNationalInsuranceNumber = driver.findElement(By.id("yourSearchNationalInsuranceNumber"))
-        WebElement yourSearchApplicationReceivedDate = driver.findElement(By.id("yourSearchApplicationReceivedDate"))
+        WebElement yourSearchApplicationRaisedDate = driver.findElement(By.id("yourSearchApplicationRaisedDate"))
 
         assert entries.get("Page dynamic heading").equals(pageDynamicHeading.getText())
         assert entries.get("Category A check failure reason").equals(categoryACheckFailureReason.getText())
         assert entries.get("Your Search Individual Name").equals(yourSearchIndividualName.getText())
         assert entries.get("Your Search Dependants").equals(yourSearchDependants.getText())
         assert entries.get("Your Search National Insurance Number").equals(yourSearchNationalInsuranceNumber.getText())
-        assert entries.get("Your Search Application Received Date").equals(yourSearchApplicationReceivedDate.getText())
+        assert entries.get("Your Search Application Raised Date").equals(yourSearchApplicationRaisedDate.getText())
 
     }
 
-    @Then("^The IPS Family TM Case Worker Tool provides the following result - with dependents:\$")
-    public void the_IPS_Family_TM_Case_Worker_Tool_provides_the_following_result_with_dependents(DataTable expectedResult)  {
+    @Then("^The IPS Family TM Case Worker Tool provides the following result - with dependants:\$")
+    public void the_IPS_Family_TM_Case_Worker_Tool_provides_the_following_result_with_dependants(DataTable expectedResult)  {
 
         println expectedResult
 
@@ -647,7 +658,7 @@ class ProvingThingsTestSteps {
         WebElement yourSearchIndividualName = driver.findElement(By.id("yourSearchIndividualName"))
         WebElement yourSearchDependants = driver.findElement(By.id("yourSearchDependants"))
         WebElement yourSearchNationalInsuranceNumber = driver.findElement(By.id("yourSearchNationalInsuranceNumber"))
-        WebElement yourSearchApplicationReceivedDate = driver.findElement(By.id("yourSearchApplicationReceivedDate"))
+        WebElement yourSearchApplicationRaisedDate = driver.findElement(By.id("yourSearchApplicationRaisedDate"))
 
         for (String s : tableKey) {
 
@@ -665,7 +676,7 @@ class ProvingThingsTestSteps {
         assert entries.get("Your Search Individual Name").equals(yourSearchIndividualName.getText())
         assert entries.get("Your Search Dependants").equals(yourSearchDependants.getText())
         assert entries.get("Your Search National Insurance Number").equals(yourSearchNationalInsuranceNumber.getText())
-        assert entries.get("Your Search Application Received Date").equals(yourSearchApplicationReceivedDate.getText())
+        assert entries.get("Your Search Application Raised Date").equals(yourSearchApplicationRaisedDate.getText())
 
     }
 

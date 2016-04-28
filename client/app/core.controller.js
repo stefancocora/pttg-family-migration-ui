@@ -28,7 +28,7 @@
                 amount: 0,
                 isoCurrencyCode: 'GBP'
             },
-            applicationReceivedDate: '',
+            applicationRaisedDate: '',
             applicant : {
                 title: '',
                 forename: '',
@@ -75,7 +75,7 @@
                         }
                         vm.model.threshold = data.application.threshold;
                         vm.model.applicant = data.application.applicant;
-                        vm.model.applicationReceivedDate = moment(data.application.applicationReceivedDate).format(DATE_DISPLAY_FORMAT);
+                        vm.model.applicationRaisedDate = moment(data.application.applicationRaisedDate).format(DATE_DISPLAY_FORMAT);
                         vm.model.checkedFrom = moment(data.application.financialRequirementsCheck.checkedFrom).format(DATE_DISPLAY_FORMAT);
                         vm.model.checkedTo = moment(data.application.financialRequirementsCheck.checkedTo).format(DATE_DISPLAY_FORMAT);
                         $location.path('/income-proving-result');
@@ -132,9 +132,9 @@
             if (vm.model.fromDateDay === null ||
                 vm.model.fromDateMonth === null ||
                 vm.model.fromDateYear === null  ) {
-                vm.queryForm.applicationReceivedDateDay.$setValidity(false);
-                vm.queryForm.applicationReceivedDateMonth.$setValidity(false);
-                vm.queryForm.applicationReceivedDateYear.$setValidity(false);
+                vm.queryForm.applicationRaisedDateDay.$setValidity(false);
+                vm.queryForm.applicationRaisedDateMonth.$setValidity(false);
+                vm.queryForm.applicationRaisedDateYear.$setValidity(false);
                 vm.dateMissingError = true;
                 validated = false;
             } else  if (!moment(vm.getFullDate(), DATE_VALIDATE_FORMAT, true).isValid()){

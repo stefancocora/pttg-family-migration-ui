@@ -30,7 +30,7 @@
                 </h1>
 
                 <p>Make sure all the fields have been completed including the National Insurance Number and the
-                    application received date.</p>
+                    application raised date.</p>
 
                 <ul class="error-summary-list">
 
@@ -41,12 +41,12 @@
                     <li ng-if="vm.ninoMissingError">
                         <a href="" ng-click="vm.scrollTo('nino')">National Insurance Number is missing</a></li>
                     <li ng-if="vm.dateMissingError">
-                        <a href="" ng-click="vm.scrollTo('applicationReceivedDateDay')">Application received date is missing</a></li>
+                        <a href="" ng-click="vm.scrollTo('applicationRaisedDateDay')">Application raised date is missing</a></li>
                     <li ng-if="vm.dateInvalidError">
-                        <a href="" ng-click="vm.scrollTo('applicationReceivedDateDay')">Application received date is invalid</a></li>
+                        <a href="" ng-click="vm.scrollTo('applicationRaisedDateDay')">Application raised date is invalid</a></li>
 
                     <li ng-if="vm.dependantsInvalidError">
-                        <a href="" ng-click="vm.scrollTo('applicationReceivedDateDay')">The number of dependants is invalid</a></li>
+                        <a href="" ng-click="vm.scrollTo('applicationRaisedDateDay')">The number of dependants is invalid</a></li>
                 </ul>
             </div>
 
@@ -82,27 +82,27 @@
                 <div class="form-group " id="to-date" ng-class="{error : vm.dateMissingError || vm.dateInvalidError}">
 
                     <fieldset>
-                        <legend class="form-label-bold">When was the application received?</legend>
+                        <legend class="form-label-bold">When was the application raised?</legend>
                         <div class="form-date">
                             <p class="form-hint">For example, 31 3 1980</p>
-                                <span id="application—received-date-error" class="error-message" ng-if="vm.dateMissingError || vm.dateInvalidError">
-                                    Please provide a valid Application Received Date</span>
+                                <span id="application—raised-date-error" class="error-message" ng-if="vm.dateMissingError || vm.dateInvalidError">
+                                    Please provide a valid Application Raised Date</span>
                             <div class="form-group form-group-day">
-                                <label for="applicationReceivedDateDay">Day</label>
-                                <input class="form-control" name="applicationReceivedDateDay" id="applicationReceivedDateDay" type="number"
+                                <label for="applicationRaisedDateDay">Day</label>
+                                <input class="form-control" name="applicationRaisedDateDay" id="applicationRaisedDateDay" type="number"
                                        pattern="[0-9]*" ng-model="vm.model.fromDateDay" autocomplete="off">
                             </div>
 
                             <div class="form-group form-group-month">
-                                <label for="applicationReceivedDateMonth">Month</label>
-                                <input class="form-control" name="applicationReceivedDateMonth" id="applicationReceivedDateMonth"
+                                <label for="applicationRaisedDateMonth">Month</label>
+                                <input class="form-control" name="applicationRaisedDateMonth" id="applicationRaisedDateMonth"
                                        type="number" pattern="[0-9]*" ng-model="vm.model.fromDateMonth"
                                        autocomplete="off">
                             </div>
 
                             <div class="form-group form-group-year">
-                                <label for="applicationReceivedDateYear">Year</label>
-                                <input class="form-control" name="applicationReceivedDateYear" id="applicationReceivedDateYear" type="number"
+                                <label for="applicationRaisedDateYear">Year</label>
+                                <input class="form-control" name="applicationRaisedDateYear" id="applicationRaisedDateYear" type="number"
                                        pattern="[0-9]*" ng-model="vm.model.fromDateYear" autocomplete="off">
                             </div>
                         </div>
