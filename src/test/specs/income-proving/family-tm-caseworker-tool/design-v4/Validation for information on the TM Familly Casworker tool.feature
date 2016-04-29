@@ -14,6 +14,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
     When Robert submits a query to IPS Family TM Case Worker Tool:
       | NINO                    | JL123456A  |
       | Application Raised Date | 15/01/2015 |
+      | Dependants              | 0         |
     Then The service for Cat A Failure provides the following result:
       | Page static heading | This was checked using the financial requirement ‘Category A: With current employer for 6 months or more – person residing in the UK’. |
       | Page static detail  | They don't meet the financial requirement because:                                                                                     |
@@ -29,6 +30,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
     When Robert submits a query to IPS Family TM Case Worker Tool:
       | NINO                    | AA345678A  |
       | Application Raised Date | 23/01/2015 |
+      | Dependants              | 0         |
     Then The IPS Family TM CW Tool output page provides the following result:
       | Page title    | Financial requirement check                                                                                                             |
       | Page sub text | Does the applicant meet the financial requirement ‘Category A: With current employer for 6 months or more – person residing in the UK’? |
@@ -44,6 +46,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
     When Robert submits a query to IPS Family TM Case Worker Tool:
       | NINO                    | AA345678A  |
       | Application Raised Date | 23/01/2015 |
+      | Dependants              | 0          |
     Then The IPS Family TM CW Tool output page provides the following result appendix:
       | Page appendix title | Where can I find the appendix?                         |
       | Chapter 8 link      | Chapter 8 of the immigration directorate instructions. |
@@ -68,6 +71,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
     When the NINO is NOT entered:
       | NINO                    |            |
       | Application Raised Date | 01/01/2015 |
+      | Dependants              | 0        |
     Then The service displays the following message:
       | Error Message | Please provide a National Insurance Number |
       | Error Field   | nino-error                                 |
@@ -78,6 +82,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
     When an incorrect NINO is entered:
       | NINO                    | 11123456A  |
       | Application Raised Date | 01/01/2015 |
+      | Dependants              | 0          |
     Then The service displays the following message:
       | Error Message | Please provide a valid National Insurance Number |
       | Error Field   | nino-error                                       |
@@ -88,6 +93,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
     When an incorrect NINO is entered:
       | NINO                    | QQ12HR56A  |
       | Application Raised Date | 01/01/2015 |
+      | Dependants              | 0          |
     Then The service displays the following message:
       | Error Message | Please provide a valid National Insurance Number |
       | Error Field   | nino-error                                       |
@@ -98,6 +104,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
     When an incorrect NINO is entered:
       | NINO                    | QQ1235560  |
       | Application Raised Date | 01/01/2015 |
+      | Dependants              | 0          |
     Then The service displays the following message:
       | Error Message | Please provide a valid National Insurance Number |
       | Error Field   | nino-error                                       |
@@ -108,6 +115,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
     When an incorrect NINO is entered:
       | NINO                    | QQ12545    |
       | Application Raised Date | 01/01/2015 |
+      | Dependants              | 0          |
     Then The service displays the following message:
       | Error Message | Please provide a valid National Insurance Number |
       | Error Field   | nino-error                                       |
@@ -118,6 +126,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
     When Application Raised Date is not entered:
       | NINO                    | QQ129956A  |
       | Application Raised Date | 85/01/2015 |
+      | Dependants              | 0          |
     Then The service displays the following message:
       | Error Message | Please provide a valid Application Raised Date |
       | Error Field   | application—Raised-date-error                  |
@@ -128,6 +137,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
     When Application Raised Date is not entered:
       | NINO                    | QQ128856A  |
       | Application Raised Date | 01/13/2015 |
+      | Dependants              | 0          |
     Then The service displays the following message:
       | Error Message | Please provide a valid Application Raised Date |
       | Error Field   | application—Raised-date-error                  |
@@ -138,6 +148,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
     When an incorrect Application Raised Date is entered:
       | NINO                    | QQ128856A  |
       | Application Raised Date | 01/01/201k |
+      | Dependants              | 0         |
     Then The service displays the following message:
       | Error Message | Please provide a valid Application Raised Date |
       | Error Field   | application—Raised-date-error                  |
