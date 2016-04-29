@@ -129,7 +129,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | Dependants              | 0          |
     Then The service displays the following message:
       | Error Message | Please provide a valid Application Raised Date |
-      | Error Field   | application—Raised-date-error                  |
+      | Error Field   | application—raised-date-error                  |
 
 #Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Caseworker enters an incorrect Application Raised Date (8)
@@ -140,7 +140,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | Dependants              | 0          |
     Then The service displays the following message:
       | Error Message | Please provide a valid Application Raised Date |
-      | Error Field   | application—Raised-date-error                  |
+      | Error Field   | application—raised-date-error                  |
 
 #Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Caseworker enters an incorrect Application Raised date (9)
@@ -151,4 +151,4 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | Dependants              | 0         |
     Then The service displays the following message:
       | Error Message | Please provide a valid Application Raised Date |
-      | Error Field   | application—Raised-date-error                  |
+      | Error Field   | application—raised-date-error                  |

@@ -130,7 +130,7 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
+        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.id("applicationRaisedDateDay")).clear()
         driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
@@ -159,7 +159,7 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
+        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.id("applicationRaisedDateDay")).clear()
         driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
@@ -188,7 +188,7 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
+        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.id("applicationRaisedDateDay")).clear()
         driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
@@ -217,7 +217,7 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
+        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.id("applicationRaisedDateDay")).clear()
         driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
@@ -343,7 +343,7 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
+        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.id("applicationRaisedDateDay")).clear()
         driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
@@ -606,7 +606,7 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
+        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
 
