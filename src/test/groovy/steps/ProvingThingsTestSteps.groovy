@@ -130,7 +130,7 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.id("applicationRaisedDateDay")).clear()
         driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
@@ -143,7 +143,7 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
 
-        //driver.findElement(By.className("button")).click();
+        driver.findElement(By.className("button")).click();
     }
 
     @When("^an incorrect NINO is entered:\$")
@@ -159,7 +159,7 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.id("applicationRaisedDateDay")).clear()
         driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
@@ -172,7 +172,7 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
 
-        //driver.findElement(By.className("button")).click();
+        driver.findElement(By.className("button")).click();
     }
 
     @When("^Application Raised Date is not entered:\$")
@@ -188,7 +188,7 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.id("applicationRaisedDateDay")).clear()
         driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
@@ -217,7 +217,7 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.id("applicationRaisedDateDay")).clear()
         driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
@@ -358,7 +358,7 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
 
-        //driver.findElement(By.className("button")).click();
+        driver.findElement(By.className("button")).click();
     }
 
     @Then("^The IPS Family TM Case Worker Tool provides the following result:\$")
@@ -606,14 +606,13 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
 
         driver.findElement(By.id("applicationRaisedDateMonth")).sendKeys(date[1])
 
         driver.findElement(By.id("applicationRaisedDateYear")).sendKeys(date[2])
-        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
 
@@ -633,7 +632,7 @@ class ProvingThingsTestSteps {
         WebElement yourSearchDependants = driver.findElement(By.id("yourSearchDependants"))
         WebElement yourSearchNationalInsuranceNumber = driver.findElement(By.id("yourSearchNationalInsuranceNumber"))
         WebElement yourSearchApplicationRaisedDate = driver.findElement(By.id("yourSearchApplicationRaisedDate"))
-
+        driver.sleep(delay)
         assert entries.get("Page dynamic heading").equals(pageDynamicHeading.getText())
         assert entries.get("Category A check failure reason").equals(categoryACheckFailureReason.getText())
         assert entries.get("Your Search Individual Name").equals(yourSearchIndividualName.getText())
