@@ -1,4 +1,4 @@
-@SD108-Tool_Identifies_applicant_meets_CAT_A_Financial_Requirement_(with_no_dependents-monthly_pay)
+@SD108-Tool_Identifies_applicant_meets_CAT_A_Financial_Requirement_(with_dependents-monthly_pay)
 Feature: Tool identifies Applicant meets Category A Financial
 
       Requirement to meet Category A
