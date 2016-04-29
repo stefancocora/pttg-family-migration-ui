@@ -343,7 +343,7 @@ class ProvingThingsTestSteps {
 
         driver.findElement(By.id("nino")).sendKeys(entries.get("NINO"))
 
-        //driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
+        driver.findElement(By.id("dependants")).sendKeys(entries.get("Dependants"))
 
         driver.findElement(By.id("applicationRaisedDateDay")).clear()
         driver.findElement(By.id("applicationRaisedDateDay")).sendKeys(date[0])
@@ -356,9 +356,10 @@ class ProvingThingsTestSteps {
 
         entries.get("NINO") + "_" + applicationRaisedDate.replace('/', '-')
 
+        //button click
         driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
 
-        driver.findElement(By.className("button")).click();
+        //driver.findElement(By.className("button")).click();
     }
 
     @Then("^The IPS Family TM Case Worker Tool provides the following result:\$")

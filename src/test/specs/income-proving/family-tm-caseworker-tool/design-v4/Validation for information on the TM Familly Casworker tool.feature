@@ -1,3 +1,4 @@
+@SD108_Validation_For_Information_on_the_TM_CWT
 Feature: Tool identifies Applicant meets Category A Financial Requirement
 
   National Insurance Numbers (NINO) - Format and Security: A NINO is made up of two letters, six numbers and a final letter (which is always A, B, C, or D)

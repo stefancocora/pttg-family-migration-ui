@@ -1,4 +1,4 @@
-@SD108-Tool_Identifies_applicant_meets_CAT_A_Financial_Requirement_(with_dependents-monthly_pay)
+@SD108-Tool_Identifies_applicant_meets_CAT_A_Financial_Requirement_(with_no_dependents-monthly_pay)
 Feature: Tool identifies Applicant meets Category A Financial
 
       Requirement to meet Category A
@@ -18,6 +18,7 @@ Feature: Tool identifies Applicant meets Category A Financial
     When Robert submits a query to IPS Family TM Case Worker Tool:
       | NINO                    | AA345678A  |
       | Application Raised Date | 23/01/2015 |
+      | Dependants              | 0         |
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
@@ -38,6 +39,7 @@ Feature: Tool identifies Applicant meets Category A Financial
     When Robert submits a query to IPS Family TM Case Worker Tool:
       | NINO                    | AA 12 34 56 B |
       | Application Raised Date | 10/01/2015    |
+      | Dependants              | 0         |
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
@@ -58,6 +60,7 @@ Feature: Tool identifies Applicant meets Category A Financial
     When Robert submits a query to IPS Family TM Case Worker Tool:
       | NINO                    | BB123456B  |
       | Application Raised Date | 23/01/2015 |
+      | Dependants              | 0         |
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
@@ -77,6 +80,7 @@ Feature: Tool identifies Applicant meets Category A Financial
     When Robert submits a query to IPS Family TM Case Worker Tool:
       | NINO                    | CC123456C  |
       | Application Raised Date | 23/01/2015 |
+      | Dependants              | 0         |
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
@@ -98,6 +102,7 @@ Feature: Tool identifies Applicant meets Category A Financial
     When Robert submits a query to IPS Family TM Case Worker Tool:
       | NINO                    | CC123456B |
       | Application Raised Date | 9/1/2015  |
+      | Dependants              | 0         |
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
@@ -121,6 +126,7 @@ Feature: Tool identifies Applicant meets Category A Financial
     When Robert submits a query to IPS Family TM Case Worker Tool:
       | NINO                    | AA123456A  |
       | Application Raised Date | 23/01/2015 |
+      | Dependants              | 0         |
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Mark Jones |
