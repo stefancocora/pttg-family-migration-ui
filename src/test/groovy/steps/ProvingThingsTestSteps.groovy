@@ -627,21 +627,15 @@ class ProvingThingsTestSteps {
 
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
 
-        WebElement pageDynamicHeading = driver.findElement(By.id("pageDynamicHeading"))
-        WebElement categoryACheckFailureReason = driver.findElement(By.id("categoryACheckFailureReason"))
-        WebElement yourSearchIndividualName = driver.findElement(By.id("yourSearchIndividualName"))
-        WebElement yourSearchDependants = driver.findElement(By.id("yourSearchDependants"))
-        WebElement yourSearchNationalInsuranceNumber = driver.findElement(By.id("yourSearchNationalInsuranceNumber"))
-        WebElement yourSearchApplicationRaisedDate = driver.findElement(By.id("yourSearchApplicationRaisedDate"))
-        driver.sleep(delay)
-        assert entries.get("Page dynamic heading").equals(pageDynamicHeading.getText())
-        assert entries.get("Category A check failure reason").equals(categoryACheckFailureReason.getText())
-        assert entries.get("Your Search Individual Name").equals(yourSearchIndividualName.getText())
-        assert entries.get("Your Search Dependants").equals(yourSearchDependants.getText())
-        assert entries.get("Your Search National Insurance Number").equals(yourSearchNationalInsuranceNumber.getText())
-        assert entries.get("Your Search Application Raised Date").equals(yourSearchApplicationRaisedDate.getText())
+        String[] tablekey = entries.keySet()
 
+        for(String s:tablekey){
+            driver.sleep(delay)
+           assert entries.get(s).equals(driver.findElement(By.id(camelCase(s))).getText())
+
+        }
     }
+
 
     @Then("^The IPS Family TM Case Worker Tool provides the following result - with dependants:\$")
     public void the_IPS_Family_TM_Case_Worker_Tool_provides_the_following_result_with_dependants(DataTable expectedResult)  {
@@ -651,33 +645,17 @@ class ProvingThingsTestSteps {
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
         String[] tableKey = entries.keySet()
 
-
-        WebElement outcomeBoxIndividualName = driver.findElement(By.id("outcomeBoxIndividualName"))
-        WebElement outcomeFromDate = driver.findElement(By.id("outcomeFromDate"))
-        WebElement outcomeToDate = driver.findElement(By.id("outcomeToDate"))
-        WebElement yourSearchIndividualName = driver.findElement(By.id("yourSearchIndividualName"))
-        WebElement yourSearchDependants = driver.findElement(By.id("yourSearchDependants"))
-        WebElement yourSearchNationalInsuranceNumber = driver.findElement(By.id("yourSearchNationalInsuranceNumber"))
-        WebElement yourSearchApplicationRaisedDate = driver.findElement(By.id("yourSearchApplicationRaisedDate"))
-
         for (String s : tableKey) {
 
-            if (s == "Outcome Box Individual Name") {
+            if (s != "Outcome") {
+                driver.sleep(delay)
+                assert entries.get(s).equals(driver.findElement(By.id(camelCase(s))).getText())
 
-                assert entries.get(s).contains(outcomeBoxIndividualName.getText())
-                println "Outcome Box Individual Name: " + outcomeBoxIndividualName.getText()
             }
 
         }
 
-        assert entries.get("Outcome Box Individual Name").equals(outcomeBoxIndividualName.getText())
-        assert entries.get("Outcome From Date").equals(outcomeFromDate.getText())
-        assert entries.get("Outcome To Date").equals(outcomeToDate.getText())
-        assert entries.get("Your Search Individual Name").equals(yourSearchIndividualName.getText())
-        assert entries.get("Your Search Dependants").equals(yourSearchDependants.getText())
-        assert entries.get("Your Search National Insurance Number").equals(yourSearchNationalInsuranceNumber.getText())
-        assert entries.get("Your Search Application Raised Date").equals(yourSearchApplicationRaisedDate.getText())
-
     }
+
 
 }
