@@ -470,57 +470,13 @@ class ProvingThingsTestSteps {
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
         String[] tableKey = entries.keySet()
 
-        WebElement pagestaticHeading = driver.findElement(By.id("pageStaticHeading"))
-        WebElement pageStaticDetail = driver.findElement(By.id("pageStaticDetail"))
-        WebElement pageDynamicHeading = driver.findElement(By.className("form-title"))
-        WebElement categoryACheckFailureReason = driver.findElement(By.id("categoryACheckFailureReason"))
-        WebElement yourSearchIndividualName = driver.findElement(By.id("yourSearchIndividualName"))
-        WebElement yourSearchNationalInsuranceNumber = driver.findElement(By.id("yourSearchNationalInsuranceNumber"))
-        WebElement yourSearchApplicationRaisedDate = driver.findElement(By.id("yourSearchApplicationRaisedDate"))
-
         for (String s : tableKey) {
-
-            if (s == "Page static heading") {
-                assert pagestaticHeading.getText() == entries.get(s)
-                println "Page Static Heading : " + pagestaticHeading.getText()
-
-            }
-
-            if (s == "Page static detail") {
-                assert pageStaticDetail.getText() == entries.get(s)
-            }
-
-            if (s == "Page dynamic heading") {
-                assert pageDynamicHeading.getText().contains(entries.get(s))
-                println "Page dynamic heading: " + pageDynamicHeading.getText()
-            }
-
-            if (s == "Category A check failure reason") {
-
-                assert entries.get(s).contains(categoryACheckFailureReason.getText())
-                println "Category A check failure reason :" + categoryACheckFailureReason.getText()
-            }
-
-            if (s == "Your Search Individual Name") {
-                assert yourSearchIndividualName.getText() == entries.get(s)
-                println "Your Search Individual Name :" + yourSearchIndividualName.getText()
-            }
-
-            if (s == "Your Search National Insurance Number") {
-                assert yourSearchNationalInsuranceNumber.getText() == entries.get(s)
-                println "Your Search National Insurance Number: " + yourSearchNationalInsuranceNumber.getText()
-            }
-
-            if (s == "Your Search Application Raised Date") {
-
-                assert yourSearchApplicationRaisedDate.getText() == entries.get(s)
-                println "Your Search Application Raised Date: " + yourSearchApplicationRaisedDate.getText()
-
-            }
+            driver.sleep(delay)
+            assert entries.get(s).equals(driver.findElement(By.id(camelCase(s))).getText())
 
         }
-
     }
+
 //SD63
     @Then("^The service provides the following NINO does not exist result:\$")
     public void the_service_provides_the_following_NINO_does_not_exist_result(DataTable expectedResult) {
