@@ -1,13 +1,12 @@
-@SD108_Tool_identifies_Applicant_Does_Not_Meet_CAT_A_Req_No_Dependent
 Feature: Tool identifies Applicant does not meet the Category A Financial Requirement
 
 	Requirement to meet Category A
-	Applicant or Sponsor has been paid for < 6 consecutive months with the same employer
+      Applicant or Sponsor has received < 6 consecutive monthly payments from the same employer over the 182 day period prior to the Application Raised Date
 
 	Financial employment income regulation to pass this Feature File
-	Applicant or Sponsor has earned < £1550 Gross Monthly Income in any one of the 6 months prior to the Application Raised Date
+      Applicant or Sponsor has earned 6 monthly payments < £1550 Monthly Gross Income in the 182 days prior to the Application Raised Date
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
+#Changed Scenario - Removed word monthly from output text - SD105
 	Scenario: Jill does not meet the Category A Financial Requirement (She has earned < the Cat A financial threshold)
 
 	Pay date 15th of the month
@@ -20,13 +19,13 @@ Feature: Tool identifies Applicant does not meet the Category A Financial Requir
 			| Application Raised Date | 15/01/2015 |
 		Then The service for Cat A Failure provides the following result:
 			| Page dynamic heading                  | Jill Lewondoski doesn't meet the Category A salaried requirement |
-			| Category A check failure reason       | they haven't met the required monthly amount.           |
+			| Category A check failure reason       | they haven't met the required amount.           |
 
 			| Your Search Individual Name           | Jill Lewondoski                                         |
 			| Your Search National Insurance Number | JL123456A                                               |
 			| Your Search Application Raised Date   | 15/01/2015                                              |
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
+#Changed Scenario - Removed word monthly from output text - SD105
 	Scenario: Francois does not meet the Category A Financial Requirement (He has earned < the Cat A financial threshold)
 
 	Pay date 28th of the month
@@ -39,13 +38,13 @@ Feature: Tool identifies Applicant does not meet the Category A Financial Requir
 			| Application Raised Date | 28/03/2015 |
 		Then The service for Cat A Failure provides the following result:
 			| Page dynamic heading                  | Francois Leblanc doesn't meet the Category A salaried requirement |
-			| Category A check failure reason       | they haven't met the required monthly amount.            |
+			| Category A check failure reason       | they haven't met the required amount.            |
 
 			| Your Search Individual Name           | Francois Leblanc                                         |
 			| Your Search National Insurance Number | FL123456B                                                |
 			| Your Search Application Raised Date   | 28/03/2015                                               |
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
+#Changed Scenario - Removed word monthly from output text - SD105
 	Scenario: Kumar does not meet the Category A employment duration Requirement (He has worked for his current employer for only 3 months)
 
 	Pay date 3rd of the month

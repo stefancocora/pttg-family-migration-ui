@@ -1,11 +1,10 @@
-@SD108-Tool_Identifies_applicant_meets_CAT_A_Financial_Requirement_(with_no_dependents-monthly_pay)
 Feature: Tool identifies Applicant meets Category A Financial
 
       Requirement to meet Category A
-      Applicant or Sponsor has been paid for 6 consecutive months with the same employer
+      Applicant or Sponsor has received 6 consecutive monthly payments from the same employer over the 182 day period prior to the Application Raised Date
 
       Financial employment income regulation to pass this Feature File
-      Applicant or Sponsor has earned => £1550 Monthly Gross Income EVERY of the 6 months prior to the Application Raised Date
+      Applicant or Sponsor has earned 6 monthly payments => £1550 Monthly Gross Income in the 182 days prior to the Application Raised Date
 
 #Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Jon meets the Category A Financial Requirement (1)
@@ -28,7 +27,6 @@ Feature: Tool identifies Applicant meets Category A Financial
       | Your Search National Insurance Number | AA345678A  |
       | Your Search Application Raised Date   | 23/01/2015 |
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Jon meets the Category A Financial Requirement (Caseworker enters the National Insurance Number with spaces)
 
       Pay date 1st of the month
@@ -49,7 +47,6 @@ Feature: Tool identifies Applicant meets Category A Financial
       | Your Search National Insurance Number | AA123456B  |
       | Your Search Application Raised Date   | 10/01/2015 |
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Jon meets the Category A Financial Requirement (2)
 
       Pay date 28th of the month
@@ -90,7 +87,6 @@ Feature: Tool identifies Applicant meets Category A Financial
       | Your Search National Insurance Number | CC123456C  |
       | Your Search Application Raised Date   | 23/01/2015 |
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Jon meets the Category A Financial Requirement (Caseworker enters the Application Raised Date with single numbers for the day and month)
 
       Pay date 1st of the month
@@ -113,7 +109,6 @@ Feature: Tool identifies Applicant meets Category A Financial
       | Your Search Application Raised Date   | 09/01/2015 |
 
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Mark meets the Category A Financial Requirement
 
       Pay date 17th, for December 2014
