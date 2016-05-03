@@ -383,7 +383,6 @@ class ProvingThingsTestSteps {
 
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
 
-
         checkOutput(entries, driver)
     }
 
@@ -394,13 +393,14 @@ class ProvingThingsTestSteps {
     public void the_service_for_Cat_A_Failure_provides_the_following_result(DataTable expectedResult) {
         driver.sleep(delay)
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
-        String[] tableKey = entries.keySet()
+        checkOutput(entries, driver)
+       // String[] tableKey = entries.keySet()
 
-        for (String s : tableKey) {
-            driver.sleep(delay)
-            assert entries.get(s).equals(driver.findElement(By.id(camelCase(s))).getText())
+     //   for (String s : tableKey) {
+      //      driver.sleep(delay)
+      //      assert entries.get(s).equals(driver.findElement(By.id(camelCase(s))).getText())
 
-        }
+       // }
     }
 
 //SD63
