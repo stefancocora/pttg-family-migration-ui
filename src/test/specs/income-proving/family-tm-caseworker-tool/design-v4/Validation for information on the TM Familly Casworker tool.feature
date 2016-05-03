@@ -1,4 +1,3 @@
-@SD108_Validation_For_Information_on_the_TM_CWT
 Feature: Tool identifies Applicant meets Category A Financial Requirement
 
   National Insurance Numbers (NINO) - Format and Security: A NINO is made up of two letters, six numbers and a final letter (which is always A, B, C, or D)
@@ -6,7 +5,6 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
 
 ###################################### Section - Check for text on Output does not meet Category A page ######################################
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Check for important text on the page
 
   This scenario is to check for required text on the page that explains what financial requirement check has been performed.
@@ -22,7 +20,6 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
 
 ###################################### Section - Check for text on Output meets Category A page ######################################
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Page checks for Category A financial text write up
 
   This is a scenario to check for the Category A financial requirement text write up
@@ -38,7 +35,6 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
 
 ###################################### Section - Check for text on Output Category A page ######################################
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Page checks for appendix link
 
   This is a scenario to check the Appendix link is present on the page
@@ -55,18 +51,17 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
 
 ###################################### Section - Check for text on input page ######################################
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
+#Changed Scenario - Changed text to reflect new release of dependants business logic - SD127
   Scenario: Input Page checks for Category A financial text write up (1)
 
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert is displayed the Income Proving Service Case Worker Tool input page:
     Then The IPS Family TM Case Worker Tool input page provides the following result:
       | Page sub title | Individual's details                                                                                                                                                           |
-      | Page sub text  | You can check an individual (without dependants) meets ‘Category A: With current employer for 6 months or more – person residing in the UK’ using a National Insurance Number. |
+      | Page sub text  | You can check an individual meets the Category A Salaried requirement using a National Insurance Number. |
 
 ###################################### Section - Check for Validation on Input page ######################################
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Caseworker does NOT enter a National Insurance Number (2)
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When the NINO is NOT entered:
@@ -77,7 +72,6 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | Error Message | Please provide a National Insurance Number |
       | Error Field   | nino-error                                 |
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Caseworker enters incorrect National Insurance Number prefixed with two characters (3)
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When an incorrect NINO is entered:
@@ -88,7 +82,6 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | Error Message | Please provide a valid National Insurance Number |
       | Error Field   | nino-error                                       |
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Caseworker enters incorrect National Insurance Number with two characters in the middle (4)
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When an incorrect NINO is entered:
@@ -99,7 +92,6 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | Error Message | Please provide a valid National Insurance Number |
       | Error Field   | nino-error                                       |
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Caseworker enters incorrect National Insurance Number with the last digit being a number (5)
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When an incorrect NINO is entered:
@@ -110,7 +102,6 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | Error Message | Please provide a valid National Insurance Number |
       | Error Field   | nino-error                                       |
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Caseworker enters incorrect National Insurance Number is not 9 characters (6)
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When an incorrect NINO is entered:
@@ -121,7 +112,6 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | Error Message | Please provide a valid National Insurance Number |
       | Error Field   | nino-error                                       |
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Caseworker enters an incorrect Application Raised Date (7)
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Application Raised Date is not entered:
@@ -132,7 +122,6 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | Error Message | Please provide a valid Application Raised Date |
       | Error Field   | application—raised-date-error                  |
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Caseworker enters an incorrect Application Raised Date (8)
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Application Raised Date is not entered:
@@ -143,7 +132,6 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | Error Message | Please provide a valid Application Raised Date |
       | Error Field   | application—raised-date-error                  |
 
-#Changed Scenario - Changed Application received date to Application raised date - SD108
   Scenario: Caseworker enters an incorrect Application Raised date (9)
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When an incorrect Application Raised Date is entered:
