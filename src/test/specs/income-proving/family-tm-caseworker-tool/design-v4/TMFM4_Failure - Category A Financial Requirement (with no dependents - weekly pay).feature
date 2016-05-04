@@ -20,7 +20,6 @@ Feature: Tool identifies Applicant does not meet the Category A Financial Requir
     Then The service for Cat A Failure provides the following result:
 		| Page dynamic heading | Davina Love doesn't meet the Category A requirement |
 		| Category A check failure reason | they haven't met the required amount. |
-
 		| Your Search Individual Name | Davina Love |
 		| Your Search National Insurance Number | DV123456A |
 		| Your Search Application raised Date | 15/01/2015 |
@@ -59,7 +58,6 @@ Feature: Tool identifies Applicant does not meet the Category A Financial Requir
     Then The service for Cat A Failure provides the following result:
 		| Page dynamic heading | Paul Young doesn't meet the Category A requirement |
 		| Category A check failure reason | they haven't met the required amount. |
-
 		| Your Search Individual Name | Paul Young |
 		| Your Search National Insurance Number | XS123456B |
 		| Your Search Application raised Date | 15/01/2015 |
@@ -83,3 +81,43 @@ Feature: Tool identifies Applicant does not meet the Category A Financial Requir
 		| Your Search Individual Name | Raj Patel |
 		| Your Search National Insurance Number | RP123456C |
 		| Your Search Application raised Date | 03/07/2015 |
+
+
+	  #New Scenario - SD SD105
+	Scenario: John James does not meet the Category A employment duration Requirement (He has worked for his current employer for 6 months)
+
+	Pay date 3rd of the month
+	On same day of application raised date
+	He earns £357.70 a Week Gross Income BUT for 25 weeks and £357 on week 26 prior to the Application raised Date
+	He worked for a different employer before his current employer
+
+		Given Caseworker is using the Income Proving Service Case Worker Tool
+		When Robert submits a query:
+			| NINO      | JJ123456A  |
+			| Application raised date | 03/07/2015 |
+		Then The service for Cat A Failure provides the following result:
+			| Page dynamic heading | Raj Patel doesn't meet the Category A requirement|
+			| Category A check failure reason | they haven't been with their current employer for 6 months. |
+			| Your Search Individual Name | Raj Patel |
+			| Your Search National Insurance Number | JJ123456A |
+			| Your Search Application raised Date | 03/07/2015 |
+
+
+        #New Scenario - SD SD105
+  Scenario: Peter Jones does not meet the Category A employment duration Requirement (He has worked for his current employer for 6 months)
+
+  Pay date 3rd of the month
+  On same day of application raised date
+  He earns £658.50 a Week Gross Income BUT for 25 weeks and £357 on week 26 prior to the Application raised Date
+  He worked for a different employer before his current employer
+
+    Given Caseworker is using the Income Proving Service Case Worker Tool
+    When Robert submits a query:
+      | NINO      | PJ123456A  |
+      | Application raised date | 03/07/2015 |
+    Then The service for Cat A Failure provides the following result:
+      | Page dynamic heading | Raj Patel doesn't meet the Category A requirement|
+      | Category A check failure reason | they haven't been with their current employer for 6 months. |
+      | Your Search Individual Name | Raj Patel |
+      | Your Search National Insurance Number | PJ123456A |
+      | Your Search Application raised Date | 03/07/2015 |
