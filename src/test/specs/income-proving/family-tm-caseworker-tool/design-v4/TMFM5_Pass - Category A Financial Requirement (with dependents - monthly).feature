@@ -1,5 +1,4 @@
-@SD102-Tool_identifies_Applicant_Meets_CAT_A_Dependent
-Feature: Tool identifies Applicant meets Category A Financial Requirement (with dependants)
+Feature: Pass - Category A Financial Requirement (with dependents - monthly)
 
   Requirement to meet Category A
   Applicant or Sponsor has been paid for 6 consecutive months with the same employer

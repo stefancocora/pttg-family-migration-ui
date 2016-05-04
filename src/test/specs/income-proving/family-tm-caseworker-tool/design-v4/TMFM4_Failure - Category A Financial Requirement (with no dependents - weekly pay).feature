@@ -1,4 +1,4 @@
-Feature: Tool identifies Applicant does not meet the Category A Financial Requirement
+Feature: Failure - Category A Financial Requirement (with no dependents - weekly pay)
 
 		Requirement to meet Category A
 			Applicant or Sponsor has received < 26 payments from the same employer over 182 day period prior to the Application Raised Date
