@@ -98,7 +98,7 @@ Feature: Tool identifies Applicant does not meet the Category A Financial Requir
 		Then The service for Cat A Failure provides the following result:
 			| Page dynamic heading | Raj Patel doesn't meet the Category A requirement|
 			| Category A check failure reason | they haven't been with their current employer for 6 months. |
-			| Your Search Individual Name | Raj Patel |
+			| Your Search Individual Name | John James |
 			| Your Search National Insurance Number | JJ123456A |
 			| Your Search Application raised Date | 03/07/2015 |
 
@@ -118,6 +118,6 @@ Feature: Tool identifies Applicant does not meet the Category A Financial Requir
     Then The service for Cat A Failure provides the following result:
       | Page dynamic heading | Raj Patel doesn't meet the Category A requirement|
       | Category A check failure reason | they haven't been with their current employer for 6 months. |
-      | Your Search Individual Name | Raj Patel |
+      | Your Search Individual Name | Peter Jones |
       | Your Search National Insurance Number | PJ123456A |
       | Your Search Application raised Date | 03/07/2015 |
