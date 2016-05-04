@@ -1,5 +1,4 @@
-@SD102-Tool_identifies_Applicant_Does_Not_Meet_CAT_A_Dependent
-Feature: Tool identifies Applicant does not meet Category A Financial Requirement (with dependants)
+Feature: Failure - Category A Financial Requirement (with dependents - monthly pay)
 
   Requirement to meet Category A
   Applicant or Sponsor has been paid for < 6 consecutive months with the same employer
@@ -35,7 +34,7 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
       | Dependants              | 4          |
     Then The IPS Family TM Case Worker Tool provides the following error result (with dependants):
       | Page dynamic heading                  | Shelly Patel doesn't meet the Category A salaried requirement |
-      | Category A check failure reason       | they haven't met the required monthly amount.                 |
+      | Category A check failure reason       | they haven't met the required amount.                 |
 
       | Your Search Individual Name           | Shelly Patel                                                  |
       | Your Search Dependants                | 4                                                             |
@@ -57,7 +56,7 @@ Feature: Tool identifies Applicant does not meet Category A Financial Requiremen
       | Dependants              | 2          |
     Then The IPS Family TM Case Worker Tool provides the following error result (with dependants):
       | Page dynamic heading                  | Brian Sinclair doesn't meet the Category A salaried requirement |
-      | Category A check failure reason       | they haven't met the required monthly amount.                   |
+      | Category A check failure reason       | they haven't met the required amount.                   |
 
       | Your Search Individual Name           | Brian Sinclair                                                  |
       | Your Search Dependants                | 2                                                               |
