@@ -31,7 +31,7 @@ Feature: Failure - Category A Financial Requirement (with Dependantss - weekly p
       | NINO      | DS123456C  |
       | Application raised Date | 03/11/2015 |
       | Dependants | 4 |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with Dependantss):
+    Then The IPS Family TM Case Worker Tool provides the following error result (with Dependants):
 		| Page dynamic heading | Donald Sweet doesn't meet the Category A requirement |
 		| Category A check failure reason | they haven't met the required amount. |
 
@@ -53,7 +53,7 @@ Feature: Failure - Category A Financial Requirement (with Dependantss - weekly p
       | NINO      | JL123456B  |
       | Application raised date | 10/07/2015 |
       | Dependants | 2 |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with Dependantss):
+    Then The IPS Family TM Case Worker Tool provides the following error result (with Dependants):
 		| Page dynamic heading | Brian Sinclair doesn't meet the Category A requirement |
 		| Category A check failure reason | they haven't met the required amount. |
 
@@ -76,7 +76,7 @@ Feature: Failure - Category A Financial Requirement (with Dependantss - weekly p
       | NINO      | GG987654A  |
       | Application raised date | 03/09/2015 |
       | Dependants | 3 |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with Dependantss):
+    Then The IPS Family TM Case Worker Tool provides the following error result (with Dependants):
 		| Page dynamic heading |Steve Yu doesn't meet the Category A requirement|
 		| Category A check failure reason | they haven't been with their current employer for 6 months. |
 
