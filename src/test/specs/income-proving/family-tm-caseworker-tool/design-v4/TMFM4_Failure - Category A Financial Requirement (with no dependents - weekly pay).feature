@@ -53,7 +53,7 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query:
-      | NINO      | XS123456B  |
+      | NINO      | PY123456B  |
       | Application raised Date | 15/01/2015 |
     Then The service for Cat A Failure provides the following result:
 		| Page dynamic heading | Paul Young doesn't meet the Category A requirement |
