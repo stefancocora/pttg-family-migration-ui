@@ -1,4 +1,4 @@
-Feature: Failure - Category A Financial Requirement (with dependents - weekly pay)
+Feature: Failure - Category A Financial Requirement (with Dependantss - weekly pay)
 
 		Requirement to meet Category A
 			Applicant or Sponsor has received < 26 payments from the same employer over 182 day period prior to the Application Raised Date
@@ -30,13 +30,13 @@ Feature: Failure - Category A Financial Requirement (with dependents - weekly pa
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | DS123456C  |
       | Application raised Date | 03/11/2015 |
-      | Dependent | 4 |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with dependents):
+      | Dependants | 4 |
+    Then The IPS Family TM Case Worker Tool provides the following error result (with Dependantss):
 		| Page dynamic heading | Donald Sweet doesn't meet the Category A requirement |
 		| Category A check failure reason | they haven't met the required amount. |
 
 		| Your Search Individual Name | Donald Sweet |
-		| Your Search Dependent                 | 3 |
+		| Your Search Dependants                 | 3 |
 		| Your Search National Insurance Number | DS123456C |
 		| Your Search Application raised Date | 03/11/2015 |
 
@@ -52,13 +52,13 @@ Feature: Failure - Category A Financial Requirement (with dependents - weekly pa
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | JL123456B  |
       | Application raised date | 10/07/2015 |
-      | Dependent | 2 |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with dependents):
+      | Dependants | 2 |
+    Then The IPS Family TM Case Worker Tool provides the following error result (with Dependantss):
 		| Page dynamic heading | Brian Sinclair doesn't meet the Category A requirement |
 		| Category A check failure reason | they haven't met the required amount. |
 
 		| Your Search Individual Name | John Lister |
-		| Your Search Dependent                 | 2 |
+		| Your Search Dependants                 | 2 |
 		| Your Search National Insurance Number | JL123456B |
 		| Your Search Application raised Date | 10/07/2015 |
 
@@ -75,12 +75,12 @@ Feature: Failure - Category A Financial Requirement (with dependents - weekly pa
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | GG987654A  |
       | Application raised date | 03/09/2015 |
-      | Dependent | 3 |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with dependents):
+      | Dependants | 3 |
+    Then The IPS Family TM Case Worker Tool provides the following error result (with Dependantss):
 		| Page dynamic heading |Steve Yu doesn't meet the Category A requirement|
 		| Category A check failure reason | they haven't been with their current employer for 6 months. |
 
 		| Your Search Individual Name | Gary Goldstein |
-		| Your Search Dependent                 | 3 |
+		| Your Search Dependants                 | 3 |
 		| Your Search National Insurance Number | GG987654A |
 		| Your Search Application raised Date | 03/09/2015 |

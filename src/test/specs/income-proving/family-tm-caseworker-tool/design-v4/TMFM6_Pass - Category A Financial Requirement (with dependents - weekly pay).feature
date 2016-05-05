@@ -1,4 +1,4 @@
-Feature: Pass - Category A Financial Requirement (with dependents - weekly pay)
+Feature: Pass - Category A Financial Requirement (with Dependantss - weekly pay)
 
 		Requirement to meet Category A
 			Applicant or Sponsor has received 26 payments from the same employer over 182 day period prior to the Application Raised Date
@@ -19,70 +19,70 @@ Feature: Pass - Category A Financial Requirement (with dependents - weekly pay)
 			ETC
 
 #New scenario - Added in SD126
-  Scenario: Tony Singh meets the Category A Financial Requirement with 1 dependent
+  Scenario: Tony Singh meets the Category A Financial Requirement with 1 Dependants
 
 		Pay date 22nd of the month
 		Before day of application Raised date
 		He has received 26 Weekly Gross Income payments of £466.01 in the 182 day period prior to the Application Raised Date
-		He has 1 dependent child
+		He has 1 Dependants child
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | TS123456A  |
       | Application Raised date | 23/02/2015 |
-      | Dependent | 1 |
-    Then The IPS Family TM Case Worker Tool provides the following result (with dependents):
+      | Dependants | 1 |
+    Then The IPS Family TM Case Worker Tool provides the following result (with Dependantss):
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Tony Singh  |
 		| Outcome From Date                     | 23/08/2014 |
 		| Outcome To Date                       | 23/02/2015 |
 		| Your Search Individual Name           | Tony Singh |
-		| Your Search Dependent                 | 1 |
+		| Your Search Dependants                 | 1 |
 		| Your Search National Insurance Number | TL123456A  |
 		| Your Search Application Raised Date | 23/02/2015 |
 
 #New scenario - Added in SD126
-  Scenario: Jennifer Toure meets the Category A Financial Requirement with 3 dependent
+  Scenario: Jennifer Toure meets the Category A Financial Requirement with 3 Dependants
 
 		Pay date 10th of the month
 		After day of application Raised date
 		He has received 26 Weekly Gross Income payments of £606.00 in the 182 day period prior to the Application Raised Date
-		He has 3 dependent child
+		He has 3 Dependants child
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | JT123456C  |
       | Application Raised date | 4/12/2015 |
-      | Dependent | 3 |
-    Then The IPS Family TM Case Worker Tool provides the following result (with dependents):
+      | Dependants | 3 |
+    Then The IPS Family TM Case Worker Tool provides the following result (with Dependantss):
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Jennifer Toure |
 		| Outcome From Date                     | 04/06/2014 |
 		| Outcome To Date                       | 04/12/2015 |
 		| Your Search Individual Name           | Jennifer Toure |
-		| Your Search Dependent                 | 3 |
+		| Your Search Dependants                 | 3 |
 		| Your Search National Insurance Number | JT123456C  |
 		| Your Search Application Raised Date | 04/12/2015 |
 
 #New scenario - Added in SD126
-  Scenario: Lela Vasquez meets the Category A Financial Requirement with 5 dependent
+  Scenario: Lela Vasquez meets the Category A Financial Requirement with 5 Dependants
 
 		Pay date 22nd of the month
 		On the same day of application Raised date
 		He has received 26 Weekly Gross Income payments of £615.38 in the 182 day period prior to the Application Raised Date
-		He has 5 dependent child
+		He has 5 Dependants child
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool (with dependents):
+    When Robert submits a query to IPS Family TM Case Worker Tool (with Dependantss):
       | NINO      | LV987654B  |
       | Application Raised date | 22/07/2015 |
-      | Dependent | 5 |
-    Then The IPS Family TM Case Worker Tool provides the following result (with dependents):
+      | Dependants | 5 |
+    Then The IPS Family TM Case Worker Tool provides the following result (with Dependantss):
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Lela Vasquez |
 		| Outcome From Date                     | 22/01/2015 |
 		| Outcome To Date                       | 22/07/2015 |
 		| Your Search Individual Name           | Lela Vasquez |
-		| Your Search Dependent                 | 5 |
+		| Your Search Dependants                 | 5 |
 		| Your Search National Insurance Number | LV987654B  |
 		| Your Search Application Raised Date | 22/07/2015 |

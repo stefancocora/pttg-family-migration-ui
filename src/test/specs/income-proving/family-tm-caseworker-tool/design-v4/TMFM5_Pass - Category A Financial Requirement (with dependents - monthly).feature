@@ -1,4 +1,4 @@
-Feature: Pass - Category A Financial Requirement (with dependents - monthly)
+Feature: Pass - Category A Financial Requirement (with dependants - monthly)
 
   Requirement to meet Category A
   Applicant or Sponsor has been paid for 6 consecutive months with the same employer
@@ -19,12 +19,12 @@ Feature: Pass - Category A Financial Requirement (with dependents - monthly)
   ETC
 
 #New scenario - Added in SD102
-  Scenario: Tony Ledo meets the Category A Financial Requirement with 1 dependent
+  Scenario: Tony Ledo meets the Category A Financial Requirement with 1 dependant
 
   Pay date 15th of the month
   Before day of application received date
   He earns £4166.67 Monthly Gross Income EVERY of the 6 months prior to the Application Raised Date
-  He has 1 dependent child
+  He has 1 dependant child
 
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
@@ -47,7 +47,7 @@ Feature: Pass - Category A Financial Requirement (with dependents - monthly)
   Pay date 2nd of the month
   Before day of Application Raised Date
   He earns £3333.33 Monthly Gross Income EVERY of the 6 months prior to the Application Raised Date
-  He has 3 dependent child
+  He has 3 dependant child
 
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
@@ -70,7 +70,7 @@ Feature: Pass - Category A Financial Requirement (with dependents - monthly)
   Pay date 30th of the month
   On the same day of Application Raised Date
   He earns £5833.33 Monthly Gross Income EVERY of the 6 months prior to the Application Raised Date
-  He has 5 dependent child
+  He has 5 dependant child
 
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
