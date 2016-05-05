@@ -28,7 +28,7 @@ Feature: Pass - Category A Financial Requirement (with dependents - weekly pay)
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
-      | NINO      | TL123456A  |
+      | NINO      | TS123456A  |
       | Application Raised date | 23/02/2015 |
       | Dependent | 1 |
     Then The IPS Family TM Case Worker Tool provides the following result (with dependents):
