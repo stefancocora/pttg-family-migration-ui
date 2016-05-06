@@ -36,6 +36,9 @@ public class Service {
         LOGGER.info("Remote url: " + url);
 
         WebResource webResource = client.resource(url);
+
+        client.setConnectTimeout(10000);
+
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-type", "application/json");
