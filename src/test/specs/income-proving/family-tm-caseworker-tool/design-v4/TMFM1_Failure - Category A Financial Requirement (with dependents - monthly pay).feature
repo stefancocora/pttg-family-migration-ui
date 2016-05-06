@@ -6,7 +6,7 @@ Feature: Failure - Category A Financial Requirement (with dependents - monthly p
   Financial income regulation to pass this Feature File
   Income required amount no dependent child = £18600 (£1550 per month or above for EACH of the previous 6 months from the Application Raised Date)
   Additional funds for 1 dependent child = £3800 on top of employment threshold
-  Additional funds for EVERY subsequent dependent child = £2400 on top of employment threshold per child
+  Additional funds for EVERY subsequent dependent child = £2400 on top of employment threshold per child TEST
 
   Financial income calculation to pass this Feature File
   Income required amount + 1 dependent amount + (Additional dependent amount * number of dependents)/12 = Gross Monthly Income is < in any one of the 6 months prior to the Application Raised Date
