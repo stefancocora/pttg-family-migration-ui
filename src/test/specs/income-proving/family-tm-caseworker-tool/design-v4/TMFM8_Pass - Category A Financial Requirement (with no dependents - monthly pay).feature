@@ -17,7 +17,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
     When Robert submits a query to IPS Family TM Case Worker Tool:
       | NINO                    | AA345678A  |
       | Application Raised Date | 23/01/2015 |
-      | Dependants              | 0         |
+
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
@@ -37,7 +37,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
     When Robert submits a query to IPS Family TM Case Worker Tool:
       | NINO                    | AA 12 34 56 B |
       | Application Raised Date | 10/01/2015    |
-      | Dependants              | 0         |
+
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
@@ -57,7 +57,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
     When Robert submits a query to IPS Family TM Case Worker Tool:
       | NINO                    | BB123456B  |
       | Application Raised Date | 23/01/2015 |
-      | Dependants              | 0         |
+
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
@@ -77,7 +77,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
     When Robert submits a query to IPS Family TM Case Worker Tool:
       | NINO                    | CC123456C  |
       | Application Raised Date | 23/01/2015 |
-      | Dependants              | 0         |
+
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
@@ -98,7 +98,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
     When Robert submits a query to IPS Family TM Case Worker Tool:
       | NINO                    | CC123456B |
       | Application Raised Date | 9/1/2015  |
-      | Dependants              | 0         |
+
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
@@ -121,7 +121,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
     When Robert submits a query to IPS Family TM Case Worker Tool:
       | NINO                    | AA123456A  |
       | Application Raised Date | 23/01/2015 |
-      | Dependants              | 0         |
+
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Mark Jones |

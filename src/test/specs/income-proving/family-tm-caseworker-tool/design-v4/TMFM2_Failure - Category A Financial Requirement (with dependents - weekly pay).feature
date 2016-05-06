@@ -30,9 +30,9 @@ Feature: Failure - Category A Financial Requirement (with Dependantss - weekly p
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | DS123456C  |
       | Application raised Date | 03/11/2015 |
-      | Dependants | 4 |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with Dependants):
-		| Page dynamic heading | Donald Sweet doesn't meet the Category A requirement |
+      | Dependants | 3 |
+    Then The IPS Family TM Case Worker Tool provides the following error result (with dependants):
+		| Page dynamic heading | Donald Sweet doesn't meet the Category A salaried requirement |
 		| Category A check failure reason | they haven't met the required amount. |
 
 		| Your Search Individual Name | Donald Sweet |
@@ -53,9 +53,9 @@ Feature: Failure - Category A Financial Requirement (with Dependantss - weekly p
       | NINO      | JL123456B  |
       | Application raised date | 10/07/2015 |
       | Dependants | 2 |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with Dependants):
-		| Page dynamic heading | Brian Sinclair doesn't meet the Category A requirement |
-		| Category A check failure reason | they haven't met the required amount. |
+    Then The IPS Family TM Case Worker Tool provides the following error result (with dependants):
+		| Page dynamic heading | John Lister doesn't meet the Category A salaried requirement |
+		| Category A check failure reason | they haven't been with their current employer for 6 months.|
 
 		| Your Search Individual Name | John Lister |
 		| Your Search Dependants                 | 2 |
@@ -76,8 +76,8 @@ Feature: Failure - Category A Financial Requirement (with Dependantss - weekly p
       | NINO      | GG987654A  |
       | Application raised date | 03/09/2015 |
       | Dependants | 3 |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with Dependants):
-		| Page dynamic heading |Steve Yu doesn't meet the Category A requirement|
+    Then The IPS Family TM Case Worker Tool provides the following error result (with dependants):
+		| Page dynamic heading |Gary Goldstein doesn't meet the Category A salaried requirement|
 		| Category A check failure reason | they haven't been with their current employer for 6 months. |
 
 		| Your Search Individual Name | Gary Goldstein |

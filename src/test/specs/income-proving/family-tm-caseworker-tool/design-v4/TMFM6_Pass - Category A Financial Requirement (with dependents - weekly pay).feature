@@ -31,14 +31,14 @@ Feature: Pass - Category A Financial Requirement (with Dependantss - weekly pay)
       | NINO      | TS123456A  |
       | Application Raised date | 23/02/2015 |
       | Dependants | 1 |
-    Then The IPS Family TM Case Worker Tool provides the following result (with Dependants):
+    Then The IPS Family TM Case Worker Tool provides the following result - with dependants:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Tony Singh  |
 		| Outcome From Date                     | 23/08/2014 |
 		| Outcome To Date                       | 23/02/2015 |
 		| Your Search Individual Name           | Tony Singh |
 		| Your Search Dependants                 | 1 |
-		| Your Search National Insurance Number | TL123456A  |
+		| Your Search National Insurance Number | TS123456A  |
 		| Your Search Application Raised Date | 23/02/2015 |
 
 #New scenario - Added in SD126
@@ -54,10 +54,10 @@ Feature: Pass - Category A Financial Requirement (with Dependantss - weekly pay)
       | NINO      | JT123456C  |
       | Application Raised date | 4/12/2015 |
       | Dependants | 3 |
-    Then The IPS Family TM Case Worker Tool provides the following result (with Dependants):
+    Then The IPS Family TM Case Worker Tool provides the following result - with dependants:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Jennifer Toure |
-		| Outcome From Date                     | 04/06/2014 |
+		| Outcome From Date                     | 04/06/2015 |
 		| Outcome To Date                       | 04/12/2015 |
 		| Your Search Individual Name           | Jennifer Toure |
 		| Your Search Dependants                 | 3 |
@@ -73,11 +73,11 @@ Feature: Pass - Category A Financial Requirement (with Dependantss - weekly pay)
 		He has 5 Dependants child
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool (with Dependants):
+    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
       | NINO      | LV987654B  |
       | Application Raised date | 22/07/2015 |
       | Dependants | 5 |
-    Then The IPS Family TM Case Worker Tool provides the following result (with Dependants):
+    Then The IPS Family TM Case Worker Tool provides the following result - with dependants:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Lela Vasquez |
 		| Outcome From Date                     | 22/01/2015 |

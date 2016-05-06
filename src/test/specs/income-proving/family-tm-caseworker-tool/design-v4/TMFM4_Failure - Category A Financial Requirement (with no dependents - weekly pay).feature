@@ -18,7 +18,7 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
       | NINO      | DV123456A  |
       | Application raised Date | 15/01/2015 |
     Then The service for Cat A Failure provides the following result:
-		| Page dynamic heading | Davina Love doesn't meet the Category A requirement |
+		| Page dynamic heading | Davina Love doesn't meet the Category A salaried requirement |
 		| Category A check failure reason | they haven't met the required amount. |
 		| Your Search Individual Name | Davina Love |
 		| Your Search National Insurance Number | DV123456A |
@@ -36,7 +36,7 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
       | NINO      | XS123456B  |
       | Application raised Date | 15/01/2015 |
     Then The service for Cat A Failure provides the following result:
-		| Page dynamic heading | Xavier Snow doesn't meet the Category A requirement |
+		| Page dynamic heading | Xavier Snow doesn't meet the Category A salaried requirement |
 		| Category A check failure reason | they haven't met the required amount. |
 
 		| Your Search Individual Name | Xavier Snow |
@@ -49,14 +49,14 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
 		Pay date 15th of the month
 		Before day of Application raised Date
 		He earns £400.99 weekly Gross Income EVERY of the 24 weeks prior to the Application Raised Date
-		And he earns £300.99 weekly Gross Income for the LAST 2 weeks prior to the Application Raised Date  (total 26 weeks with the same employer)
+		and he earns £300.99 weekly Gross Income for the LAST 2 weeks prior to the Application Raised Date  (total 26 weeks with the same employer)
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query:
       | NINO      | PY123456B  |
       | Application raised Date | 15/01/2015 |
     Then The service for Cat A Failure provides the following result:
-		| Page dynamic heading | Paul Young doesn't meet the Category A requirement |
+		| Page dynamic heading | Paul Young doesn't meet the Category A salaried requirement |
 		| Category A check failure reason | they haven't met the required amount. |
 		| Your Search Individual Name | Paul Young |
 		| Your Search National Insurance Number | XS123456B |
@@ -75,7 +75,7 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
       | NINO      | RP123456C  |
       | Application raised date | 03/07/2015 |
     Then The service for Cat A Failure provides the following result:
-		| Page dynamic heading | Raj Patel doesn't meet the Category A requirement|
+		| Page dynamic heading | Raj Patel doesn't meet the Category A salaried requirement|
 		| Category A check failure reason | they haven't been with their current employer for 6 months. |
 
 		| Your Search Individual Name | Raj Patel |
@@ -96,7 +96,7 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
 			| NINO      | JJ123456A  |
 			| Application raised date | 03/07/2015 |
 		Then The service for Cat A Failure provides the following result:
-			| Page dynamic heading | Raj Patel doesn't meet the Category A requirement|
+			| Page dynamic heading | John James doesn't meet the Category A salaried requirement|
 			| Category A check failure reason | they haven't been with their current employer for 6 months. |
 			| Your Search Individual Name | John James |
 			| Your Search National Insurance Number | JJ123456A |
@@ -116,7 +116,7 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
       | NINO      | PJ123456A  |
       | Application raised date | 03/07/2015 |
     Then The service for Cat A Failure provides the following result:
-      | Page dynamic heading | Raj Patel doesn't meet the Category A requirement|
+      | Page dynamic heading | Peter Jones doesn't meet the Category A salaried requirement|
       | Category A check failure reason | they haven't been with their current employer for 6 months. |
       | Your Search Individual Name | Peter Jones |
       | Your Search National Insurance Number | PJ123456A |
