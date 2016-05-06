@@ -180,7 +180,6 @@ class ProvingThingsTestSteps {
         Map<String, String> entries = arg1.asMap(String.class, String.class)
 
 
-
         submitForm(entries, driver);
 
         driver.findElement(By.xpath(".//*[@id='page1']/form/div/div[4]/p/input")).click()
@@ -444,8 +443,6 @@ class ProvingThingsTestSteps {
 
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
 
-
-
         checkOutput(entries, driver)
     }
 
@@ -457,10 +454,11 @@ class ProvingThingsTestSteps {
 
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
 
-
         checkOutput(entries, driver)
 
     }
+
+
 
 
 }
