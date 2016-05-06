@@ -59,7 +59,7 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
 		| Page dynamic heading | Paul Young doesn't meet the Category A salaried requirement |
 		| Category A check failure reason | they haven't met the required amount. |
 		| Your Search Individual Name | Paul Young |
-		| Your Search National Insurance Number | XS123456B |
+		| Your Search National Insurance Number | PY123456B |
 		| Your Search Application raised Date | 15/01/2015 |
 
 #New Scenario - SD SD105
