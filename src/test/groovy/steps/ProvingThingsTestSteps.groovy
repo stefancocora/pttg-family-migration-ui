@@ -1,5 +1,6 @@
 package steps
 
+import com.jayway.restassured.response.Response
 import cucumber.api.DataTable
 import cucumber.api.java.en.Given
 import cucumber.api.java.en.Then
@@ -7,6 +8,7 @@ import cucumber.api.java.en.When
 import net.thucydides.core.annotations.Managed
 import org.apache.commons.lang3.StringUtils
 import org.apache.commons.lang3.text.WordUtils
+import org.json.JSONObject
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
@@ -16,7 +18,8 @@ import java.text.SimpleDateFormat
 class ProvingThingsTestSteps {
     @Managed
     public WebDriver driver;
-
+    public Response resp
+    JSONObject jsonResponse
     private int delay = 1000
 
     def String toCamelCase(String s) {
@@ -193,7 +196,6 @@ class ProvingThingsTestSteps {
         driver.sleep(delay)
 
         Map<String, String> entries = arg1.asMap(String.class, String.class)
-
 
 
         submitForm(entries, driver);
@@ -393,13 +395,7 @@ class ProvingThingsTestSteps {
         driver.sleep(delay)
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
         checkOutput(entries, driver)
-       // String[] tableKey = entries.keySet()
 
-     //   for (String s : tableKey) {
-      //      driver.sleep(delay)
-      //      assert entries.get(s).equals(driver.findElement(By.id(camelCase(s))).getText())
-
-       // }
     }
 
 //SD63
