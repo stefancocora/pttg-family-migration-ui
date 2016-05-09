@@ -34,7 +34,7 @@ Feature: Pass - Category A Financial Requirement (with Dependantss - weekly pay)
     Then The IPS Family TM Case Worker Tool provides the following result - with dependants:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Tony Singh  |
-		| Outcome From Date                     | 23/08/2014 |
+		| Outcome From Date                     | 25/08/2014 |
 		| Outcome To Date                       | 23/02/2015 |
 		| Your Search Individual Name           | Tony Singh |
 		| Your Search Dependants                 | 1 |
@@ -57,7 +57,7 @@ Feature: Pass - Category A Financial Requirement (with Dependantss - weekly pay)
     Then The IPS Family TM Case Worker Tool provides the following result - with dependants:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Jennifer Toure |
-		| Outcome From Date                     | 04/06/2015 |
+		| Outcome From Date                     | 05/06/2015 |
 		| Outcome To Date                       | 04/12/2015 |
 		| Your Search Individual Name           | Jennifer Toure |
 		| Your Search Dependants                 | 3 |
@@ -80,7 +80,7 @@ Feature: Pass - Category A Financial Requirement (with Dependantss - weekly pay)
     Then The IPS Family TM Case Worker Tool provides the following result - with dependants:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Lela Vasquez |
-		| Outcome From Date                     | 22/01/2015 |
+		| Outcome From Date                     | 21/01/2015 |
 		| Outcome To Date                       | 22/07/2015 |
 		| Your Search Individual Name           | Lela Vasquez |
 		| Your Search Dependants                 | 5 |

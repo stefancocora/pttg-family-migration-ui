@@ -20,7 +20,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - weekly pa
     Then The IPS Family TM Case Worker Tool provides the following result:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Molly Henry |
-		| Outcome From Date                     | 29/05/2015 |
+		| Outcome From Date                     | 31/05/2015 |
 		| Outcome To Date                       | 29/11/2015 |
 		| Your Search Individual Name           | Molly Henry  |
 		| Your Search National Insurance Number | MH123456A  |
@@ -40,7 +40,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - weekly pa
     Then The IPS Family TM Case Worker Tool provides the following result:
 		| Outcome                               | Success    |
 		| Outcome Box Individual Name           | Fernando Sanchez  |
-		| Outcome From Date                     | 09/04/2015 |
+		| Outcome From Date                     | 10/04/2015 |
 		| Outcome To Date                       | 09/10/2015 |
 		| Your Search Individual Name           | Fernando Sanchez  |
 		| Your Search National Insurance Number | FS123456C     |
