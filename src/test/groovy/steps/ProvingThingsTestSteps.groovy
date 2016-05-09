@@ -4,6 +4,7 @@ import cucumber.api.DataTable
 import cucumber.api.java.en.Given
 import cucumber.api.java.en.Then
 import cucumber.api.java.en.When
+import net.serenitybdd.core.Serenity
 import net.thucydides.core.annotations.Managed
 import org.apache.commons.lang3.StringUtils
 import org.apache.commons.lang3.text.WordUtils
@@ -12,6 +13,7 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 
 import java.text.SimpleDateFormat
+import java.util.concurrent.TimeUnit
 
 class ProvingThingsTestSteps {
     @Managed
@@ -119,6 +121,9 @@ class ProvingThingsTestSteps {
     @Given("^Robert is using the IPS Generic Tool\$")
     public void robert_is_using_the_ips_generic_tool() {
         driver.get("http://localhost:8001/income-proving-tool.html");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS)
+        driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS)
+        driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS)
     }
 
 // SD65 This method is empty because the validation (in the Then function) is done on the input page opened in the Given function
