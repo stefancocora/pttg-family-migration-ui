@@ -21,8 +21,6 @@ Feature: Failure - Category A Financial Requirement (with Dependantss - weekly p
 #New scenario - Added in SD126
   Scenario: Donald Sweet does not meet the Category A Financial Requirement (She has earned < the Cat A financial threshold)
 
-		Pay date 15th of the month
-		Before day of Application raised Date
 		He has 3 columbian dependants
 		He has received 26 Weekly Gross Income payments of £225.40 in the 182 day period prior to the Application Raised Date from the same employer
 
@@ -43,8 +41,6 @@ Feature: Failure - Category A Financial Requirement (with Dependantss - weekly p
 #New scenario - Added in SD126
   Scenario: John Lister does not meet the Category A Financial Requirement (He has earned < the Cat A financial threshold)
 
-		Pay date 10th of the month
-		On the same day of application raised date
 		He has 2 Chinese dependants
 		He has received 26 Weekly Gross Income payments of £475.67 in the 182 day period prior to the Application Raised Date from the same employer
 
@@ -65,8 +61,6 @@ Feature: Failure - Category A Financial Requirement (with Dependantss - weekly p
 #New scenario - Added in SD126
   Scenario: Gary Goldstein does not meet the Category A employment duration Requirement (He has worked for his current employer for only 20 weeks)
 
-		Pay date 3rd of the month
-		On same day of application raised date
 		He has 3 Isreali dependants
 		He has received 20 Weekly Gross Income payments of £516.67 in the 182 day period prior to the Application Raised Date from the same employer
 		He worked for a different employer before his current employer

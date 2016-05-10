@@ -4,19 +4,19 @@ Feature: Failure - Category A Financial Requirement (with dependents - monthly p
   Applicant or Sponsor has been paid for < 6 consecutive months with the same employer
 
   Financial income regulation to pass this Feature File
-  Income required amount no dependent child = £18600 (£1550 per month or above for EACH of the previous 6 months from the Application Raised Date)
-  Additional funds for 1 dependent child = £3800 on top of employment threshold
+  Income required Amount no Dependent Child = £18600 (£1550 per month or above for EACH of the previous 6 months from the Application Raised Date)
+  Additional funds for 1 Dependent Child = £3800 on top of employment threshold
   Additional funds for EVERY subsequent dependent child = £2400 on top of employment threshold per child
 
   Financial income calculation to pass this Feature File
   Income required amount + 1 dependent amount + (Additional dependent amount * number of dependents)/12 = Gross Monthly Income is < in any one of the 6 months prior to the Application Raised Date
 
-  1 dependent child - £18600+£3800/12 = £1866.67
-  2 dependent children - £18600+£3800+£2400/12 = £2066.67
-  3 dependent children - £18600+£3800+(£2400*2)/12 = £2266.67
-  4 dependent children - £18600+£3800+(£2400*3)/12 = £2466.67
-  5 dependent children - £18600+£3800+(£2400*4)/12 = £2666.67
-  7 dependent children - £18600+£3800+(£2400*6)/12 = £3066.67
+  1 Dependent Child - £18600+£3800/12 = £1866.67
+  2 Dependent Children - £18600+£3800+£2400/12 = £2066.67
+  3 Dependent Children - £18600+£3800+(£2400*2)/12 = £2266.67
+  4 Dependent Children - £18600+£3800+(£2400*3)/12 = £2466.67
+  5 Dependent Children - £18600+£3800+(£2400*4)/12 = £2666.67
+  7 Dependent Children - £18600+£3800+(£2400*6)/12 = £3066.67
   ETC
 
 #New scenario - Added in SD102
@@ -92,7 +92,7 @@ Feature: Failure - Category A Financial Requirement (with dependents - monthly p
   Pay date 2nd of the month
   Before day of Application Raised Date
   He earns £3333.33 Monthly Gross Income EVERY of the 6 months prior to the Application Received Date
-  He has 3 dependants child
+  He has 3 Dependants Child
 
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):

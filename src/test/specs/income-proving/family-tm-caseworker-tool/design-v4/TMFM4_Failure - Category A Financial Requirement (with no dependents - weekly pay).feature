@@ -9,8 +9,6 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
 #New Scenario - SD105
   Scenario: Davina Love does not meet the Category A Financial Requirement (She has earned < the Cat A financial threshold)
 
-		Pay date 15th of the month
-		Before day of Application raised Date
 		She earns £300.11 weekly Gross Income EVERY of the 26 weeks prior to the Application Raised Date
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
@@ -27,8 +25,6 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
 #New Scenario - SD105
   Scenario: Xavier Snow does not meet the Category A Financial Requirement (She has earned < the Cat A financial threshold)
 
-		Pay date 15th of the month
-		Before day of Application raised Date
 		He earns £30.99 weekly Gross Income EVERY of the 26 weeks prior to the Application Raised Date
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
@@ -46,8 +42,6 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
 #New Scenario - SD SD105
   Scenario: Paul Young does not meet the Category A Financial Requirement (He has earned < the Cat A financial threshold)
 
-		Pay date 15th of the month
-		Before day of Application raised Date
 		He earns £400.99 weekly Gross Income EVERY of the 24 weeks prior to the Application Raised Date
 		and he earns £300.99 weekly Gross Income for the LAST 2 weeks prior to the Application Raised Date  (total 26 weeks with the same employer)
 
@@ -65,8 +59,6 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
 #New Scenario - SD SD105
   Scenario: Raj Patel does not meet the Category A employment duration Requirement (He has worked for his current employer for only 3 months)
 
-		Pay date 3rd of the month
-		On same day of application raised date
 		He earns £600 a Week Gross Income BUT for only 12 weeks prior to the Application raised Date
 			He worked for a different employer before his current employer
 
@@ -86,8 +78,6 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
 	  #New Scenario - SD SD105
 	Scenario: John James does not meet the Category A employment duration Requirement (He has worked for his current employer for 6 months)
 
-	Pay date 3rd of the month
-	On same day of application raised date
 	He earns £357.70 a Week Gross Income BUT for 25 weeks and £357 on week 26 prior to the Application raised Date
 	He worked for a different employer before his current employer
 
@@ -106,8 +96,6 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
         #New Scenario - SD SD105
   Scenario: Peter Jones does not meet the Category A employment duration Requirement (He has worked for his current employer for 6 months)
 
-  Pay date 3rd of the month
-  On same day of application raised date
   He earns £658.50 a Week Gross Income BUT for 25 weeks and £357 on week 26 prior to the Application raised Date
   He worked for a different employer before his current employer
 

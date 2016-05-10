@@ -9,8 +9,6 @@ Feature: Pass - Category A Financial Requirement (with no dependents - weekly pa
 #New Scenario - SD105
   Scenario: Molly Henry meets the Category A Financial Requirement
 
-		Pay date 24th of the month
-		Pay date is before day of application Raised date
 		He earns £470.43 Weekly Gross Income EVERY of the 26 weeks prior to the Application Raised Date
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
@@ -29,8 +27,6 @@ Feature: Pass - Category A Financial Requirement (with no dependents - weekly pa
 #New Scenario - SD105
   Scenario: Fernando Sanchez meets the Category A Financial Requirement
 
-		Pay date 21st of the month
-		After day of application Raised date
 		He earns £357.69 Weekly Gross Income EVERY of the 26 weeks prior to the Application Raised Date
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
@@ -49,8 +45,6 @@ Feature: Pass - Category A Financial Requirement (with no dependents - weekly pa
 #New Scenario - SD105
   Scenario: Jonathan Odometey meets the Category A Financial Requirement
 
-		Pay date 28th of the month
-		On the same day of application Raised date
 		He earns £1000.00 Weekly Gross Income EVERY of the 26 weeks prior to the Application Raised Date
 
    Given Caseworker is using the Income Proving Service Case Worker Tool

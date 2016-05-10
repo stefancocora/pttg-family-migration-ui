@@ -21,8 +21,6 @@ Feature: Pass - Category A Financial Requirement (with Dependantss - weekly pay)
 #New scenario - Added in SD126
   Scenario: Tony Singh meets the Category A Financial Requirement with 1 Dependants
 
-		Pay date 22nd of the month
-		Before day of application Raised date
 		He has received 26 Weekly Gross Income payments of £466.01 in the 182 day period prior to the Application Raised Date
 		He has 1 Dependants child
 
@@ -44,8 +42,6 @@ Feature: Pass - Category A Financial Requirement (with Dependantss - weekly pay)
 #New scenario - Added in SD126
   Scenario: Jennifer Toure meets the Category A Financial Requirement with 3 Dependants
 
-		Pay date 10th of the month
-		After day of application Raised date
 		He has received 26 Weekly Gross Income payments of £606.00 in the 182 day period prior to the Application Raised Date
 		He has 3 Dependants child
 
@@ -67,8 +63,6 @@ Feature: Pass - Category A Financial Requirement (with Dependantss - weekly pay)
 #New scenario - Added in SD126
   Scenario: Lela Vasquez meets the Category A Financial Requirement with 5 Dependants
 
-		Pay date 22nd of the month
-		On the same day of application Raised date
 		He has received 26 Weekly Gross Income payments of £615.38 in the 182 day period prior to the Application Raised Date
 		He has 5 Dependants child
 
