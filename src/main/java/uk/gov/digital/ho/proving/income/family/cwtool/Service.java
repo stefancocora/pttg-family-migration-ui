@@ -8,13 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/application")
+@RequestMapping("/individual/{nino}/financialcheck")
 public class Service {
 
     private static Logger LOGGER = LoggerFactory.getLogger(Service.class);
@@ -22,13 +20,14 @@ public class Service {
     private Client client = Client.create();
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity getMigrationFamilyApplication(@RequestParam(value = "nino") String nino,
-                                                        @RequestParam(value = "applicationRaisedDate") String applicationRaisedDate,
-                                                        @RequestParam(value = "dependants",required = false) String dependants) {
+    public ResponseEntity getMigrationFamilyApplication(
+            @PathVariable(value = "nino") String nino,
+            @RequestParam(value = "applicationRaisedDate", required = true) String applicationDateAsString,
+            @RequestParam(value = "dependants", required = false) Integer dependants) {
 
         String remotePort = System.getProperty("remote.server.port", "8081");
 
-        String url = "http://localhost:"+ remotePort + "/application?nino=" + nino + "&applicationRaisedDate=" + applicationRaisedDate;
+        String url = "http://localhost:"+ remotePort + "/individual/" + nino + "/financialcheck?applicationRaisedDate=" + applicationDateAsString;
         if  (dependants != null) {
             url += "&dependants="+ dependants;
         }
@@ -43,6 +42,19 @@ public class Service {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-type", "application/json");
         return new ResponseEntity<>(response.getEntity(String.class), headers, HttpStatus.valueOf(response.getStatus()));
+    }
+
+    private ResponseEntity<ResponseStatus> buildErrorResponse(HttpHeaders headers, String errorCode, String errorMessage, HttpStatus status) {
+        ResponseStatus response = new ResponseStatus(errorCode, errorMessage);
+        return new ResponseEntity<>(response, headers, status);
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public Object missingParamterHandler(MissingServletRequestParameterException exception) {
+        LOGGER.debug(exception.getMessage());
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-type", "application/json");
+        return buildErrorResponse(headers, "0008", "Missing parameter: " + exception.getParameterName() , HttpStatus.BAD_REQUEST);
     }
 
 }
