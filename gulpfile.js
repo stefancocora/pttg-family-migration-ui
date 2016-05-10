@@ -11,6 +11,8 @@
     var client = './client/';
     var server = './src/main/webapp/';
 
+    var jasmine = require('gulp-jasmine');
+
     var config = {
         jsOrder: [
             '**/jquery*.js',
@@ -119,6 +121,16 @@
     gulp.task('watch', function() {
         gulp.watch([config.sassSrc, config.appSrc, config.htmlSrc, config.indexPage], ['build']);
     });
+
+    gulp.task('test', function() {
+        gulp.src(['bower_components/angular/angular.js',
+        'bower_components/angular-mocks/angular-mocks.js',
+        'client/tests/*.test.js',
+        'client/app/*.js'])
+        .pipe(debug())
+        .pipe(jasmine());
+    });
+
 })();
 
 
