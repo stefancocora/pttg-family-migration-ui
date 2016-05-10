@@ -24,12 +24,8 @@
             dependants: '',
             meetsFinancialRequirements: false,
             failureReason: '',
-            threshold: {
-                amount: 0,
-                isoCurrencyCode: 'GBP'
-            },
             applicationRaisedDate: '',
-            applicant : {
+            individual : {
                 title: '',
                 forename: '',
                 surname: ''
@@ -67,17 +63,16 @@
 
                 restService.checkApplication(vm.model.nino, vm.getFullDate(), vm.model.dependants)
                     .then(function(data) {
-                        vm.model.meetsFinancialRequirements = data.application.financialRequirementsCheck.met;
-                        if (angular.isDefined(data.application.financialRequirementsCheck.failureReason)) {
-                            vm.model.failureReason = data.application.financialRequirementsCheck.failureReason;
+                        vm.model.meetsFinancialRequirements = data.categoryCheck.passed;
+                        if (angular.isDefined(data.categoryCheck.failureReason)) {
+                            vm.model.failureReason = data.categoryCheck.failureReason;
                         } else {
                             vm.model.failureReason = '';
                         }
-                        vm.model.threshold = data.application.threshold;
-                        vm.model.applicant = data.application.applicant;
-                        vm.model.applicationRaisedDate = moment(data.application.applicationRaisedDate).format(DATE_DISPLAY_FORMAT);
-                        vm.model.checkedFrom = moment(data.application.financialRequirementsCheck.checkedFrom).format(DATE_DISPLAY_FORMAT);
-                        vm.model.checkedTo = moment(data.application.financialRequirementsCheck.checkedTo).format(DATE_DISPLAY_FORMAT);
+                        vm.model.individual = data.individual;
+                        vm.model.applicationRaisedDate = moment(data.categoryCheck.applicationRaisedDate).format(DATE_DISPLAY_FORMAT);
+                        vm.model.checkedTo = moment(data.categoryCheck.applicationRaisedDate).format(DATE_DISPLAY_FORMAT);
+                        vm.model.checkedFrom = moment(data.categoryCheck.assessmentStartDate).format(DATE_DISPLAY_FORMAT);
                         $location.path('/income-proving-result');
                     }).catch(function(error) {
                         if (error.status === 400 && error.data.error.code === INVALID_NINO_NUMBER){

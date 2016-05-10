@@ -11,7 +11,7 @@
     <p class="lede">Does the applicant meet the financial requirement ‘Category A: With current employer for 6 months or more – person residing in the UK’?</p>
 
     <div class="govuk-box-highlight" id="outcome">
-        <h1 class="bold-large">Yes, <span id="outcomeBoxIndividualName">{{vm.model.applicant.forename}} {{vm.model.applicant.surname}}</span> meets the
+        <h1 class="bold-large">Yes, <span id="outcomeBoxIndividualName">{{vm.model.individual.forename}} {{vm.model.individual.surname}}</span> meets the
             requirement</h1>
         <p>calculated on income information between <span id="outcomeFromDate">{{vm.model.checkedFrom}}</span>  and
             <span id="outcomeToDate">{{vm.model.checkedTo}}</span></p>
@@ -21,7 +21,7 @@
 <div ng-if="!vm.model.meetsFinancialRequirements">
 
     <h1 class="form-title heading-large">
-        <span id="pageDynamicHeading">{{vm.model.applicant.forename}} {{vm.model.applicant.surname}} doesn't meet the Category A salaried requirement</span>
+        <span id="pageDynamicHeading">{{vm.model.individual.forename}} {{vm.model.individual.surname}} doesn't meet the Category A salaried requirement</span>
     </h1>
 
     <p id="pageStaticHeading">This was checked using the financial requirement &lsquo;Category A: With current employer for 6 months or more –
@@ -51,9 +51,9 @@
     </thead>
     <tbody>
     <tr>
-        <td><span id="yourSearchIndividualName">{{vm.model.applicant.forename}} {{vm.model.applicant.surname}}</span></td>
+        <td><span id="yourSearchIndividualName">{{vm.model.individual.forename}} {{vm.model.individual.surname}}</span></td>
         <td ng-if="vm.model.dependants>0"><span id="yourSearchDependants">{{vm.model.dependants}}</span></td>
-        <td><span id="yourSearchNationalInsuranceNumber">{{vm.model.applicant.nino}}</span></td>
+        <td><span id="yourSearchNationalInsuranceNumber">{{vm.model.individual.nino}}</span></td>
         <td><span id="yourSearchApplicationRaisedDate">{{vm.model.applicationRaisedDate}}</span></td>
     </tr>
     </tbody>
