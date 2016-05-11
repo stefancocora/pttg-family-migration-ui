@@ -9,7 +9,8 @@ Feature: Pass - Category A Financial Requirement (with no dependents - weekly pa
 #New Scenario - SD105
   Scenario: Molly Henry meets the Category A Financial Requirement
 
-		He earns £470.43 Weekly Gross Income EVERY of the 26 weeks prior to the Application Raised Date
+		He has received 26 Weekly Gross Income payments of £470.43
+
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool:
@@ -27,7 +28,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - weekly pa
 #New Scenario - SD105
   Scenario: Fernando Sanchez meets the Category A Financial Requirement
 
-		He earns £357.69 Weekly Gross Income EVERY of the 26 weeks prior to the Application Raised Date
+    He has received 26 Weekly Gross Income payments of £357.69
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool:
@@ -45,7 +46,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - weekly pa
 #New Scenario - SD105
   Scenario: Jonathan Odometey meets the Category A Financial Requirement
 
-		He earns £1000.00 Weekly Gross Income EVERY of the 26 weeks prior to the Application Raised Date
+		He has received 26 Weekly Gross Income payments of £1000.00
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool:

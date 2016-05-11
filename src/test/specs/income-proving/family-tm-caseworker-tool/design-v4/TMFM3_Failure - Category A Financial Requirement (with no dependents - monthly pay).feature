@@ -4,14 +4,15 @@ Feature: Failure - Category A Financial Requirement (with no dependents - monthl
       Applicant or Sponsor has received < 6 consecutive monthly payments from the same employer over the 182 day period prior to the Application Raised Date
 
 	Financial employment income regulation to pass this Feature File
-      Applicant or Sponsor has earned 6 monthly payments < £1550 Monthly Gross Income in the 182 days prior to the Application Raised Date
+			Gross Monthly Income is < £1550.00 in any one of the 6 payments in the 182 days prior to the Application Raised Date
+
 
 #Changed Scenario - Removed word monthly from output text - SD105
 	Scenario: Jill does not meet the Category A Financial Requirement (She has earned < the Cat A financial threshold)
 
 	Pay date 15th of the month
 	Before day of Application Raised Date
-	She earns £1000 Monthly Gross Income EVERY of the 6 months prior to the Application Raised Date
+	She earns £1000 Monthly Gross Income EVERY of the 6 months
 
 		Given Caseworker is using the Income Proving Service Case Worker Tool
 		When Robert submits a query:
@@ -30,7 +31,7 @@ Feature: Failure - Category A Financial Requirement (with no dependents - monthl
 
 	Pay date 28th of the month
 	After day of Application Raised Date
-	He earns £1250 Monthly Gross Income EVERY of the 6 months prior to the Application Raised Date
+	He earns £1250 Monthly Gross Income EVERY of the 6 months
 
 		Given Caseworker is using the Income Proving Service Case Worker Tool
 		When Robert submits a query:
@@ -49,7 +50,7 @@ Feature: Failure - Category A Financial Requirement (with no dependents - monthl
 
 	Pay date 3rd of the month
 	On same day of Application Raised Date
-	He earns £1600 Monthly Gross Income BUT for only 3 months prior to the Application Raised Date
+	He earns £1600 Monthly Gross Income BUT for only 3 months
 	He worked for a different employer before his current employer
 
 		Given Caseworker is using the Income Proving Service Case Worker Tool

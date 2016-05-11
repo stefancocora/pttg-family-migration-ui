@@ -1,15 +1,15 @@
 Feature: Failure - Category A Financial Requirement (with dependents - monthly pay)
 
   Requirement to meet Category A
-  Applicant or Sponsor has been paid for < 6 consecutive months with the same employer
+  Applicant or Sponsor has received < 6 consecutive monthly payments from the same employer over the 182 day period prior to the Application Raised Date
 
   Financial income regulation to pass this Feature File
-  Income required Amount no Dependent Child = £18600 (£1550 per month or above for EACH of the previous 6 months from the Application Raised Date)
+  Income required Amount no Dependent Child = £18600 (£1550 per month or above)
   Additional funds for 1 Dependent Child = £3800 on top of employment threshold
   Additional funds for EVERY subsequent dependent child = £2400 on top of employment threshold per child
 
   Financial income calculation to pass this Feature File
-  Income required amount + 1 dependent amount + (Additional dependent amount * number of dependents)/12 = Gross Monthly Income is < in any one of the 6 months prior to the Application Raised Date
+  Income required amount + 1 dependant amount + (Additional dependant amount * number of dependants)/12 = Gross Monthly Income is < Threshold in any one of the 6 payments in the 182 days prior to the Application Raised Date
 
   1 Dependent Child - £18600+£3800/12 = £1866.67
   2 Dependent Children - £18600+£3800+£2400/12 = £2066.67
@@ -25,7 +25,7 @@ Feature: Failure - Category A Financial Requirement (with dependents - monthly p
   Pay date 15th of the month
   Before day of Application Raised Date
   She has 4 Canadian dependants
-  She earns £2250.00 Monthly Gross Income EVERY of the 6 months prior to the Application Raised Date
+  She earns £2250.00 Monthly Gross Income EVERY of the 6 months
 
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):

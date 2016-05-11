@@ -21,7 +21,7 @@ Feature: Pass - Category A Financial Requirement (with Dependantss - weekly pay)
 #New scenario - Added in SD126
   Scenario: Tony Singh meets the Category A Financial Requirement with 1 Dependants
 
-		He has received 26 Weekly Gross Income payments of £466.01 in the 182 day period prior to the Application Raised Date
+		He has received 26 Weekly Gross Income payments of £466.01 
 		He has 1 Dependants child
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
@@ -42,7 +42,7 @@ Feature: Pass - Category A Financial Requirement (with Dependantss - weekly pay)
 #New scenario - Added in SD126
   Scenario: Jennifer Toure meets the Category A Financial Requirement with 3 Dependants
 
-		He has received 26 Weekly Gross Income payments of £606.00 in the 182 day period prior to the Application Raised Date
+		He has received 26 Weekly Gross Income payments of £606.00
 		He has 3 Dependants child
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
@@ -63,7 +63,7 @@ Feature: Pass - Category A Financial Requirement (with Dependantss - weekly pay)
 #New scenario - Added in SD126
   Scenario: Lela Vasquez meets the Category A Financial Requirement with 5 Dependants
 
-		He has received 26 Weekly Gross Income payments of £615.38 in the 182 day period prior to the Application Raised Date
+		He has received 26 Weekly Gross Income payments of £615.38
 		He has 5 Dependants child
 
    Given Caseworker is using the Income Proving Service Case Worker Tool

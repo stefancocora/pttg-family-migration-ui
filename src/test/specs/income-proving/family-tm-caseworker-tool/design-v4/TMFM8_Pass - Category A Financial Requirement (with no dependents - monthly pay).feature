@@ -11,7 +11,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
 
       Pay date 15th of the month
       Before day of Application Raised Date
-      He earns £1600 Monthly Gross Income EVERY of the 6 months prior to the Application Raised Date
+      He earns £1600 Monthly Gross Income EVERY of the 6 months
 
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool:
@@ -31,7 +31,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
 
       Pay date 1st of the month
       Before day of Application Raised Date
-      He earns £1550 Monthly Gross Income EVERY of the 6 months prior to the Application Raised Date
+      He earns £1550 Monthly Gross Income EVERY of the 6 months
 
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool:
@@ -51,7 +51,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
 
       Pay date 28th of the month
       After day of Application Raised Date
-      He earns £2240 Monthly Gross Income EVERY of the 6 months prior to the Application Raised Date
+      He earns £2240 Monthly Gross Income EVERY of the 6 months
 
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool:
@@ -71,7 +71,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
 
       Pay date 23rd of the month
       On same day of Application Raised Date
-      He earns £1551 Monthly Gross Income EVERY of the 6 months prior to the Application Raised Date
+      He earns £1551 Monthly Gross Income EVERY of the 6
 
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool:
@@ -91,7 +91,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
 
       Pay date 1st of the month
       After day of Application Raised Date
-      He earns £3210 Monthly Gross Income EVERY of the 6 months prior to the Application Raised Date
+      He earns £3210 Monthly Gross Income EVERY of the 6
 
 
     Given Caseworker is using the Income Proving Service Case Worker Tool
@@ -115,7 +115,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
       Pay date 30th, for October 2014
       Pay date 15th for all other months
       On different day of Application Raised Date
-      He earns £1600 Monthly Gross Income EVERY of the 6 months prior to the Application Raised Date
+      He earns £1600 Monthly Gross Income EVERY of the 6
 
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool:
