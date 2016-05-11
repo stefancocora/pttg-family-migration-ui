@@ -12,7 +12,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/individual/{nino}/financialstatus")
+@RequestMapping("/incomeproving/v1/individual/{nino}/financialstatus")
 public class Service {
 
     private static Logger LOGGER = LoggerFactory.getLogger(Service.class);
@@ -27,7 +27,7 @@ public class Service {
 
         String remotePort = System.getProperty("remote.server.port", "8081");
 
-        String url = "http://localhost:"+ remotePort + "/individual/" + nino + "/financialstatus?applicationRaisedDate=" + applicationDateAsString;
+        String url = "http://localhost:"+ remotePort + "/incomeproving/v1//individual/" + nino + "/financialstatus?applicationRaisedDate=" + applicationDateAsString;
         if  (dependants != null) {
             url += "&dependants="+ dependants;
         }

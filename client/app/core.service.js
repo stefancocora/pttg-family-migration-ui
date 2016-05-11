@@ -12,7 +12,7 @@
             checkApplication : checkApplication
         };
         function checkApplication(nino, applicationRaisedDate, dependants) {
-            var url = 'individual/'+nino+'/financialstatus?applicationRaisedDate='+applicationRaisedDate + (dependants>0 ? '&dependants='+dependants : '');
+            var url = 'incomeproving/v1/individual/'+nino+'/financialstatus?applicationRaisedDate='+applicationRaisedDate + (dependants>0 ? '&dependants='+dependants : '');
             return $http.get(url)
                 .then(
                     function success(response) { return response.data },
