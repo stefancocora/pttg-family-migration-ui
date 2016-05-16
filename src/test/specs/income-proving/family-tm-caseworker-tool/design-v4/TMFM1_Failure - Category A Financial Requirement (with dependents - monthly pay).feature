@@ -87,23 +87,23 @@ Feature: Failure - Category A Financial Requirement (with dependents - monthly p
       | Your Search Application Raised Date   | 03/09/2015                                                  |
 
 #New scenario - Added in SD102
-  Scenario: Scarlett Jones does not meets the Category A Financial Requirement with 3 dependants
-
-  Pay date 2nd of the month
-  Before day of Application Raised Date
-  He earns £3333.33 Monthly Gross Income EVERY of the 6 months prior to the Application Received Date
-  He has 3 Dependants Child
-
-    Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
-      | NINO                    | SJ123456C |
-      | Application Raised Date | 3/1/2016  |
-      | Dependants              | 3         |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with dependants):
-      | Page dynamic heading                  | Scarlett Jones doesn't meet the Category A salaried requirement |
-      | Category A check failure reason       | they haven't been with their current employer for 6 months.     |
-
-      | Your Search Individual Name           | Scarlett Jones                                                  |
-      | Your Search Dependants                | 3                                                               |
-      | Your Search National Insurance Number | SJ123456C                                                       |
-      | Your Search Application Raised Date   | 03/01/2016                                                      |
+#  Scenario: Scarlett Jones does not meets the Category A Financial Requirement with 3 dependants
+#
+#  Pay date 2nd of the month
+#  Before day of Application Raised Date
+#  He earns £3333.33 Monthly Gross Income EVERY of the 6 months prior to the Application Received Date
+#  He has 3 Dependants Child
+#
+#    Given Caseworker is using the Income Proving Service Case Worker Tool
+#    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
+#      | NINO                    | SJ123456C |
+#      | Application Raised Date | 3/1/2016  |
+#      | Dependants              | 3         |
+#    Then The IPS Family TM Case Worker Tool provides the following error result (with dependants):
+#      | Page dynamic heading                  | Scarlett Jones doesn't meet the Category A salaried requirement |
+#      | Category A check failure reason       | they haven't been with their current employer for 6 months.     |
+#
+#      | Your Search Individual Name           | Scarlett Jones                                                  |
+#      | Your Search Dependants                | 3                                                               |
+#      | Your Search National Insurance Number | SJ123456C                                                       |
+#      | Your Search Application Raised Date   | 03/01/2016                                                      |
