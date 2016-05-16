@@ -14,7 +14,7 @@ ADD bower.json /tmp/app/bower.json
 RUN cd /tmp/app && npm install && node_modules/bower/bin/bower install --allow-root
 
 ADD scripts/installGradle.sh .
-RUN chmod +x installGradle.sh && ./installGradle.sh
+#RUN chmod +x installGradle.sh && ./installGradle.sh
 
 ADD . .
 
