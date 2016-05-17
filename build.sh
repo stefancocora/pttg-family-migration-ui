@@ -6,11 +6,11 @@ setup() {
 	echo "build number:: " ${BUILD_NUMBER}
 
 	VERSION_NUMBER=0.1.0
-	ARTIFACT="uk.gov.digital.ho.proving.income.family.cwtool-${VERSION_NUMBER}.jar"
+	ARTIFACT="pttg-family-migration-ui-${VERSION_NUMBER}.jar"
 
 	if [[ -n ${BUILD_NUMBER} ]]; then
 	    echo "using build number to produce artifact"
-		ARTIFACT="uk.gov.digital.ho.proving.income.family.cwtool-${VERSION_NUMBER}.${BUILD_NUMBER}.jar"
+		ARTIFACT="pttg-family-migration-ui-${VERSION_NUMBER}.${BUILD_NUMBER}.jar"
 	fi
 
 	echo "Artifact being built: " ${ARTIFACT}
@@ -29,7 +29,7 @@ cleanup() {
 		docker rm $CONTAINERS
 	fi
 
-	IMAGES=$(docker images | grep family-docker-build | awk '{print $3'})
+	IMAGES=$(docker images | grep pttg-family-migration-ui-build | awk '{print $3'})
 
 	if [ ! -z "$IMAGES" -a "$IMAGES" != " " ]; then
 		echo "removing images: " ${IMAGES}
@@ -39,15 +39,15 @@ cleanup() {
 
 createDockerImageToExecuteBuildIn() {
 	echo "building docker image to execute app build"
-	docker build -t family-docker-build -f src/main/docker/Dockerfile.build .
+	docker build -t pttg-family-migration-ui-build -f src/main/docker/Dockerfile.build .
 }
 
 executeBuild() {
-	echo "running docker image as named container - family-docker-build-container"
-	docker run --name family-docker-build-container\
+	echo "running docker image as named container - pttg-family-migration-ui-build"
+	docker run --name pttg-family-migration-ui-build \
 		-e "VERSION_NUMBER=${VERSION_NUMBER}" \
 		-e "BUILD_NUMBER=${BUILD_NUMBER}" \
-		family-docker-build
+		pttg-family-migration-ui-build
 }
 
 # Make this call an external script that populates the folder that is then copied into the Docker image.
@@ -62,9 +62,9 @@ buildDockerAppExecutionImage() {
 	cd build/docker
 	#TAG="quay.io/family-docker:${VERSION_NUMBER}.${BUILD_NUMBER}"
 	if [[ -n ${BUILD_NUMBER} ]]; then
-	TAG="quay.io/ukhomeofficedigital/family-docker:${VERSION_NUMBER}.${BUILD_NUMBER}"
+		TAG="quay.io/ukhomeofficedigital/pttg-family-migration-ui:${VERSION_NUMBER}.${BUILD_NUMBER}"
 	else
-	TAG="quay.io/ukhomeofficedigital/family-docker:${VERSION_NUMBER}"
+		TAG="quay.io/ukhomeofficedigital/pttg-family-migration-ui:${VERSION_NUMBER}"
 	fi
 	echo "building " ${TAG}
 	docker build -t ${TAG} .
@@ -90,5 +90,5 @@ executeBuild
 assembleAssetsToCreateDockerAppExecutionImage
 cleanup
 buildDockerAppExecutionImage
-#pushImageToRepo
-#cleanup
+pushImageToRepo
+cleanup
