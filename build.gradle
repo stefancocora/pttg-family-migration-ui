@@ -1,6 +1,6 @@
 import com.wiredforcode.gradle.spawn.*
 
-group 'uk.gov.digital.ho.proving.income.migration.family'
+group 'pttg-family-migration-ui'
 version '1.0-SNAPSHOT'
 
 buildscript {
@@ -32,7 +32,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 jar {
-    baseName = 'uk.gov.digital.ho.proving.income.family.cwtool'
+    baseName = 'pttg-family-migration-ui'
     version =  '0.1.0'
 }
 

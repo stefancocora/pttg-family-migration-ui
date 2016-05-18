@@ -28,9 +28,8 @@
         person residing in the UK&rsquo;.</p>
     <p id="pageStaticDetail">They don't meet the financial requirement because:</p>
     <ul class="list list-bullet">
-        <li id="categoryACheckFailureReason" ng-if="vm.model.failureReason==='NOT_ENOUGH_RECORDS'">they haven't been with their current employer for 6 months.</li>
-        <li id="categoryACheckFailureReason" ng-if="vm.model.failureReason==='NON_CONSECUTIVE_MONTHS' ||
-                                                    vm.model.failureReason==='MONTHLY_VALUE_BELOW_THRESHOLD' ||
+        <li id="categoryACheckFailureReason" ng-if="vm.model.failureReason==='NON_CONSECUTIVE_MONTHS' || vm.model.failureReason==='NOT_ENOUGH_RECORDS'">they haven't been with their current employer for 6 months.</li>
+        <li id="categoryACheckFailureReason" ng-if="vm.model.failureReason==='MONTHLY_VALUE_BELOW_THRESHOLD' ||
                                                     vm.model.failureReason==='WEEKLY_VALUE_BELOW_THRESHOLD'"
         >they haven't met the required amount.</li>
     </ul>
