@@ -27,8 +27,8 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | NINO                    | JL123456A  |
       | Application Raised Date | 15/01/2015 |
     Then The service for Cat A Failure provides the following result:
-      | Page static heading     | What to do next |
-      | Page static sud heading | You should consider if the applicant meets the financial requirement under any other category. |
+      | What to do next heading     | What to do next |
+      | What to do next sub heading | You should consider if the applicant meets the financial requirement under any other category. |
 
 
 ###################################### Section - Check for text on Output meets Category A page ######################################

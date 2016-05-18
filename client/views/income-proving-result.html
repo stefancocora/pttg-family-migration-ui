@@ -8,7 +8,7 @@
     <h1 class="form-title heading-large">
         Financial requirement check
     </h1>
-    <p class="lede">Does the applicant meet the financial requirement ‘Category A: With current employer for 6 months or more – person residing in the UK’?</p>
+    <p class="lede">Does the applicant meet the Category A financial requirement?</p>
 
     <div class="govuk-box-highlight" id="outcome">
         <h1 class="bold-large">Yes, <span id="outcomeBoxIndividualName">{{vm.model.individual.forename}} {{vm.model.individual.surname}}</span> meets the
@@ -33,13 +33,12 @@
         <li id="categoryACheckFailureReason" ng-if="vm.model.failureReason==='WEEKLY_VALUE_BELOW_THRESHOLD'">they haven't met the required weekly amount.</li>
     </ul>
 </div>
-
-<h2 class="heading-medium">
+<h2 class="heading-medium" id="whatToDoNextHeading">
     What to do next
 </h2>
+<p id="whatToDoNextSubHeading">You should consider if the applicant meets the financial requirement under any other category.</p>
 
 <h2 class="heading-medium">Your search</h2>
-<p>You should consider if the applicant meets the financial requirement under any other category.</p>
 
 <table>
     <thead>
