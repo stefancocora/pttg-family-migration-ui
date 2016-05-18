@@ -84,8 +84,11 @@
                         <legend class="form-label-bold">When was the application raised?</legend>
                         <div class="form-date">
                             <p class="form-hint">For example, 31 3 1980</p>
-                                <span id="application—raised-date-error" class="error-message" ng-if="vm.dateMissingError || vm.dateInvalidError">
+                                <span id="application—raised-date-error" class="error-message" ng-if="vm.dateInvalidError">
                                     Please provide a valid Application Raised Date</span>
+                                <span id="application—raised-date-error" class="error-message" ng-if="vm.dateMissingError">
+                                    Please provide an Application Raised Date</span>
+
                             <div class="form-group form-group-day">
                                 <label for="applicationRaisedDateDay">Day</label>
                                 <input class="form-control" name="applicationRaisedDateDay" id="applicationRaisedDateDay" type="number"
