@@ -15,7 +15,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | NINO                    | JL123456A  |
       | Application Raised Date | 15/01/2015 |
     Then The service for Cat A Failure provides the following result:
-      | Page static detail  | They don't meet the financial requirement because: |
+      | Page static detail | They don't meet the financial requirement because: |
 
 #New scenario - SD132
   Scenario: Check for important text on the page
@@ -27,7 +27,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | NINO                    | JL123456A  |
       | Application Raised Date | 15/01/2015 |
     Then The service for Cat A Failure provides the following result:
-      | What to do next heading     | What to do next |
+      | What to do next heading     | What to do next                                                                                |
       | What to do next sub heading | You should consider if the applicant meets the financial requirement under any other category. |
 
 
@@ -43,8 +43,8 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | NINO                    | AA345678A  |
       | Application Raised Date | 23/01/2015 |
     Then The IPS Family TM CW Tool output page provides the following result:
-      | Page title    | Financial requirement check                                                                                                             |
-      | Page sub text | Does the applicant meet the Category A: financial requirement? |
+      | Page title    | Financial requirement check                                   |
+      | Page sub text | Does the applicant meet the Category A financial requirement? |
 
 ###################################### Section - Check for text on Output Category A page ######################################
 
@@ -70,7 +70,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert is displayed the Income Proving Service Case Worker Tool input page:
     Then The IPS Family TM Case Worker Tool input page provides the following result:
-      | Page sub title | Individual's details                                                                                                                                                           |
+      | Page sub title | Individual's details                                                                            |
       | Page sub text  | You can check an individual meets the Category A requirement using a National Insurance Number. |
 
 ###################################### Section - Check for Validation on Input page ######################################
@@ -159,8 +159,8 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
   Scenario: Caseworker enters a blank Application Raised Date
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Application Raised Date is not entered:
-      | NINO                    | QQ128856A  |
-      | Application Raised Date |            |
+      | NINO                    | QQ128856A |
+      | Application Raised Date |           |
     Then The service displays the following message:
       | Error Message | Please provide an Application Raised Date |
       | Error Field   | application—raised-date-error             |
