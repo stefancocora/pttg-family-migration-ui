@@ -41,7 +41,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - weekly pa
 		| Your Search National Insurance Number | FS123456C     |
 		| Your Search Application Raised Date   | 09/10/2015 |
 
-  Scenario: Jonathan Odometey meets the Category A Financial Requirement
+  Scenario: John Odometey meets the Category A Financial Requirement
 
 		He has received 26 Weekly Gross Income payments of £1000.00
 
@@ -51,9 +51,9 @@ Feature: Pass - Category A Financial Requirement (with no dependents - weekly pa
       | Application Raised date | 28/06/2015 |
     Then The IPS Family TM Case Worker Tool provides the following result:
 		| Outcome                               | Success    |
-		| Outcome Box Individual Name           | Jonathan Odometey  |
+		| Outcome Box Individual Name           | John Odometey  |
 		| Outcome From Date                     | 28/12/2014 |
 		| Outcome To Date                       | 28/06/2015 |
-		| Your Search Individual Name           | Jonathan Odometey  |
+		| Your Search Individual Name           | John Odometey  |
 		| Your Search National Insurance Number | JO123456A     |
 		| Your Search Application Raised Date   | 28/06/2015 |

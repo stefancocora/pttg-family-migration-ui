@@ -17,7 +17,7 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
       | Application raised Date | 15/01/2015 |
     Then The service for Cat A Failure provides the following result:
 		| Page dynamic heading | Davina Love doesn't meet the Category A requirement |
-		| Category A check failure reason | they haven't met the required monthly amount. |
+		| Category A check failure reason | they haven't met the required weekly amount. |
 		| Your Search Individual Name | Davina Love |
 		| Your Search National Insurance Number | DV123456A |
 		| Your Search Application raised Date | 15/01/2015 |
@@ -33,7 +33,7 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
       | Application raised Date | 15/01/2015 |
     Then The service for Cat A Failure provides the following result:
 		| Page dynamic heading | Xavier Snow doesn't meet the Category A requirement |
-		| Category A check failure reason | they haven't met the required monthly amount. |
+		| Category A check failure reason | they haven't met the required weekly amount. |
 
 		| Your Search Individual Name | Xavier Snow |
 		| Your Search National Insurance Number | XS123456B |
@@ -51,7 +51,7 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
       | Application raised Date | 15/01/2015 |
     Then The service for Cat A Failure provides the following result:
 		| Page dynamic heading | Paul Young doesn't meet the Category A requirement |
-		| Category A check failure reason | they haven't met the required monthly amount. |
+		| Category A check failure reason | they haven't met the required weekly amount. |
 		| Your Search Individual Name | Paul Young |
 		| Your Search National Insurance Number | PY123456B |
 		| Your Search Application raised Date | 15/01/2015 |

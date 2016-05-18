@@ -33,7 +33,7 @@ Feature: Pass - Category A Financial Requirement (with dependants - monthly)
     Then The IPS Family TM Case Worker Tool provides the following result - with dependants:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Tony Ledo  |
-      | Outcome From Date                     | 23/07/2014 |
+      | Outcome From Date                     | 25/07/2014 |
       | Outcome To Date                       | 23/01/2015 |
       | Your Search Individual Name           | Tony Ledo  |
       | Your Search Dependants                | 1          |
@@ -55,7 +55,7 @@ Feature: Pass - Category A Financial Requirement (with dependants - monthly)
     Then The IPS Family TM Case Worker Tool provides the following result - with dependants:
       | Outcome                               | Success        |
       | Outcome Box Individual Name           | Scarlett Jones |
-      | Outcome From Date                     | 08/06/2015     |
+      | Outcome From Date                     | 09/06/2015     |
       | Outcome To Date                       | 08/12/2015     |
       | Your Search Individual Name           | Scarlett Jones |
       | Your Search Dependants                | 3              |
@@ -77,7 +77,7 @@ Feature: Pass - Category A Financial Requirement (with dependants - monthly)
     Then The IPS Family TM Case Worker Tool provides the following result - with dependants:
       | Outcome                               | Success        |
       | Outcome Box Individual Name           | Wasim Mohammed |
-      | Outcome From Date                     | 28/08/2014     |
+      | Outcome From Date                     | 30/08/2014     |
       | Outcome To Date                       | 28/02/2015     |
       | Your Search Individual Name           | Wasim Mohammed |
       | Your Search Dependants                | 5              |

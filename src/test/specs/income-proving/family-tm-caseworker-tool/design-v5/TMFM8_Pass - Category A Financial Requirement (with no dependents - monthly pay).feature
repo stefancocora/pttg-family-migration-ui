@@ -10,7 +10,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
 
       Pay date 15th of the month
       Before day of Application Raised Date
-      He earns £1600 Monthly Gross Income EVERY of the 6 months
+      He earns £1600 Monthly Gross Income EVERY of the 6Jonathan months
 
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool:
@@ -20,7 +20,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
-      | Outcome From Date                     | 23/07/2014 |
+      | Outcome From Date                     | 25/07/2014 |
       | Outcome To Date                       | 23/01/2015 |
       | Your Search Individual Name           | Jon Taylor |
       | Your Search National Insurance Number | AA345678A  |
@@ -40,7 +40,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
-      | Outcome From Date                     | 10/07/2014 |
+      | Outcome From Date                     | 12/07/2014 |
       | Outcome To Date                       | 10/01/2015 |
       | Your Search Individual Name           | Jon Taylor |
       | Your Search National Insurance Number | AA123456B  |
@@ -60,7 +60,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
-      | Outcome From Date                     | 23/07/2014 |
+      | Outcome From Date                     | 25/07/2014 |
       | Outcome To Date                       | 23/01/2015 |
       | Your Search Individual Name           | Jon Taylor |
       | Your Search National Insurance Number | BB123456B  |
@@ -80,7 +80,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
-      | Outcome From Date                     | 23/07/2014 |
+      | Outcome From Date                     | 25/07/2014 |
       | Outcome To Date                       | 23/01/2015 |
       | Your Search Individual Name           | Jon Taylor |
       | Your Search National Insurance Number | CC123456C  |
@@ -101,7 +101,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
-      | Outcome From Date                     | 09/07/2014 |
+      | Outcome From Date                     | 11/07/2014 |
       | Outcome To Date                       | 09/01/2015 |
       | Your Search Individual Name           | Jon Taylor |
       | Your Search National Insurance Number | CC123456B  |
@@ -124,7 +124,7 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
     Then The IPS Family TM Case Worker Tool provides the following result:
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Mark Jones |
-      | Outcome From Date                     | 23/07/2014 |
+      | Outcome From Date                     | 25/07/2014 |
       | Outcome To Date                       | 23/01/2015 |
       | Your Search Individual Name           | Mark Jones |
       | Your Search National Insurance Number | AA123456A  |
