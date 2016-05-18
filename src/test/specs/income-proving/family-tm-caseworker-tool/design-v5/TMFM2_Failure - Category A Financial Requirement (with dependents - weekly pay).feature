@@ -41,7 +41,7 @@ Feature: Failure - Category A Financial Requirement (with Dependantss - weekly p
   Scenario: John Lister does not meet the Category A Financial Requirement (He has earned < the Cat A financial threshold)
 
 		He has 2 Chinese dependants
-		He has received 26 Weekly Gross Income payments of £475.67 in the 182 day period from the same employer
+		He has received 23 Weekly Gross Income payments of £475.67 in the 182 day period from the same employer
 
    Given Caseworker is using the Income Proving Service Case Worker Tool
     When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
@@ -50,7 +50,7 @@ Feature: Failure - Category A Financial Requirement (with Dependantss - weekly p
       | Dependants | 2 |
     Then The IPS Family TM Case Worker Tool provides the following error result (with dependants):
 		| Page dynamic heading | John Lister doesn't meet the Category A requirement |
-		| Category A check failure reason | they haven't met the required weekly amount. |
+		| Category A check failure reason | they haven't been with their current employer for 6 months.|
 		| Your Search Individual Name | John Lister |
 		| Your Search Dependants                 | 2 |
 		| Your Search National Insurance Number | JL123456B |
