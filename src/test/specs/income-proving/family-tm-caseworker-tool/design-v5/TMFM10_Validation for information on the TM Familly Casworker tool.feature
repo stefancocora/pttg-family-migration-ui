@@ -5,7 +5,6 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
 
 ###################################### Section - Check for text on Output does not meet Category A page ######################################
 
-#Change scenario - Removed the Page static heading field - SD
   Scenario: Check for important text on the page
 
   This scenario is to check for required text on the page that explains what financial requirement check has been performed.
@@ -17,7 +16,6 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
     Then The service for Cat A Failure provides the following result:
       | Page static detail | They don't meet the financial requirement because: |
 
-#New scenario - SD132
   Scenario: Check for important text on the page
 
   This scenario is to check for required text on the page that explains what needs to be done next after the check.
@@ -33,7 +31,6 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
 
 ###################################### Section - Check for text on Output meets Category A page ######################################
 
-#Change scenario - Removed the Page static heading field - SD132
   Scenario: Page checks for Category A financial text write up
 
   This is a scenario to check for the Category A financial requirement text write up
@@ -64,7 +61,6 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
 
 ###################################### Section - Check for text on input page ######################################
 
-#Changed Scenario - Changed text to reflect new release of design v5 - SD132
   Scenario: Input Page checks for Category A financial text write up (1)
 
     Given Caseworker is using the Income Proving Service Case Worker Tool
@@ -155,7 +151,6 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | Error Message | Please provide a valid Application Raised Date |
       | Error Field   | application—raised-date-error                  |
 
-#New scenaio - Added in
   Scenario: Caseworker enters a blank Application Raised Date
     Given Caseworker is using the Income Proving Service Case Worker Tool
     When Application Raised Date is not entered:
@@ -163,4 +158,14 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
       | Application Raised Date |           |
     Then The service displays the following message:
       | Error Message | Please provide an Application Raised Date |
+      | Error Field   | application—raised-date-error             |
+
+    #New scenario - Added 24.05.16
+  Scenario: Caseworker is prevented from entering a future date as the Application Raised Date
+    Given Caseworker is using the Income Proving Service Case Worker Tool
+    When A future Application Raised Date entered:
+      | NINO                    | QQ125556A |
+      | Application Raised Date | 01/01/2017 |
+    Then The service displays the following message:
+      | Error Message | Please provide a valid Application Raised Date |
       | Error Field   | application—raised-date-error             |
