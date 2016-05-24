@@ -24,8 +24,6 @@
         <span id="pageDynamicHeading">{{vm.model.individual.forename}} {{vm.model.individual.surname}} doesn't meet the Category A requirement</span>
     </h1>
 
-    <p id="pageStaticHeading">This was checked using the financial requirement &lsquo;Category A: With current employer for 6 months or more –
-        person residing in the UK&rsquo;.</p>
     <p id="pageStaticDetail">They don't meet the financial requirement because:</p>
     <ul class="list list-bullet">
         <li id="categoryACheckFailureReason" ng-if="vm.model.failureReason==='NON_CONSECUTIVE_MONTHS' || vm.model.failureReason==='NOT_ENOUGH_RECORDS'">they haven't been with their current employer for 6 months.</li>
@@ -33,10 +31,10 @@
         <li id="categoryACheckFailureReason" ng-if="vm.model.failureReason==='WEEKLY_VALUE_BELOW_THRESHOLD'">they haven't met the required weekly amount.</li>
     </ul>
 </div>
-<h2 class="heading-medium" id="whatToDoNextHeading">
+<h2 class="heading-medium" id="whatToDoNextHeading" ng-if="!vm.model.meetsFinancialRequirements">
     What to do next
 </h2>
-<p id="whatToDoNextSubHeading">You should consider if the applicant meets the financial requirement under any other category.</p>
+<p id="whatToDoNextSubHeading" ng-if="!vm.model.meetsFinancialRequirements">You should consider if the applicant meets the financial requirement under any other category.</p>
 
 <h2 class="heading-medium">Your search</h2>
 
