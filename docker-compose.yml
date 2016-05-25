@@ -3,7 +3,7 @@ services:
   family:
     container_name: FC-container
 #    build: .
-    image: quay.io/ukhomeofficedigital/family-docker:0.1.0
+    image: quay.io/ukhomeofficedigital/pttg-family-migration-ui:0.1.0
     ports:
      - "8000:8000"
     #use external links for containers started outside this compose
@@ -11,7 +11,7 @@ services:
      - income
   income:
     container_name: income-container
-    image: quay.io/ukhomeofficedigital/uk.gov.digital.ho.proving.income.api:1.0.0001
+    image: quay.io/ukhomeofficedigital/pttg-family-migration-api:0.1.0
     ports:
      - "8081:8081"
 
