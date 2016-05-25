@@ -135,6 +135,9 @@
             } else  if (!moment(vm.getFullDate(), DATE_VALIDATE_FORMAT, true).isValid()){
                 vm.dateInvalidError = true;
                 validated = false;
+            } else if(moment(vm.getFullDate(), DATE_VALIDATE_FORMAT, true).isAfter(moment(), 'day')){
+                vm.dateInvalidError = true;
+                validated = false;
             }
 
             if (vm.model.dependants !== null && !(/^\d{0,2}$/.test(vm.model.dependants))){

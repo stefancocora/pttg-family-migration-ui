@@ -123,7 +123,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
 
   Scenario: Caseworker enters an incorrect Application Raised Date (7)
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Application Raised Date is not entered:
+    When an incorrect Application Raised Date is entered:
       | NINO                    | QQ129956A  |
       | Application Raised Date | 85/01/2015 |
 
@@ -133,7 +133,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
 
   Scenario: Caseworker enters an incorrect Application Raised Date (8)
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Application Raised Date is not entered:
+    When an incorrect Application Raised Date is entered:
       | NINO                    | QQ128856A  |
       | Application Raised Date | 01/13/2015 |
 
@@ -163,7 +163,7 @@ Feature: Tool identifies Applicant meets Category A Financial Requirement
     #New scenario - Added 24.05.16
   Scenario: Caseworker is prevented from entering a future date as the Application Raised Date
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When A future Application Raised Date entered:
+    When a future Application Raised Date is entered:
       | NINO                    | QQ125556A |
       | Application Raised Date | 01/01/2017 |
     Then The service displays the following message:

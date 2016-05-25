@@ -85,43 +85,28 @@ class ProvingThingsTestSteps {
 
     @When("^Robert submits a query:\$")
     public void robert_submits_a_query(DataTable arg1) {
-        Map<String, String> entries = arg1.asMap(String.class, String.class)
-        submitForm(entries, driver);
-        // driver.sleep(delay)
-        driver.findElement(By.className("button")).click();
+        submitFormWithData(arg1)
     }
 
     @When("^the NINO is NOT entered:\$")
     public void the_nino_is_not_entered(DataTable arg1) {
-        // driver.sleep(delay)
-        Map<String, String> entries = arg1.asMap(String.class, String.class)
-        submitForm(entries, driver);
-        driver.findElement(By.className("button")).click();
+        submitFormWithData(arg1)
     }
 
     @When("^an incorrect NINO is entered:\$")
     public void an_incorrect_nino_is_eneterd(DataTable arg1) {
-        // driver.sleep(delay)
-        Map<String, String> entries = arg1.asMap(String.class, String.class)
-        submitForm(entries, driver);
-        driver.findElement(By.className("button")).click();
+        submitFormWithData(arg1)
     }
-
     @When("^Application Raised Date is not entered:\$")
-    public void application_raised_date_not_entered(DataTable arg1) {
-        // driver.sleep(delay)
-        Map<String, String> entries = arg1.asMap(String.class, String.class)
-        submitForm(entries, driver);
-        driver.findElement(By.className("button")).click();
+    public void application_raised_date_missing(DataTable arg1) {
+        submitFormWithData(arg1)
     }
 
-    @When("^an incorrect Application Raised Date is entered:\$")
-    public void an_incorrent_raised_date_is_entered(DataTable arg1) {
-        // driver.sleep(delay)
-        Map<String, String> entries = arg1.asMap(String.class, String.class)
-        submitForm(entries, driver);
-        driver.findElement(By.className("button")).click();
+    @When("^(?:a future|an incorrect) Application Raised Date is entered:\$")
+    public void application_raised_date_wrong(DataTable arg1) {
+        submitFormWithData(arg1)
     }
+
 
 
     @Then("^The service displays the following message:\$")
@@ -142,10 +127,7 @@ class ProvingThingsTestSteps {
 
     @When("^Robert submits a query to IPS Family TM Case Worker Tool:\$")
     public void robert_submits_a_query_to_ips_family_tm_case_worker_tool(DataTable arg1) {
-        Map<String, String> entries = arg1.asMap(String.class, String.class)
-        // driver.sleep(delay)
-        submitForm(entries, driver);
-        driver.findElement(By.className("button")).click();
+        submitFormWithData(arg1)
     }
 
     @Then("^The IPS Family TM Case Worker Tool provides the following result:\$")
@@ -241,4 +223,10 @@ class ProvingThingsTestSteps {
         checkOutput(entries, driver)
     }
 
+    private void submitFormWithData(DataTable arg1) {
+        // driver.sleep(delay)
+        Map<String, String> entries = arg1.asMap(String.class, String.class)
+        submitForm(entries, driver);
+        driver.findElement(By.className("button")).click();
+    }
 }
