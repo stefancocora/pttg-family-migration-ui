@@ -2,11 +2,11 @@ describe('coreController', function(){
     var controller;
 
     beforeEach(function (){
-        controller = angular.mocks.module('coreController');
+        controller = angular.mock.module('app.core');
     });
 
     it('should be created successfully', function () {
-        expect(controller).to.be.defined;
+        expect(controller).toBe.defined;
     });
 
 });
