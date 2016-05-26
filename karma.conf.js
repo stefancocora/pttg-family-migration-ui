@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '.',
 
 
     // frameworks to use
@@ -16,9 +16,15 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
         'bower_components/angular/angular.js',
+        'bower_components/angular-route/angular-route.js',
         'bower_components/angular-mocks/angular-mocks.js',
         'client/tests/*.test.js',
-        'client/app/*.js'
+        'client/app/core.module.js',
+        'client/app/app.module.js',
+        'client/app/core.module.js',
+        'client/app/core.route.js',
+        'client/app/core.service.js',
+        'client/app/govuk-template.js'
     ],
 
 
@@ -67,6 +73,18 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+//    plugins: [
+//      'karma-chrome-launcher',
+//      'karma-firefox-launcher',
+//      'karma-jasmine',
+//      'karma-junit-reporter'
+//    ],
+//
+//    junitReporter: {
+//      outputFile: 'test_out/unit.xml',
+//      suite: 'unit'
+//    }
   })
 }
