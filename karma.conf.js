@@ -18,10 +18,11 @@ module.exports = function(config) {
         'bower_components/angular/angular.js',
         'bower_components/angular-route/angular-route.js',
         'bower_components/angular-mocks/angular-mocks.js',
+        'bower_components/moment/moment.js',
         'client/tests/*.test.js',
         'client/app/core.module.js',
         'client/app/app.module.js',
-        'client/app/core.module.js',
+        'client/app/core.controller.js',
         'client/app/core.route.js',
         'client/app/core.service.js',
         'client/app/govuk-template.js'
@@ -64,7 +65,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
@@ -75,16 +76,15 @@ module.exports = function(config) {
     // how many browser should be started simultaneous
     concurrency: Infinity,
 
-//    plugins: [
-//      'karma-chrome-launcher',
-//      'karma-firefox-launcher',
-//      'karma-jasmine',
-//      'karma-junit-reporter'
-//    ],
-//
-//    junitReporter: {
-//      outputFile: 'test_out/unit.xml',
-//      suite: 'unit'
-//    }
+    plugins: [
+      'karma-phantomjs-launcher',
+      'karma-jasmine',
+      'karma-junit-reporter'
+    ],
+
+    junitReporter: {
+      outputFile: 'unit.xml',
+      suite: 'unit'
+    }
   })
 }
