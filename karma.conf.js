@@ -33,6 +33,11 @@ module.exports = function(config) {
     exclude: [
     ],
 
+    // preprocess matching files before serving them to the browser
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+     preprocessors: {
+      '**/*.html': ['ng-html2js']
+    },
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -79,8 +84,18 @@ module.exports = function(config) {
     plugins: [
       'karma-phantomjs-launcher',
       'karma-jasmine',
+      'karma-ng-html2js-preprocessor',
       'karma-junit-reporter'
     ],
+
+     ngHtml2JsPreprocessor: {
+        stripPrefix: '',
+           stripSuffix: '',
+           // prepend this to the
+           prependPrefix: '',
+
+       moduleName: 'templates'
+     },
 
     junitReporter: {
       outputFile: 'unit.xml',

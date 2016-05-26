@@ -36,6 +36,7 @@
     "jasmine-core": "^2.4.1",
     "jshint": "^2.9.1",
     "karma": "^0.13.22",
+    "karma-ng-html2js-preprocessor": "^1.0.0",
     "node-sass": "^3.4.2",
     "require-dir": "^0.3.0",
     "wiredep": "^2.2.2",
