@@ -1,8 +1,14 @@
 describe('coreController', function(){
 
-    var location, coreController, form, restService;
+   var location;
+   var coreController;
+   var scope;
+   var restService;
+   var form;
 
     beforeEach(module("app.core"));
+
+    beforeEach(module('templates'));
 
     beforeEach(inject(function($q){
         restService = {
@@ -22,13 +28,18 @@ describe('coreController', function(){
     beforeEach(inject(function($rootScope, $controller, $location, $templateCache, $compile,  $anchorScroll) {
         scope=$rootScope.$new();
         location = $location;
+
         coreController = $controller('coreController as vm', { '$scope' : scope, '$location' : location, 'restService' : restService, '$anchorScroll' : $anchorScroll } );
 
         templateHtml = $templateCache.get('client/views/income-proving-query.html')
-        formElem = angular.element("<div>" + templateHtml + "</div>")
-        $compile(formElem)(scope)
-        form = scope.form
-        scope.$apply()
+
+        console.log(templateHtml);
+
+        formElem = angular.element("<div>" + templateHtml + "</div>");
+        $compile(formElem)(scope);
+        form = scope.form;
+
+        scope.$digest();
 
     }));
 
@@ -36,7 +47,7 @@ describe('coreController', function(){
         expect(coreController).toBeDefined();
     });
 
-    it('is expected to get the date in ISO format', function(){
+    it('is expected to format the date in ISO format', function(){
         coreController.model.fromDateDay='1';
         coreController.model.fromDateMonth='2';
         coreController.model.fromDateYear='2015';
@@ -50,13 +61,36 @@ describe('coreController', function(){
         expect(coreController.formatDate()).toEqual('01/02/2015')
     });
 
-    it('is expected the form submits the correct data to the service', function() {
+    it('is expected to trap a missing NINO', function(){
+
+        coreController.model.fromDateDay='1';
+        coreController.model.fromDateMonth='2';
+        coreController.model.fromDateYear='2015';
+        coreController.model.nino='AA1234A';
+
+        //form.nino.$setViewValue=''
+
+        coreController.submit();
+        expect(coreController.validateError).toBeFalsy();
+    });
+
+    it('is expected to call the service a NINO and ISO formatted date', function() {
         coreController.model.fromDateDay='1';
         coreController.model.fromDateMonth='2';
         coreController.model.fromDateYear='2015';
         coreController.model.nino='AA123456A';
         coreController.submit()
-        expect(restService.checkApplication).toHaveBeenCalled();
+        expect(restService.checkApplication).toHaveBeenCalledWith('AA123456A', '2015-2-1','');
+    });
+
+    it('is expected to call the service a NINO, ISO formatted date and dependants', function() {
+        coreController.model.fromDateDay='1';
+        coreController.model.fromDateMonth='02';
+        coreController.model.fromDateYear='2016';
+        coreController.model.nino='AA123456b';
+        coreController.model.dependants=2;
+        coreController.submit()
+        expect(restService.checkApplication).toHaveBeenCalledWith('AA123456B', '2016-02-1',2);
     });
 
 });

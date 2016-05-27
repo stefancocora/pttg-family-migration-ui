@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '.',
+    basePath: '',
 
 
     // frameworks to use
@@ -19,13 +19,15 @@ module.exports = function(config) {
         'bower_components/angular-route/angular-route.js',
         'bower_components/angular-mocks/angular-mocks.js',
         'bower_components/moment/moment.js',
+        'bower_components/accounting/accounting.js',
         'client/tests/*.test.js',
         'client/app/core.module.js',
         'client/app/app.module.js',
         'client/app/core.controller.js',
-        'client/app/core.route.js',
+        'client/app/core.routes.js',
         'client/app/core.service.js',
-        'client/app/govuk-template.js'
+        'client/app/govuk-template.js',
+        'client/views/*.html'
     ],
 
 
@@ -33,17 +35,12 @@ module.exports = function(config) {
     exclude: [
     ],
 
+
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
      preprocessors: {
       '**/*.html': ['ng-html2js']
     },
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    },
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -70,23 +67,13 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
-
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true,
-
-    // Concurrency level
-    // how many browser should be started simultaneous
-    concurrency: Infinity,
+    browsers: [ 'PhantomJS' ],
 
     plugins: [
-      'karma-phantomjs-launcher',
-      'karma-jasmine',
-      'karma-ng-html2js-preprocessor',
-      'karma-junit-reporter'
-    ],
+                'karma-jasmine',
+                'karma-ng-html2js-preprocessor',
+                'karma-phantomjs-launcher'
+     ],
 
      ngHtml2JsPreprocessor: {
         stripPrefix: '',
@@ -97,9 +84,14 @@ module.exports = function(config) {
        moduleName: 'templates'
      },
 
-    junitReporter: {
-      outputFile: 'unit.xml',
-      suite: 'unit'
-    }
+
+
+    // Continuous Integration mode
+    // if true, Karma captures browsers, runs the tests and exits
+    singleRun: true,
+
+    // Concurrency level
+    // how many browser should be started simultaneous
+    concurrency: Infinity
   })
 }
