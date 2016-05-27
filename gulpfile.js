@@ -33,7 +33,7 @@
         cssOrder: []
     };
 
-    gulp.task('default', ['build', 'test']);
+    gulp.task('default', ['build']);
 
     gulp.task('copy-javascript',['clean'],  function() {
     utils.log('Copying javascript files');
