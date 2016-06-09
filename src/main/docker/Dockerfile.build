@@ -6,6 +6,7 @@ RUN yum install -y nodejs
 RUN yum install -y git-all
 RUN yum install -y wget
 RUN yum install -y unzip
+RUN yum install -y bzip2
 
 RUN ls /tmp || mkdir /tmp
 RUN mkdir /tmp/app
