@@ -9,7 +9,7 @@ services:
      - pttg-income-proving-api
   pttg-income-proving-api:
     container_name: income-container
-    image: quay.io/ukhomeofficedigital/pttg-family-migration-api:0.1.0
+    image: quay.io/ukhomeofficedigital/pttg-income-proving-api:0.1.0
     ports:
      - "8081:8080"
   pttg-test-mongodb:

@@ -5,6 +5,7 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +20,15 @@ public class Service {
 
     private Client client = Client.create();
 
+    @Value("${remote.server.port}")
+    private String remotePort;
+
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getMigrationFamilyApplication(
             @PathVariable(value = "nino") String nino,
             @RequestParam(value = "applicationRaisedDate", required = true) String applicationDateAsString,
             @RequestParam(value = "dependants", required = false) Integer dependants) {
 
-        String remotePort = System.getProperty("remote.server.port", "8081");
 
         String url = "http://pttg-income-proving-api:"+ remotePort + "/incomeproving/v1//individual/" + nino + "/financialstatus?applicationRaisedDate=" + applicationDateAsString;
         if  (dependants != null) {
