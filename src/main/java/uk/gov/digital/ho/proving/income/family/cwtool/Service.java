@@ -27,7 +27,7 @@ public class Service {
 
         String remotePort = System.getProperty("remote.server.port", "8081");
 
-        String url = "http://localhost:"+ remotePort + "/incomeproving/v1//individual/" + nino + "/financialstatus?applicationRaisedDate=" + applicationDateAsString;
+        String url = "http://pttg-income-proving-api:"+ remotePort + "/incomeproving/v1//individual/" + nino + "/financialstatus?applicationRaisedDate=" + applicationDateAsString;
         if  (dependants != null) {
             url += "&dependants="+ dependants;
         }
