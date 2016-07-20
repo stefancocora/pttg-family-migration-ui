@@ -15,7 +15,7 @@ appender("STDOUT", ConsoleAppender) {
 }
 
 appender("FILE", FileAppender) {
-    file = "income-proving-api.log"
+    file = "pttg-family-migration-ui.log"
     append = true
     encoder(PatternLayoutEncoder) {
         pattern = "%d{HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35} - %msg%n"
