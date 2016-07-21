@@ -1,6 +1,9 @@
 package steps
 
 import cucumber.api.DataTable
+import cucumber.api.Scenario
+import cucumber.api.java.After
+import cucumber.api.java.Before
 import cucumber.api.java.en.Given
 import cucumber.api.java.en.Then
 import cucumber.api.java.en.When
@@ -10,13 +13,45 @@ import org.apache.commons.lang3.text.WordUtils
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.test.IntegrationTest
+import org.springframework.boot.test.SpringApplicationConfiguration
+import org.springframework.test.context.ActiveProfiles
+import org.springframework.test.context.web.WebAppConfiguration
+import uk.gov.digital.ho.proving.income.family.cwtool.ServiceRunner
 
 import java.text.SimpleDateFormat
 
+@SpringApplicationConfiguration(ServiceRunner.class)
+@WebAppConfiguration
+@IntegrationTest
+@ActiveProfiles("test")
 class ProvingThingsTestSteps {
+
+    def static rootUrl = "http://localhost:8001/"
+
+    def incomeUriRegex = "/incomeproving/v1/individual/nino/financialstatus"
+
+    def testDataLoader
+
+    @Value('${wiremock}')
+    private Boolean wiremock;
+
     @Managed
     public WebDriver driver;
     private int delay = 1
+
+    @Before
+    def setUp(Scenario scenario) {
+        if (wiremock) {
+            testDataLoader = new WireMockTestDataLoader()
+        }
+    }
+
+    @After
+    def tearDown() {
+        testDataLoader?.stop()
+    }
 
     def String toCamelCase(String s) {
         String allUpper = StringUtils.remove(WordUtils.capitalizeFully(s), " ")
@@ -77,10 +112,30 @@ class ProvingThingsTestSteps {
         }
     }
 
-// SD65 This method is empty because the validation (in the Then function) is done on the input page opened in the Given function
+    @Given("^the account data for (.*)\$")
+    def the_account_data_for(String nino) {
+        testDataLoader.stubTestData(nino, incomeUriRegex.replaceFirst("nino", nino))
+    }
+
+    @Given("^no record for (.*)\$")
+    def no_record_for(String nino) {
+        testDataLoader.stubErrorData("notfound", incomeUriRegex.replaceFirst("nino", nino), 404)
+    }
+
+    @Given("^Caseworker is using the Income Proving Service Case Worker Tool\$")
+    public void caseworker_is_using_the_Income_Proving_Service_Case_Worker_Tool() throws Throwable {
+        driver.get(rootUrl);
+        driver.manage().deleteAllCookies()
+    }
+
+    @When("^Robert submits a query to IPS Family TM Case Worker Tool:\$")
+    public void robert_submits_a_query_to_ips_family_tm_case_worker_tool(DataTable arg1) {
+        submitFormWithData(arg1)
+    }
+
     @When("^Robert is displayed the Income Proving Service Case Worker Tool input page:\$")
     public void robert_is_displayed_the_Income_Proving_Service_Case_Worker_Tool_input_page() {
-// SD65 This method is empty because the validation (in the Then function) is done on the input page opened in the Given function
+        // SD65 This method is empty because the validation (in the Then function) is done on the input page opened in the Given function
     }
 
     @When("^Robert submits a query:\$")
@@ -97,6 +152,7 @@ class ProvingThingsTestSteps {
     public void an_incorrect_nino_is_eneterd(DataTable arg1) {
         submitFormWithData(arg1)
     }
+
     @When("^Application Raised Date is not entered:\$")
     public void application_raised_date_missing(DataTable arg1) {
         submitFormWithData(arg1)
@@ -108,26 +164,10 @@ class ProvingThingsTestSteps {
     }
 
 
-
     @Then("^The service displays the following message:\$")
     public void the_service_displays_the_following_message(DataTable arg1) {
         Map<String, String> entries = arg1.asMap(String.class, String.class)
-        // driver.sleep(delay)
         assert driver.findElement(By.id(entries.get("Error Field"))).getText() == entries.get("Error Message")
-    }
-
-    // ------------------------------
-    // IPS Family TM Case Worker Tool
-    // ------------------------------
-    @Given("^Caseworker is using the Income Proving Service Case Worker Tool\$")
-    public void caseworker_is_using_the_Income_Proving_Service_Case_Worker_Tool() throws Throwable {
-        driver.get("http://localhost:8000/");
-        driver.manage().deleteAllCookies()
-    }
-
-    @When("^Robert submits a query to IPS Family TM Case Worker Tool:\$")
-    public void robert_submits_a_query_to_ips_family_tm_case_worker_tool(DataTable arg1) {
-        submitFormWithData(arg1)
     }
 
     @Then("^The IPS Family TM Case Worker Tool provides the following result:\$")
@@ -135,9 +175,6 @@ class ProvingThingsTestSteps {
 
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
         String[] outcome = entries.keySet()
-
-        // To manually take a screenshot
-        // net.serenitybdd.core.Serenity.takeScreenshot()
 
         for (String s : outcome) {
             if (s != "Outcome") {
@@ -159,48 +196,38 @@ class ProvingThingsTestSteps {
     public void the_IPS_Family_TM_CW_Tool_output_page_provides_the_following_result(DataTable expectedResult) {
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
 
-        //Page checks for Category A financial text write up SD64
-        // driver.sleep(delay)
-        WebElement pageTitle = driver.findElement(By.className("form-title"))
+        entries.each{ k, v ->
 
-        if (pageTitle.getText() == entries.get("Page title")) {
-            assert true
-            println " " + entries.get("Page title")
-        } else assert false
-
-        WebElement pageSubText = driver.findElement(By.className("lede"))
-        assert pageSubText.getText() == entries.get("Page sub text")
+            def elementText = driver.findElement(By.id(toCamelCase(k))).getText()
+            assert elementText.contains(v)
+        }
     }
 
-    //Page checks for appendix link - SD64
     @Then("^The IPS Family TM CW Tool output page provides the following result appendix:\$")
     public void the_IPS_Family_TM_CW_Tool_output_page_provides_the_following_result_appendix(DataTable expectedResult) {
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
         checkOutput(entries, driver)
     }
 
-//SD41
     @Then("^The service for Cat A Failure provides the following result:\$")
     public void the_service_for_Cat_A_Failure_provides_the_following_result(DataTable expectedResult) {
-        // driver.sleep(delay)
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
         checkOutput(entries, driver)
     }
 
-//SD63
+
     @Then("^The service provides the following NINO does not exist result:\$")
     public void the_service_provides_the_following_NINO_does_not_exist_result(DataTable expectedResult) {
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
         checkOutput(entries, driver)
     }
-// SD65
+
     @Then("^The IPS Family TM Case Worker Tool input page provides the following result:\$")
     public void the_IPS_Family_TM_Case_Worker_Tool_input_page_provides_the_following_result(DataTable expectedResult) {
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
         checkOutput(entries, driver)
     }
 
-//Dependants
     @When("^Robert submits a query to IPS Family TM Case Worker Tool \\(with dependants\\):\$")
     public void robert_submits_a_query_to_IPS_Family_TM_Case_Worker_Tool_with_dependants(DataTable expectedResult) {
         Map<String, String> entries = expectedResult.asMap(String.class, String.class)
@@ -224,7 +251,6 @@ class ProvingThingsTestSteps {
     }
 
     private void submitFormWithData(DataTable arg1) {
-        // driver.sleep(delay)
         Map<String, String> entries = arg1.asMap(String.class, String.class)
         submitForm(entries, driver);
         driver.findElement(By.className("button")).click();

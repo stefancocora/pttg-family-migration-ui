@@ -20,8 +20,8 @@ public class Service {
 
     private Client client = Client.create();
 
-    @Value("${remote.server.port}")
-    private String remotePort;
+    @Value("${remote.server.root}")
+    private String remoteRoot;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getMigrationFamilyApplication(
@@ -30,7 +30,7 @@ public class Service {
             @RequestParam(value = "dependants", required = false) Integer dependants) {
 
 
-        String url = "http://pttg-income-proving-api:"+ remotePort + "/incomeproving/v1//individual/" + nino + "/financialstatus?applicationRaisedDate=" + applicationDateAsString;
+        String url = remoteRoot + "/incomeproving/v1/individual/" + nino + "/financialstatus?applicationRaisedDate=" + applicationDateAsString;
         if  (dependants != null) {
             url += "&dependants="+ dependants;
         }
@@ -44,7 +44,11 @@ public class Service {
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-type", "application/json");
-        return new ResponseEntity<>(response.getEntity(String.class), headers, HttpStatus.valueOf(response.getStatus()));
+
+        String entity = response.getEntity(String.class);
+        LOGGER.debug("Response: {}", entity);
+
+        return new ResponseEntity<>(entity, headers, HttpStatus.valueOf(response.getStatus()));
     }
 
     private ResponseEntity<ResponseStatus> buildErrorResponse(HttpHeaders headers, String errorCode, String errorMessage, HttpStatus status) {
