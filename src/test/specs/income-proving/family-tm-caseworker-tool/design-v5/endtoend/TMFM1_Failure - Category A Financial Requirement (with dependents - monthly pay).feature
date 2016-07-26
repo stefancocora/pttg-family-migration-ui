@@ -26,17 +26,17 @@ Feature: Failure - Category A Financial Requirement (with dependents - monthly p
   She has 4 Canadian dependants
   She earns £2250.00 Monthly Gross Income EVERY of the 6 months
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
+    When Robert submits a query
       | NINO                    | SP123456B  |
       | Application Raised Date | 03/02/2015 |
       | Dependants              | 4          |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with dependants):
+    Then the service displays the following result
       | Page dynamic heading                  | Shelly Patel doesn't meet the Category A requirement |
-      | Category A check failure reason       | they haven't met the required monthly amount.                 |
-      | Your Search Individual Name           | Shelly Patel                                                  |
-      | Your Search Dependants                | 4                                                             |
-      | Your Search National Insurance Number | SP123456B                                                     |
-      | Your Search Application Raised Date   | 03/02/2015                                                    |
+      | Category A check failure reason       | they haven't met the required monthly amount.        |
+      | Your Search Individual Name           | Shelly Patel                                         |
+      | Your Search Dependants                | 4                                                    |
+      | Your Search National Insurance Number | SP123456B                                            |
+      | Your Search Application Raised Date   | 03/02/2015                                           |
 
   Scenario: Brian does not meet the Category A Financial Requirement (He has earned < the Cat A financial threshold)
   Pay date 10th of the month
@@ -44,17 +44,17 @@ Feature: Failure - Category A Financial Requirement (with dependents - monthly p
   He has 2 Thai dependants
   He earns £1416.67 Monthly Gross Income EVERY of the 6 months prior to the Application Raised Date
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
+    When Robert submits a query
       | NINO                    | BS123456B  |
       | Application Raised Date | 10/02/2015 |
       | Dependants              | 2          |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with dependants):
+    Then the service displays the following result
       | Page dynamic heading                  | Brian Sinclair doesn't meet the Category A requirement |
-      | Category A check failure reason       | they haven't met the required monthly amount.                   |
-      | Your Search Individual Name           | Brian Sinclair                                                  |
-      | Your Search Dependants                | 2                                                               |
-      | Your Search National Insurance Number | BS123456B                                                       |
-      | Your Search Application Raised Date   | 10/02/2015                                                      |
+      | Category A check failure reason       | they haven't met the required monthly amount.          |
+      | Your Search Individual Name           | Brian Sinclair                                         |
+      | Your Search Dependants                | 2                                                      |
+      | Your Search National Insurance Number | BS123456B                                              |
+      | Your Search Application Raised Date   | 10/02/2015                                             |
 
   Scenario: Steve does not meet the Category A employment duration Requirement (He has worked for his current employer for only 5 months)
   Pay date 3rd of the month
@@ -63,12 +63,12 @@ Feature: Failure - Category A Financial Requirement (with dependents - monthly p
   He earns £2916.67 Monthly Gross Income BUT for only 5 months prior to the Application Received Date
   He worked for a different employer before his current employer
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
+    When Robert submits a query
       | NINO                    | SY987654C  |
       | Application Raised Date | 03/09/2015 |
       | Dependants              | 3          |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with dependants):
-      | Page dynamic heading                  | Steve Yu doesn't meet the Category A requirement   |
+    Then the service displays the following result
+      | Page dynamic heading                  | Steve Yu doesn't meet the Category A requirement            |
       | Category A check failure reason       | they haven't been with their current employer for 6 months. |
       | Your Search Individual Name           | Steve Yu                                                    |
       | Your Search Dependants                | 3                                                           |

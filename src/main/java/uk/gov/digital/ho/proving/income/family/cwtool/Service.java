@@ -1,67 +1,89 @@
 package uk.gov.digital.ho.proving.income.family.cwtool;
 
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
+import uk.gov.digital.ho.proving.income.family.cwtool.domain.api.APIResponse;
+import uk.gov.digital.ho.proving.income.family.cwtool.domain.api.Nino;
+import uk.gov.digital.ho.proving.income.family.cwtool.domain.client.FinancialStatusResponse;
+
+import javax.validation.Valid;
+import java.net.URI;
+import java.time.LocalDate;
+
+import static java.util.Arrays.asList;
+import static org.springframework.http.HttpMethod.GET;
 
 @RestController
 @RequestMapping("/incomeproving/v1/individual/{nino}/financialstatus")
+@ControllerAdvice
 public class Service {
 
     private static Logger LOGGER = LoggerFactory.getLogger(Service.class);
 
-    private Client client = Client.create();
+    @Value("${api.root}")
+    private String apiRoot;
 
-    @Value("${remote.server.root}")
-    private String remoteRoot;
+    @Value("${api.endpoint}")
+    private String apiEndpoint;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity getMigrationFamilyApplication(
-            @PathVariable(value = "nino") String nino,
-            @RequestParam(value = "applicationRaisedDate", required = true) String applicationDateAsString,
-            @RequestParam(value = "dependants", required = false) Integer dependants) {
+    @Autowired
+    private RestTemplate restTemplate;
 
+    ObjectMapper mapper = new ServiceConfiguration().getMapper();
 
-        String url = remoteRoot + "/incomeproving/v1/individual/" + nino + "/financialstatus?applicationRaisedDate=" + applicationDateAsString;
-        if  (dependants != null) {
-            url += "&dependants="+ dependants;
-        }
+    @Retryable(interceptor = "connectionExceptionInterceptor")
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity checkStatus(@Valid Nino nino,
+                                      @RequestParam(value = "applicationRaisedDate", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate applicationRaisedDate,
+                                      @RequestParam(value = "dependants", required = false) Integer dependants) {
 
-        LOGGER.info("Remote url: " + url);
+        LOGGER.debug("CheckStatus: Nino - {} applicationRaisedDate - {} dependants- {}", nino.getNino(), applicationRaisedDate, dependants);
 
-        WebResource webResource = client.resource(url);
+        APIResponse apiResult = restTemplate.exchange(buildUrl(nino.getNino(), applicationRaisedDate, dependants), GET, entity(), APIResponse.class).getBody();
 
-        client.setConnectTimeout(10000);
+        LOGGER.debug("Api result: {}", apiResult.toString());
 
-        ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-type", "application/json");
+        FinancialStatusResponse response = new FinancialStatusResponse(apiResult);
 
-        String entity = response.getEntity(String.class);
-        LOGGER.debug("Response: {}", entity);
-
-        return new ResponseEntity<>(entity, headers, HttpStatus.valueOf(response.getStatus()));
+        return ResponseEntity.ok(response);
     }
 
-    private ResponseEntity<ResponseStatus> buildErrorResponse(HttpHeaders headers, String errorCode, String errorMessage, HttpStatus status) {
-        ResponseStatus response = new ResponseStatus(errorCode, errorMessage);
-        return new ResponseEntity<>(response, headers, status);
+    private URI buildUrl(String nino, LocalDate applicationRaisedDate, Integer dependants) {
+        return UriComponentsBuilder
+                .fromUriString(apiRoot + apiEndpoint)
+                .queryParam("applicationRaisedDate", applicationRaisedDate)
+                .queryParam("dependants", dependants)
+                .buildAndExpand(nino).toUri();
     }
 
-    @ExceptionHandler(MissingServletRequestParameterException.class)
-    public Object missingParamterHandler(MissingServletRequestParameterException exception) {
-        LOGGER.debug(exception.getMessage());
+    private HttpEntity<Object> entity() {
+        return new HttpEntity<>(getHeaders());
+    }
+
+    private HttpHeaders getHeaders() {
+
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-type", "application/json");
-        return buildErrorResponse(headers, "0008", "Missing parameter: " + exception.getParameterName() , HttpStatus.BAD_REQUEST);
+
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(asList(MediaType.APPLICATION_JSON));
+
+        return headers;
+    }
+
+    public void setRestTemplate(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
 }

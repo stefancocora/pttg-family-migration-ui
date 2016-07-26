@@ -10,10 +10,10 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
   Scenario: Davina Love does not meet the Category A Financial Requirement (She has earned < the Cat A financial threshold)
   She earns £300.11 weekly Gross Income EVERY of the 26 weeks
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query:
+    When Robert submits a query
       | NINO                    | DV123456A  |
       | Application raised Date | 15/01/2015 |
-    Then The service for Cat A Failure provides the following result:
+    Then the service displays the following result
       | Page dynamic heading                  | Davina Love doesn't meet the Category A requirement |
       | Category A check failure reason       | they haven't met the required weekly amount.        |
       | Your Search Individual Name           | Davina Love                                         |
@@ -23,10 +23,10 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
   Scenario: Xavier Snow does not meet the Category A Financial Requirement (She has earned < the Cat A financial threshold)
   He earns £30.99 weekly Gross Income EVERY of the 26 weeks
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query:
+    When Robert submits a query
       | NINO                    | XS123456B  |
       | Application raised Date | 15/01/2015 |
-    Then The service for Cat A Failure provides the following result:
+    Then the service displays the following result
       | Page dynamic heading                  | Xavier Snow doesn't meet the Category A requirement |
       | Category A check failure reason       | they haven't met the required weekly amount.        |
       | Your Search Individual Name           | Xavier Snow                                         |
@@ -37,10 +37,10 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
   He earns £400.99 weekly Gross Income EVERY of the 24 weeks
   and he earns £300.99 weekly Gross Income for the LAST 2 weeks (total 26 weeks with the same employer)
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query:
+    When Robert submits a query
       | NINO                    | PY123456B  |
       | Application raised Date | 15/01/2015 |
-    Then The service for Cat A Failure provides the following result:
+    Then the service displays the following result
       | Page dynamic heading                  | Paul Young doesn't meet the Category A requirement |
       | Category A check failure reason       | they haven't met the required weekly amount.       |
       | Your Search Individual Name           | Paul Young                                         |
@@ -51,10 +51,10 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
   He earns £600 a Week Gross Income BUT for only 12 weeks
   He worked for a different employer before his current employer
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query:
+    When Robert submits a query
       | NINO                    | RP123456C  |
       | Application raised date | 03/07/2015 |
-    Then The service for Cat A Failure provides the following result:
+    Then the service displays the following result
       | Page dynamic heading                  | Raj Patel doesn't meet the Category A requirement           |
       | Category A check failure reason       | they haven't been with their current employer for 6 months. |
       | Your Search Individual Name           | Raj Patel                                                   |
@@ -65,10 +65,10 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
   He earns £357.70 a Week Gross Income BUT for 25 weeks and £357 on week 26
   He worked for a different employer before his current employer
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query:
+    When Robert submits a query
       | NINO                    | JJ123456A  |
       | Application raised date | 03/07/2015 |
-    Then The service for Cat A Failure provides the following result:
+    Then the service displays the following result
       | Page dynamic heading                  | John James doesn't meet the Category A requirement          |
       | Category A check failure reason       | they haven't been with their current employer for 6 months. |
       | Your Search Individual Name           | John James                                                  |
@@ -80,10 +80,10 @@ Feature: Failure - Category A Financial Requirement (with no dependents - weekly
   He earns £658.50 a Week Gross Income BUT for 25 weeks and £357 on week 26
   He worked for a different employer before his current employer
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query:
+    When Robert submits a query
       | NINO                    | PJ123456A  |
       | Application raised date | 03/07/2015 |
-    Then The service for Cat A Failure provides the following result:
+    Then the service displays the following result
       | Page dynamic heading                  | Peter Jones doesn't meet the Category A requirement         |
       | Category A check failure reason       | they haven't been with their current employer for 6 months. |
       | Your Search Individual Name           | Peter Jones                                                 |

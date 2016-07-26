@@ -12,10 +12,10 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
   Before day of Application Raised Date
   He earns £1600 Monthly Gross Income EVERY of the 6Jonathan months
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool:
+    When Robert submits a query
       | NINO                    | AA345678A  |
       | Application Raised Date | 23/01/2015 |
-    Then The IPS Family TM Case Worker Tool provides the following result:
+    Then the service displays the following result
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
       | Outcome From Date                     | 25/07/2014 |
@@ -29,10 +29,10 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
   Before day of Application Raised Date
   He earns £1550 Monthly Gross Income EVERY of the 6 months
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool:
+    When Robert submits a query
       | NINO                    | AA 12 34 56 B |
       | Application Raised Date | 10/01/2015    |
-    Then The IPS Family TM Case Worker Tool provides the following result:
+    Then the service displays the following result
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
       | Outcome From Date                     | 12/07/2014 |
@@ -46,10 +46,10 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
   After day of Application Raised Date
   He earns £2240 Monthly Gross Income EVERY of the 6 months
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool:
+    When Robert submits a query
       | NINO                    | BB123456B  |
       | Application Raised Date | 23/01/2015 |
-    Then The IPS Family TM Case Worker Tool provides the following result:
+    Then the service displays the following result
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
       | Outcome From Date                     | 25/07/2014 |
@@ -63,10 +63,10 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
   On same day of Application Raised Date
   He earns £1551 Monthly Gross Income EVERY of the 6
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool:
+    When Robert submits a query
       | NINO                    | CC123456C  |
       | Application Raised Date | 23/01/2015 |
-    Then The IPS Family TM Case Worker Tool provides the following result:
+    Then the service displays the following result
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
       | Outcome From Date                     | 25/07/2014 |
@@ -80,10 +80,10 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
   After day of Application Raised Date
   He earns £3210 Monthly Gross Income EVERY of the 6
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool:
+    When Robert submits a query
       | NINO                    | CC123456B |
       | Application Raised Date | 9/1/2015  |
-    Then The IPS Family TM Case Worker Tool provides the following result:
+    Then the service displays the following result
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Jon Taylor |
       | Outcome From Date                     | 11/07/2014 |
@@ -100,10 +100,10 @@ Feature: Pass - Category A Financial Requirement (with no dependents - monthly p
   On different day of Application Raised Date
   He earns £1600 Monthly Gross Income EVERY of the 6
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool:
+    When Robert submits a query
       | NINO                    | AA123456A  |
       | Application Raised Date | 23/01/2015 |
-    Then The IPS Family TM Case Worker Tool provides the following result:
+    Then the service displays the following result
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Mark Jones |
       | Outcome From Date                     | 25/07/2014 |

@@ -25,11 +25,11 @@ Feature: Pass - Category A Financial Requirement (with dependants - monthly)
   He earns £4166.67 Monthly Gross Income EVERY of the 6 months
   He has 1 dependant child
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
+    When Robert submits a query
       | NINO                    | TL123456A  |
       | Application Raised Date | 23/01/2015 |
       | Dependants              | 1          |
-    Then The IPS Family TM Case Worker Tool provides the following result - with dependants:
+    Then the service displays the following result
       | Outcome                               | Success    |
       | Outcome Box Individual Name           | Tony Ledo  |
       | Outcome From Date                     | 25/07/2014 |
@@ -45,11 +45,11 @@ Feature: Pass - Category A Financial Requirement (with dependants - monthly)
   He earns £3333.33 Monthly Gross Income EVERY of the 6 months
   He has 3 dependant child
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
+    When Robert submits a query
       | NINO                    | SJ123456C |
       | Application Raised Date | 8/12/2015 |
       | Dependants              | 3         |
-    Then The IPS Family TM Case Worker Tool provides the following result - with dependants:
+    Then the service displays the following result
       | Outcome                               | Success        |
       | Outcome Box Individual Name           | Scarlett Jones |
       | Outcome From Date                     | 09/06/2015     |
@@ -65,11 +65,11 @@ Feature: Pass - Category A Financial Requirement (with dependants - monthly)
   He earns £5833.33 Monthly Gross Income EVERY of the 6 months
   He has 5 dependant child
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
+    When Robert submits a query
       | NINO                    | WA987654B  |
       | Application Raised Date | 28/02/2015 |
       | Dependants              | 5          |
-    Then The IPS Family TM Case Worker Tool provides the following result - with dependants:
+    Then the service displays the following result
       | Outcome                               | Success        |
       | Outcome Box Individual Name           | Wasim Mohammed |
       | Outcome From Date                     | 30/08/2014     |

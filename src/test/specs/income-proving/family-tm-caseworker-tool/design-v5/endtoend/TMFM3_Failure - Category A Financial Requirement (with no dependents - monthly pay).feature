@@ -12,10 +12,10 @@ Feature: Failure - Category A Financial Requirement (with no dependents - monthl
   Before day of Application Raised Date
   She earns £1000 Monthly Gross Income EVERY of the 6 months
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query:
+    When Robert submits a query
       | NINO                    | JL123456A  |
       | Application Raised Date | 15/01/2015 |
-    Then The service for Cat A Failure provides the following result:
+    Then the service displays the following result
       | Page dynamic heading                  | Jill Lewondoski doesn't meet the Category A requirement |
       | Category A check failure reason       | they haven't met the required monthly amount.           |
       | Your Search Individual Name           | Jill Lewondoski                                         |
@@ -27,10 +27,10 @@ Feature: Failure - Category A Financial Requirement (with no dependents - monthl
   After day of Application Raised Date
   He earns £1250 Monthly Gross Income EVERY of the 6 months
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query:
+    When Robert submits a query
       | NINO                    | FL123456B  |
       | Application Raised Date | 28/03/2015 |
-    Then The service for Cat A Failure provides the following result:
+    Then the service displays the following result
       | Page dynamic heading                  | Francois Leblanc doesn't meet the Category A requirement |
       | Category A check failure reason       | they haven't met the required monthly amount.            |
       | Your Search Individual Name           | Francois Leblanc                                         |
@@ -43,10 +43,10 @@ Feature: Failure - Category A Financial Requirement (with no dependents - monthl
   He earns £1600 Monthly Gross Income BUT for only 3 months
   He worked for a different employer before his current employer
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query:
+    When Robert submits a query
       | NINO                    | KS123456C  |
       | Application Raised Date | 03/07/2015 |
-    Then The service for Cat A Failure provides the following result:
+    Then the service displays the following result
       | Page dynamic heading                  | Kumar Sangakkara Dilshan doesn't meet the Category A requirement |
       | Category A check failure reason       | they haven't been with their current employer for 6 months.      |
       | Your Search Individual Name           | Kumar Sangakkara Dilshan                                         |

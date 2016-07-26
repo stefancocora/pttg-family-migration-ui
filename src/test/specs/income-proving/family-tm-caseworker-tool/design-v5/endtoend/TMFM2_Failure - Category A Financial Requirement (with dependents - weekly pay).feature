@@ -23,11 +23,11 @@ Feature: Failure - Category A Financial Requirement (with Dependantss - weekly p
   He has 3 columbian dependants
   He has received 26 Weekly Gross Income payments of £225.40 in the 182 day period from the same employer
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
+    When Robert submits a query
       | NINO                    | DS123456C  |
       | Application raised Date | 03/11/2015 |
       | Dependants              | 3          |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with dependants):
+    Then the service displays the following result
       | Page dynamic heading                  | Donald Sweet doesn't meet the Category A requirement |
       | Category A check failure reason       | they haven't met the required weekly amount.         |
       | Your Search Individual Name           | Donald Sweet                                         |
@@ -39,11 +39,11 @@ Feature: Failure - Category A Financial Requirement (with Dependantss - weekly p
   He has 2 Chinese dependants
   He has received 23 Weekly Gross Income payments of £475.67 in the 182 day period from the same employer
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
+    When Robert submits a query
       | NINO                    | JL123456B  |
       | Application raised date | 10/07/2015 |
       | Dependants              | 2          |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with dependants):
+    Then the service displays the following result
       | Page dynamic heading                  | John Lister doesn't meet the Category A requirement         |
       | Category A check failure reason       | they haven't been with their current employer for 6 months. |
       | Your Search Individual Name           | John Lister                                                 |
@@ -56,11 +56,11 @@ Feature: Failure - Category A Financial Requirement (with Dependantss - weekly p
   He has received 20 Weekly Gross Income payments of £516.67 in the 182 day period from the same employer
   He worked for a different employer before his current employer
     Given Caseworker is using the Income Proving Service Case Worker Tool
-    When Robert submits a query to IPS Family TM Case Worker Tool (with dependants):
+    When Robert submits a query
       | NINO                    | GG987654A  |
       | Application raised date | 03/09/2015 |
       | Dependants              | 3          |
-    Then The IPS Family TM Case Worker Tool provides the following error result (with dependants):
+    Then the service displays the following result
       | Page dynamic heading                  | Gary Goldstein doesn't meet the Category A requirement      |
       | Category A check failure reason       | they haven't been with their current employer for 6 months. |
       | Your Search Individual Name           | Gary Goldstein                                              |
