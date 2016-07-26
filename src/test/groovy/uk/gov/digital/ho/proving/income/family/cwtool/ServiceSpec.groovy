@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
 import spock.lang.Unroll
-import uk.gov.digital.ho.proving.income.family.cwtool.domain.api.APIResponse
+import uk.gov.digital.ho.proving.income.family.cwtool.domain.api.ApiResponse
 import uk.gov.digital.ho.proving.income.family.cwtool.domain.api.CategoryCheck
 import uk.gov.digital.ho.proving.income.family.cwtool.domain.api.Individual
 import uk.gov.digital.ho.proving.income.family.cwtool.exception.ServiceExceptionHandler
@@ -17,7 +17,6 @@ import uk.gov.digital.ho.proving.income.family.cwtool.integration.RestServiceErr
 
 import java.time.LocalDate
 
-import static org.hamcrest.Matchers.hasSize
 import static org.hamcrest.core.AllOf.allOf
 import static org.hamcrest.core.Is.is
 import static org.hamcrest.core.StringContains.containsString
@@ -233,8 +232,8 @@ class ServiceSpec extends Specification {
         }
     }
 
-    def APIResponse buildResponse() {
-        APIResponse response = new APIResponse()
+    def ApiResponse buildResponse() {
+        ApiResponse response = new ApiResponse()
         response.setCategoryCheck(new CategoryCheck(true, "reason", LocalDate.parse(RAISED_DATE),LocalDate.parse(RAISED_DATE)))
         response.setIndividual(new Individual(MR, FORENAME, SURNAME, NINO))
         response

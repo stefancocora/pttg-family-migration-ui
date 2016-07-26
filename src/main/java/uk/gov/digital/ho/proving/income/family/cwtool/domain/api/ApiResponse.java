@@ -6,11 +6,12 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class APIResponse implements Serializable {
+public final class ApiResponse implements Serializable {
+
     private Individual individual;
     private CategoryCheck categoryCheck;
 
-    public APIResponse() {
+    public ApiResponse() {
     }
 
     public Individual getIndividual() {
@@ -33,7 +34,7 @@ public class APIResponse implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        APIResponse that = (APIResponse) o;
+        ApiResponse that = (ApiResponse) o;
         return Objects.equals(individual, that.individual) &&
                 Objects.equals(categoryCheck, that.categoryCheck);
     }

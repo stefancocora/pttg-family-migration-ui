@@ -13,7 +13,7 @@ import java.util.Objects;
  * @Author Home Office Digital
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CategoryCheck {
+public final class CategoryCheck {
 
     private boolean passed;
     private String failureReason;

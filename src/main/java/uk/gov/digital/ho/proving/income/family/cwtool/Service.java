@@ -14,7 +14,7 @@ import org.springframework.retry.annotation.Retryable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import uk.gov.digital.ho.proving.income.family.cwtool.domain.api.APIResponse;
+import uk.gov.digital.ho.proving.income.family.cwtool.domain.api.ApiResponse;
 import uk.gov.digital.ho.proving.income.family.cwtool.domain.api.Nino;
 import uk.gov.digital.ho.proving.income.family.cwtool.domain.client.FinancialStatusResponse;
 
@@ -51,7 +51,7 @@ public class Service {
 
         LOGGER.debug("CheckStatus: Nino - {} applicationRaisedDate - {} dependants- {}", nino.getNino(), applicationRaisedDate, dependants);
 
-        APIResponse apiResult = restTemplate.exchange(buildUrl(nino.getNino(), applicationRaisedDate, dependants), GET, entity(), APIResponse.class).getBody();
+        ApiResponse apiResult = restTemplate.exchange(buildUrl(nino.getNino(), applicationRaisedDate, dependants), GET, entity(), ApiResponse.class).getBody();
 
         LOGGER.debug("Api result: {}", apiResult.toString());
 

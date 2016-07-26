@@ -3,7 +3,7 @@ package uk.gov.digital.ho.proving.income.family.cwtool.domain.api;
 /**
  * Created by andrewmoores on 13/01/2016.
  */
-public class Individual {
+public final class Individual {
     private String title;
     private String forename;
     private String surname;
