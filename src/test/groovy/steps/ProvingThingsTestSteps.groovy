@@ -1,5 +1,6 @@
 package steps
 
+import com.jayway.restassured.response.Response
 import cucumber.api.DataTable
 import cucumber.api.Scenario
 import cucumber.api.java.After
@@ -20,8 +21,7 @@ import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.web.WebAppConfiguration
 import uk.gov.digital.ho.proving.income.family.cwtool.ServiceRunner
 
-import java.text.SimpleDateFormat
-
+import static com.jayway.restassured.RestAssured.given
 import static java.util.concurrent.TimeUnit.SECONDS
 
 @SpringApplicationConfiguration(ServiceRunner.class)
@@ -32,6 +32,7 @@ class ProvingThingsTestSteps {
 
     def static rootUrl = "http://localhost:8001/"
 
+    def healthUriRegex = "/health"
     def incomeUriRegex = "/incomeproving/v1/individual/nino/financialstatus"
     def defaultNino = "AA123456A"
 
@@ -136,6 +137,14 @@ class ProvingThingsTestSteps {
         driver.findElement(By.className("button")).click()
     }
 
+    def responseStatusFor(String url) {
+        Response response = given()
+                .get(url)
+                .then().extract().response();
+
+        return response.getStatusCode();
+    }
+
     @Given("^the account data for (.*)\$")
     def the_account_data_for(String nino) {
         testDataLoader.stubTestData(nino, incomeUriRegex.replaceFirst("nino", nino))
@@ -170,6 +179,11 @@ class ProvingThingsTestSteps {
     @Given("^the api response has status (\\d+)\$")
     public void the_api_response_has_status(int status) throws Throwable {
         testDataLoader.withResponseStatus(incomeUriRegex.replaceFirst("nino", defaultNino), status)
+    }
+
+    @Given("^the api health check response has status (\\d+)\$")
+    public void the_api_health_check_response_has_status(int status) throws Throwable {
+        testDataLoader.withResponseStatus(healthUriRegex, status)
     }
 
     @Given("^the api is unreachable\$")
@@ -255,4 +269,11 @@ class ProvingThingsTestSteps {
     def the_connection_attempt_count_should_be_count(int count) {
         testDataLoader.verifyGetCount(count, incomeUriRegex.replaceFirst("nino", defaultNino))
     }
+
+    @Then("^the health check response status should be (\\d+)\$")
+    def the_response_status_should_be(int expected) {
+        driver.sleep(700) // Seems to need a delay to let wiremock catch up
+        assert responseStatusFor(rootUrl + "health") == expected
+    }
+
 }
