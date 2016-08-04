@@ -1,6 +1,8 @@
 package uk.gov.digital.ho.proving.income.family.cwtool
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.springframework.boot.actuate.audit.AuditEvent
+import org.springframework.context.ApplicationEventPublisher
 import org.springframework.http.HttpMethod
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
 import org.springframework.test.web.client.MockRestServiceServer
@@ -9,6 +11,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
 import spock.lang.Unroll
+import uk.gov.digital.ho.proving.income.family.cwtool.audit.AuditEventType
 import uk.gov.digital.ho.proving.income.family.cwtool.domain.api.ApiResponse
 import uk.gov.digital.ho.proving.income.family.cwtool.domain.api.CategoryCheck
 import uk.gov.digital.ho.proving.income.family.cwtool.domain.api.Individual
@@ -52,6 +55,9 @@ class ServiceSpec extends Specification {
     MockMvc mockMvc
     MockRestServiceServer mockServer
 
+
+    ApplicationEventPublisher auditor = Mock()
+
     def service = new Service()
 
     def setup() {
@@ -71,6 +77,7 @@ class ServiceSpec extends Specification {
                 .build()
 
         service.restTemplate = restTemplate
+        service.auditor = auditor
     }
 
     def MappingJackson2HttpMessageConverter createMessageConverter() {
@@ -230,6 +237,40 @@ class ServiceSpec extends Specification {
             andExpect(jsonPath("message", containsString("API response status")))
             andExpect(jsonPath("message", containsString(BAD_GATEWAY.toString())))
         }
+    }
+
+    def 'audits search inputs and response'() {
+
+        given:
+        def apiResultJson = mapper.writeValueAsString(buildResponse())
+        apiRespondsWith(
+                withSuccess(apiResultJson, APPLICATION_JSON)
+        )
+
+        AuditEvent event1
+        AuditEvent event2
+        1 * auditor.publishEvent(_) >> {args -> event1 = args[0].auditEvent}
+        1 * auditor.publishEvent(_) >> {args -> event2 = args[0].auditEvent}
+
+        when:
+        def response = mockMvc.perform(
+                get(UI_ENDPOINT, NINO)
+                        .param('applicationRaisedDate', RAISED_DATE)
+                        .param('dependants', DEPENDANTS)
+        )
+
+        then:
+
+        event1.type == AuditEventType.SEARCH.name()
+        event2.type == AuditEventType.SEARCH_RESULT.name()
+
+        event1.data['eventId'] == event2.data['eventId']
+
+        event1.data['applicationRaisedDate'] == RAISED_DATE
+        event1.data['dependants'] == Integer.parseInt(DEPENDANTS)
+        event1.data['nino'] == NINO
+
+        event2.data['response'].categoryCheck.failureReason == "reason"
     }
 
     def ApiResponse buildResponse() {

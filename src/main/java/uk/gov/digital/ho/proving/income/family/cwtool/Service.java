@@ -1,10 +1,10 @@
 package uk.gov.digital.ho.proving.income.family.cwtool;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +14,7 @@ import org.springframework.retry.annotation.Retryable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import uk.gov.digital.ho.proving.income.family.cwtool.audit.AuditActions;
 import uk.gov.digital.ho.proving.income.family.cwtool.domain.api.ApiResponse;
 import uk.gov.digital.ho.proving.income.family.cwtool.domain.api.Nino;
 import uk.gov.digital.ho.proving.income.family.cwtool.domain.client.FinancialStatusResponse;
@@ -21,9 +22,16 @@ import uk.gov.digital.ho.proving.income.family.cwtool.domain.client.FinancialSta
 import javax.validation.Valid;
 import java.net.URI;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 import static java.util.Arrays.asList;
 import static org.springframework.http.HttpMethod.GET;
+import static uk.gov.digital.ho.proving.income.family.cwtool.audit.AuditActions.auditEvent;
+import static uk.gov.digital.ho.proving.income.family.cwtool.audit.AuditEventType.SEARCH;
+import static uk.gov.digital.ho.proving.income.family.cwtool.audit.AuditEventType.SEARCH_RESULT;
 
 @RestController
 @RequestMapping("/incomeproving/v1/individual/{nino}/financialstatus")
@@ -41,7 +49,8 @@ public class Service {
     @Autowired
     private RestTemplate restTemplate;
 
-    ObjectMapper mapper = new ServiceConfiguration().getMapper();
+    @Autowired
+    private ApplicationEventPublisher auditor;
 
     @Retryable(interceptor = "connectionExceptionInterceptor")
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
@@ -51,11 +60,16 @@ public class Service {
 
         LOGGER.debug("CheckStatus: Nino - {} applicationRaisedDate - {} dependants- {}", nino.getNino(), applicationRaisedDate, dependants);
 
+        UUID eventId = AuditActions.nextId();
+        auditor.publishEvent(auditEvent(SEARCH, eventId, auditData(nino, applicationRaisedDate, dependants)));
+
         ApiResponse apiResult = restTemplate.exchange(buildUrl(nino.getNino(), applicationRaisedDate, dependants), GET, entity(), ApiResponse.class).getBody();
 
         LOGGER.debug("Api result: {}", apiResult.toString());
 
         FinancialStatusResponse response = new FinancialStatusResponse(apiResult);
+
+        auditor.publishEvent(auditEvent(SEARCH_RESULT, eventId, auditData(response)));
 
         return ResponseEntity.ok(response);
     }
@@ -86,4 +100,25 @@ public class Service {
         this.restTemplate = restTemplate;
     }
 
+    private Map<String, Object> auditData(Nino nino, LocalDate applicationRaisedDate, Integer dependants) {
+
+        Map<String, Object> auditData = new HashMap<>();
+
+        auditData.put("method", "check-financial-status");
+        auditData.put("nino", nino.getNino());
+        auditData.put("applicationRaisedDate", applicationRaisedDate.format(DateTimeFormatter.ISO_DATE));
+        auditData.put("dependants", dependants);
+
+        return auditData;
+    }
+
+    private Map<String, Object> auditData(FinancialStatusResponse response) {
+
+        Map<String, Object> auditData = new HashMap<>();
+
+        auditData.put("method", "check-financial-status");
+        auditData.put("response", response);
+
+        return auditData;
+    }
 }
