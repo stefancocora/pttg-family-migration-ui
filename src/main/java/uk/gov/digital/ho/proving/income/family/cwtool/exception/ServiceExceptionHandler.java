@@ -38,7 +38,7 @@ public class ServiceExceptionHandler {
     @ResponseBody
     public ResponseDetails missingParameterHandler(MissingServletRequestParameterException exception) {
         String name = exception.getParameterName();
-        LOGGER.debug("Missing parameter: " + exception.getMessage());
+        LOGGER.error("Missing parameter: " + exception.getMessage());
         return new ResponseDetails(MISSING_PARAMETER.getCode(), MISSING_PARAMETER.getMessage() + exception.getParameterName());
     }
 
@@ -46,7 +46,7 @@ public class ServiceExceptionHandler {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ResponseDetails unbindableParameterHandler(MethodArgumentTypeMismatchException exception) {
-        LOGGER.debug("Unbindable parameter: " + exception.getMessage());
+        LOGGER.error("Unbindable parameter: " + exception.getMessage());
         return new ResponseDetails(INVALID_PARAMETER_TYPE.getCode(), INVALID_PARAMETER_TYPE.getMessage() + exception.getParameter().getParameterName());
     }
 
@@ -54,7 +54,7 @@ public class ServiceExceptionHandler {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ResponseDetails invalidParameterFormatHandler(InvalidRequestParameterException exception) {
-        LOGGER.debug("Invalid parameter format: " + exception.getMessage());
+        LOGGER.error("Invalid parameter format: " + exception.getMessage());
         return new ResponseDetails(INVALID_PARAMETER_FORMAT.getCode(), INVALID_PARAMETER_FORMAT.getMessage() + exception.getParameterName());
     }
 
@@ -62,7 +62,7 @@ public class ServiceExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ResponseDetails constraintValidationHandler(ConstraintViolationException exception) {
-        LOGGER.debug("Constraint violation: " + exception.getMessage());
+        LOGGER.error("Parameter constraint violation: " + exception.getMessage());
         String detail = exception.getConstraintViolations()
                 .stream()
                 .map(ConstraintViolation::getMessage)
@@ -74,7 +74,7 @@ public class ServiceExceptionHandler {
     @ResponseStatus(value = INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ResponseDetails serverProcessingFault(ServiceProcessingException exception) {
-        LOGGER.debug("Server processing fault: " + exception.getMessage());
+        LOGGER.error("Server processing fault: " + exception.getMessage());
         return new ResponseDetails(INTERNAL_ERROR);
     }
 
@@ -111,7 +111,7 @@ public class ServiceExceptionHandler {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ResponseDetails bindException(BindException exception) {
-        LOGGER.debug("Binding exception: " + exception.getMessage());
+        LOGGER.error("Binding exception: " + exception.getMessage());
 
         if (exception.getFieldErrors() == null || exception.getFieldErrors().size() <= 0) {
             return new ResponseDetails(INVALID_PARAMETER_VALUE);
@@ -131,10 +131,10 @@ public class ServiceExceptionHandler {
     @ResponseStatus(value = INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ResponseDetails resourceException(ResourceAccessException exception) {
-        LOGGER.debug("Resource access exception: " + exception.getMessage());
+        LOGGER.error("Resource access exception: " + exception.getMessage());
 
         if (exception.getCause() instanceof ConnectException || exception.getCause() instanceof ConnectTimeoutException) {
-            LOGGER.debug("Connection exception: " + exception.getCause().getMessage());
+            LOGGER.error("Connection exception: " + exception.getCause().getMessage());
             return new ResponseDetails(API_CONNECTION_ERROR.getCode(), "There was a problem connecting to the service: " + exception.getCause().getMessage());
         }
 
@@ -146,7 +146,7 @@ public class ServiceExceptionHandler {
     @ResponseStatus(value = INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ResponseDetails unknownException(Exception exception) {
-        LOGGER.debug("Unknown exception: {} : {}", exception.getClass(), exception.getMessage());
+        LOGGER.error("Unknown exception: {} : {}", exception.getClass(), exception.getMessage());
         return new ResponseDetails(INTERNAL_ERROR.getCode(), "There was an unhandled error: " + exception.getMessage());
     }
 }
