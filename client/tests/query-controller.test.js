@@ -57,7 +57,7 @@ describe('coreController', function(){
         coreController.model.fromDateDay='1';
         coreController.model.fromDateMonth='2';
         coreController.model.fromDateYear='2015';
-        expect(coreController.getFullDate()).toEqual('2015-2-1')
+        expect(coreController.getFullDate()).toEqual('2015-02-01')
     });
 
     it('is expected to format the date to DD/MM/YYYY', function(){
@@ -143,18 +143,20 @@ describe('coreController', function(){
         coreController.model.fromDateYear='2015';
         coreController.model.nino='AA123456A';
         coreController.submit()
-        expect(restService.checkApplication).toHaveBeenCalledWith('AA123456A', '2015-2-1','');
+        expect(restService.checkApplication).toHaveBeenCalledWith('AA123456A', '2015-02-01','');
     });
 
     it('is expected to call the service with a NINO, ISO formatted date and dependants', function() {
         spyOnSuccessful();
         coreController.model.fromDateDay='1';
-        coreController.model.fromDateMonth='02';
+        coreController.model.fromDateMonth='2';
         coreController.model.fromDateYear='2016';
-        coreController.model.nino='AA123456b';
+        coreController.model.nino='AA123456A';
         coreController.model.dependants=2;
+
         coreController.submit()
-        expect(restService.checkApplication).toHaveBeenCalledWith('AA123456B', '2016-02-1',2);
+
+        expect(restService.checkApplication).toHaveBeenCalledWith('AA123456A', '2016-02-01', 2);
     });
 
     it('sets returned data from service on the model ', function(){
@@ -198,21 +200,25 @@ describe('coreController', function(){
        expect(restService.checkApplication.calls.count()).toBe(1);
     });
 
-    it('handles invalid nino error from service', function(){
-       spyOnNinoFailure();
 
-       coreController.model.fromDateDay=1;
-       coreController.model.fromDateMonth=2;
-       coreController.model.fromDateYear=2015;
-       coreController.model.nino='AA123456A';
+    it('clears previous model on new search', function () {
 
-       coreController.submit()
-       scope.$digest();
+        initialiseModelWithValues();
 
-       expect(coreController.ninoInvalidError).toBeTruthy();
-       expect(coreController.restError).toBeTruthy();
+        coreController.newSearch();
+        scope.$digest();
 
-       expect(restService.checkApplication.calls.count()).toBe(1);
+        expect(coreController.model.fromDateDay).toBe('');
+        expect(coreController.model.fromDateMonth).toBe('');
+        expect(coreController.model.fromDateYear).toBe('');
+        expect(coreController.model.nino).toBe('');
     });
 
+    function initialiseModelWithValues() {
+        coreController.model.fromDateDay='1';
+        coreController.model.fromDateMonth='02';
+        coreController.model.fromDateYear='2016';
+        coreController.model.nino='AA123456B';
+        coreController.model.dependants=2;
+    }
 });

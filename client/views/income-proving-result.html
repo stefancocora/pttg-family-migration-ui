@@ -5,10 +5,10 @@
 </div>
 
 <div ng-if="vm.model.meetsFinancialRequirements">
-    <h1 class="form-title heading-large">
+    <h1 class="form-title heading-large" id="pageHeading">
         Financial requirement check
     </h1>
-    <p class="lede">Does the applicant meet the Category A financial requirement?</p>
+    <p class="lede" id="pageSubHeading">Does the applicant meet the Category A financial requirement?</p>
 
     <div class="govuk-box-highlight" id="outcome">
         <h1 class="bold-large">Yes, <span id="outcomeBoxIndividualName">{{vm.model.individual.forename}} {{vm.model.individual.surname}}</span> meets the
