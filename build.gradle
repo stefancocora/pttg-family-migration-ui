@@ -22,10 +22,46 @@ apply plugin: 'pttgSpringBootGradle'
 apply plugin: 'net.serenity-bdd.aggregator'
 apply plugin: 'com.moowork.gulp'
 
-group 'pttg-family-migration-ui'
-version '1.0-SNAPSHOT'
+group 'com.hod'
+version '0.1.0'
 
 mainClassName="uk.gov.digital.ho.proving.income.family.cwtool.ServiceRunner"
+
+if (System.getenv('VERSION')) {
+    version = System.getenv('VERSION')
+}
+
+
+jar {
+    baseName = 'pttg-income-proving-fm-ui'
+    if (System.getenv('BUILD_NUMBER')) {
+        version =  version + '-' + System.getenv('BUILD_NUMBER')
+    }
+    if (System.getenv('GIT_COMMIT')) {
+        version = version + '.' + System.getenv('GIT_COMMIT')
+    }
+    manifest {
+        attributes 'Implementation-Title': baseName,
+                'Implementation-Version': version
+    }
+}
+
+jar.into('static') {
+    from('src/main/webapp')
+}
+
+task bowerLocalInstall(type: NodeTask) {
+    script = file('node_modules/bower/bin/bower')
+    args = [
+            "--allow-root",
+            'install'
+    ]
+    inputs.files file('bower.json')
+    outputs.files file('bower_components')
+    dependsOn npmInstall
+}
+
+build.dependsOn bowerLocalInstall
 
 dependencies {
     compile libraries.groovy
@@ -45,16 +81,13 @@ dependencies {
     testCompile libraries.spock
     testCompile libraries.springTest
     testCompile libraries.testUtils
-    testCompile 'org.apache.httpcomponents:httpclient:4.5.2'
 }
 
 springboot{
-    port = 8080
+    port = 8000
 }
 
-jar.into('static') {
-    from('src/main/webapp')
-}
+
 test {
     exclude 'acceptance/**'
 }
