@@ -1,6 +1,10 @@
 package steps
 
+import com.jayway.restassured.response.Response
 import cucumber.api.DataTable
+import cucumber.api.Scenario
+import cucumber.api.java.After
+import cucumber.api.java.Before
 import cucumber.api.java.en.Given
 import cucumber.api.java.en.Then
 import cucumber.api.java.en.When
@@ -10,24 +14,58 @@ import org.apache.commons.lang3.text.WordUtils
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.test.IntegrationTest
+import org.springframework.boot.test.SpringApplicationConfiguration
+import org.springframework.test.context.ActiveProfiles
+import org.springframework.test.context.web.WebAppConfiguration
+import uk.gov.digital.ho.proving.income.family.cwtool.ServiceRunner
 
-import java.text.SimpleDateFormat
+import static com.jayway.restassured.RestAssured.given
+import static java.util.concurrent.TimeUnit.SECONDS
 
+@SpringApplicationConfiguration(ServiceRunner.class)
+@WebAppConfiguration
+@IntegrationTest
+@ActiveProfiles("test")
 class ProvingThingsTestSteps {
+
+    def static rootUrl = "http://localhost:8001/"
+
+    def healthUriRegex = "/healthz"
+    def incomeUriRegex = "/incomeproving/v1/individual/nino/financialstatus"
+    def defaultNino = "AA123456A"
+
+    def testDataLoader
+
+    @Value('${wiremock}')
+    private Boolean wiremock;
+
     @Managed
     public WebDriver driver;
+
     private int delay = 1
+    def defaultTimeout = 2000
+
+    def dateParts = ["Day", "Month", "Year"]
+    def dateDelimiter = "/"
+
+    @Before
+    def setUp(Scenario scenario) {
+        if (wiremock) {
+            testDataLoader = new WireMockTestDataLoader()
+        }
+    }
+
+    @After
+    def tearDown() {
+        testDataLoader?.stop()
+    }
 
     def String toCamelCase(String s) {
         String allUpper = StringUtils.remove(WordUtils.capitalizeFully(s), " ")
         String camelCase = allUpper[0].toLowerCase() + allUpper.substring(1)
         camelCase
-    }
-
-    def parseDate(String dateString) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy")
-        Date date = sdf.parse(dateString)
-        date
     }
 
     def sendKeys(WebElement element, String v) {
@@ -37,196 +75,205 @@ class ProvingThingsTestSteps {
         }
     }
 
-    public void submitForm(Map<String, String> entries, WebDriver driver) {
+    private def fillOrClearBySplitting(String key, String input, List<String> partNames, String delimiter) {
+
+        if (input != null && input.length() != 0) {
+            fillPartsBySplitting(key, input, delimiter, partNames)
+
+        } else {
+            clearParts(key, partNames)
+        }
+    }
+
+    private def fillPartsBySplitting(String key, String value, String delimiter, List<String> partNames) {
+
+        String[] parts = value.split(delimiter)
+
+        parts.eachWithIndex { part, index ->
+            sendKeys(driver.findElement(By.id(key + partNames[index])), part)
+        }
+    }
+
+    private def clearParts(String key, List<String> partNames) {
+        partNames.each { part ->
+            driver.findElement(By.id(key + part)).clear()
+        }
+    }
+
+    private void assertTextFieldEqualityForTable(DataTable expectedResult) {
+        Map<String, String> entries = expectedResult.asMap(String.class, String.class)
+        assertTextFieldEqualityForMap(entries)
+    }
+
+    private Map<String, String> assertTextFieldEqualityForMap(Map<String, String> entries) {
+
+        entries.each { k, v ->
+            String fieldName = toCamelCase(k);
+            WebElement element = driver.findElement(By.id(fieldName))
+
+            if (fieldName == "outcome") {  // why not just check the text, as per all the other values?
+                String cssValue = element.getAttribute("class")
+                assert cssValue.contains("panel-fail") == false
+            } else {
+                assert element.getText() == v
+            }
+        }
+    }
+
+    private void submitEntries(Map<String, String> entries) {
         entries.each { k, v ->
             String key = toCamelCase(k)
 
             if (key.endsWith("Date")) {
-                if (v != null && v.length() != 0) {
+                fillOrClearBySplitting(key, v, dateParts, dateDelimiter)
 
-                    String day = v.substring(0, v.indexOf("/"))
-                    String month = v.substring(v.indexOf("/") + 1, v.lastIndexOf("/"))
-                    String year = v.substring(v.lastIndexOf("/") + 1)
-
-                    sendKeys(driver.findElement(By.id(key + "Day")), day)
-                    sendKeys(driver.findElement(By.id(key + "Month")), month)
-                    sendKeys(driver.findElement(By.id(key + "Year")), year)
-
-                } else {
-                    driver.findElement(By.id(key + "Day")).clear()
-                    driver.findElement(By.id(key + "Month")).clear()
-                    driver.findElement(By.id(key + "Year")).clear()
-                }
             } else {
-                sendKeys(driver.findElement(By.id(key)), v)
+                def element = driver.findElement(By.id(key))
+                sendKeys(element, v)
             }
         }
+
+        driver.sleep(delay)
+        driver.findElement(By.className("button")).click()
     }
 
-    public void checkOutput(Map<String, String> entries, WebDriver driver) {
-        entries.each { k, v ->
-            String key = toCamelCase(k)
+    def responseStatusFor(String url) {
+        Response response = given()
+                .get(url)
+                .then().extract().response();
 
-            if (key != "outcome") {
-                assert v.equals(driver.findElement(By.id(key)).getText())
-            } else {
-                WebElement element = driver.findElement(By.id(key))
-                String cssValue = element.getAttribute("class")
-                assert cssValue.contains("panel-fail") == false
-            }
-        }
+        return response.getStatusCode();
     }
 
-// SD65 This method is empty because the validation (in the Then function) is done on the input page opened in the Given function
-    @When("^Robert is displayed the Income Proving Service Case Worker Tool input page:\$")
-    public void robert_is_displayed_the_Income_Proving_Service_Case_Worker_Tool_input_page() {
-// SD65 This method is empty because the validation (in the Then function) is done on the input page opened in the Given function
+    @Given("^the account data for (.*)\$")
+    def the_account_data_for(String nino) {
+        testDataLoader.stubTestData(nino, incomeUriRegex.replaceFirst("nino", nino))
     }
 
-    @When("^Robert submits a query:\$")
-    public void robert_submits_a_query(DataTable arg1) {
-        submitFormWithData(arg1)
+    @Given("^no record for (.*)\$")
+    def no_record_for(String nino) {
+        testDataLoader.stubErrorData("notfound", incomeUriRegex.replaceFirst("nino", nino), 404)
     }
 
-    @When("^the NINO is NOT entered:\$")
-    public void the_nino_is_not_entered(DataTable arg1) {
-        submitFormWithData(arg1)
-    }
-
-    @When("^an incorrect NINO is entered:\$")
-    public void an_incorrect_nino_is_eneterd(DataTable arg1) {
-        submitFormWithData(arg1)
-    }
-    @When("^Application Raised Date is not entered:\$")
-    public void application_raised_date_missing(DataTable arg1) {
-        submitFormWithData(arg1)
-    }
-
-    @When("^(?:a future|an incorrect) Application Raised Date is entered:\$")
-    public void application_raised_date_wrong(DataTable arg1) {
-        submitFormWithData(arg1)
-    }
-
-
-
-    @Then("^The service displays the following message:\$")
-    public void the_service_displays_the_following_message(DataTable arg1) {
-        Map<String, String> entries = arg1.asMap(String.class, String.class)
-        // driver.sleep(delay)
-        assert driver.findElement(By.id(entries.get("Error Field"))).getText() == entries.get("Error Message")
-    }
-
-    // ------------------------------
-    // IPS Family TM Case Worker Tool
-    // ------------------------------
     @Given("^Caseworker is using the Income Proving Service Case Worker Tool\$")
     public void caseworker_is_using_the_Income_Proving_Service_Case_Worker_Tool() throws Throwable {
-        driver.get("http://localhost:8000/");
+        driver.get(rootUrl);
         driver.manage().deleteAllCookies()
     }
 
-    @When("^Robert submits a query to IPS Family TM Case Worker Tool:\$")
-    public void robert_submits_a_query_to_ips_family_tm_case_worker_tool(DataTable arg1) {
-        submitFormWithData(arg1)
+    @Given("^the api response is delayed for (\\d+) seconds\$")
+    public void the_api_response_is_delayed_for_seconds(int delay) throws Throwable {
+        testDataLoader.withDelayedResponse(incomeUriRegex.replaceFirst("nino", defaultNino), delay)
     }
 
-    @Then("^The IPS Family TM Case Worker Tool provides the following result:\$")
-    public void the_ips_family_tm_case_worker_tool_provides_the_following_results(DataTable expectedResult) {
+    @Given("^the api response is garbage\$")
+    public void the_api_response_is_garbage() throws Throwable {
+        testDataLoader.withGarbageResponse(incomeUriRegex.replaceFirst("nino", defaultNino))
+    }
 
-        Map<String, String> entries = expectedResult.asMap(String.class, String.class)
-        String[] outcome = entries.keySet()
+    @Given("^the api response is empty\$")
+    public void the_api_response_is_empty() throws Throwable {
+        testDataLoader.withEmptyResponse(incomeUriRegex.replaceFirst("nino", defaultNino))
+    }
 
-        // To manually take a screenshot
-        // net.serenitybdd.core.Serenity.takeScreenshot()
+    @Given("^the api response has status (\\d+)\$")
+    public void the_api_response_has_status(int status) throws Throwable {
+        testDataLoader.withResponseStatus(incomeUriRegex.replaceFirst("nino", defaultNino), status)
+    }
 
-        for (String s : outcome) {
-            if (s != "Outcome") {
-                String elementId = toCamelCase(s)
-                WebElement element = driver.findElement(By.id(elementId))
-                assert element.getText().contains(entries.get(s))
+    @Given("^the api health check response has status (\\d+)\$")
+    public void the_api_health_check_response_has_status(int status) throws Throwable {
+        testDataLoader.withResponseStatus(healthUriRegex, status)
+    }
 
-            } else {
-                String elementId = toCamelCase(s)
-                WebElement element = driver.findElement(By.id(elementId))
-                String cssValue = element.getAttribute("class")
-                assert cssValue.contains("panel-fail") == false
-            }
+    @Given("^the api is unreachable\$")
+    public void the_api_is_unreachable() throws Throwable {
+        testDataLoader.withServiceDown()
+    }
+
+    @Given("^the api response is a validation error - (.*) parameter\$")
+    public void the_api_response_is_a_validation_error(String type) throws Throwable {
+        testDataLoader.stubErrorData("validation-error-$type", incomeUriRegex.replaceFirst("nino", defaultNino), 400)
+    }
+
+    @When("^the income check is performed\$")
+    def the_income_check_is_performed() {
+
+        Map<String, String> validDefaultEntries = [
+                'Application raised date': '01/05/2016',
+                'Dependants'             : '0',
+                'NINO'                   : defaultNino
+        ]
+
+        submitEntries(validDefaultEntries)
+    }
+
+    @When("^Robert is displayed the Income Proving Service Case Worker Tool input page\$")
+    public void robert_is_displayed_the_Income_Proving_Service_Case_Worker_Tool_input_page() {
+        // SD65 This method is empty because the validation (in the Then function) is done on the input page opened in the Given function
+    }
+
+    @When("^Robert submits a query\$")
+    public void robert_submits_a_query(DataTable arg1) {
+        Map<String, String> entries = arg1.asMap(String.class, String.class)
+        submitEntries(entries)
+    }
+
+
+    @When("^after at least (\\d+) seconds\$")
+    def after_at_least_x_seconds(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (Exception e) {
+            assert false: 'Sleep interrupted'
         }
     }
 
-
-    @Then("^The IPS Family TM CW Tool output page provides the following result:\$")
-    public void the_IPS_Family_TM_CW_Tool_output_page_provides_the_following_result(DataTable expectedResult) {
-        Map<String, String> entries = expectedResult.asMap(String.class, String.class)
-
-        //Page checks for Category A financial text write up SD64
-        // driver.sleep(delay)
-        WebElement pageTitle = driver.findElement(By.className("form-title"))
-
-        if (pageTitle.getText() == entries.get("Page title")) {
-            assert true
-            println " " + entries.get("Page title")
-        } else assert false
-
-        WebElement pageSubText = driver.findElement(By.className("lede"))
-        assert pageSubText.getText() == entries.get("Page sub text")
-    }
-
-    //Page checks for appendix link - SD64
-    @Then("^The IPS Family TM CW Tool output page provides the following result appendix:\$")
-    public void the_IPS_Family_TM_CW_Tool_output_page_provides_the_following_result_appendix(DataTable expectedResult) {
-        Map<String, String> entries = expectedResult.asMap(String.class, String.class)
-        checkOutput(entries, driver)
-    }
-
-//SD41
-    @Then("^The service for Cat A Failure provides the following result:\$")
-    public void the_service_for_Cat_A_Failure_provides_the_following_result(DataTable expectedResult) {
-        // driver.sleep(delay)
-        Map<String, String> entries = expectedResult.asMap(String.class, String.class)
-        checkOutput(entries, driver)
-    }
-
-//SD63
-    @Then("^The service provides the following NINO does not exist result:\$")
-    public void the_service_provides_the_following_NINO_does_not_exist_result(DataTable expectedResult) {
-        Map<String, String> entries = expectedResult.asMap(String.class, String.class)
-        checkOutput(entries, driver)
-    }
-// SD65
-    @Then("^The IPS Family TM Case Worker Tool input page provides the following result:\$")
-    public void the_IPS_Family_TM_Case_Worker_Tool_input_page_provides_the_following_result(DataTable expectedResult) {
-        Map<String, String> entries = expectedResult.asMap(String.class, String.class)
-        checkOutput(entries, driver)
-    }
-
-//Dependants
-    @When("^Robert submits a query to IPS Family TM Case Worker Tool \\(with dependants\\):\$")
-    public void robert_submits_a_query_to_IPS_Family_TM_Case_Worker_Tool_with_dependants(DataTable expectedResult) {
-        Map<String, String> entries = expectedResult.asMap(String.class, String.class)
-        driver.sleep(delay)
-        submitForm(entries, driver)
-        driver.findElement(By.className("button")).click();
-    }
-
-    @Then("^The IPS Family TM Case Worker Tool provides the following error result \\(with dependants\\):\$")
-    public void the_IPS_Family_TM_Case_Worker_Tool_provides_the_following_error_result_with_dependants(DataTable expectedResult) {
-        Map<String, String> entries = expectedResult.asMap(String.class, String.class)
-        checkOutput(entries, driver)
-    }
-
-
-    @Then("^The IPS Family TM Case Worker Tool provides the following result - with dependants:\$")
-    public void the_IPS_Family_TM_Case_Worker_Tool_provides_the_following_result_with_dependants(DataTable expectedResult) {
-        println expectedResult
-        Map<String, String> entries = expectedResult.asMap(String.class, String.class)
-        checkOutput(entries, driver)
-    }
-
-    private void submitFormWithData(DataTable arg1) {
-        // driver.sleep(delay)
+    @Then("^the service displays the following message\$")
+    public void the_service_displays_the_following_message(DataTable arg1) throws Throwable {
         Map<String, String> entries = arg1.asMap(String.class, String.class)
-        submitForm(entries, driver);
-        driver.findElement(By.className("button")).click();
+        assertTextFieldEqualityForMap(entries)
     }
+
+    @Then("^the service displays the following result\$")
+    public void the_service_displays_the_following_result(DataTable expectedResult) throws Throwable {
+        assertTextFieldEqualityForTable(expectedResult)
+    }
+
+    @Then("^the service displays the following page content\$")
+    public void the_service_displays_the_following_page_content(DataTable expectedResult) throws Throwable {
+        assertTextFieldEqualityForTable(expectedResult)
+    }
+
+    @Then("^the service displays the following page content within (\\d+) seconds\$")
+    public void the_service_displays_the_following_page_content_within_seconds(long timeout, DataTable expectedResult) throws Throwable {
+        driver.manage().timeouts().implicitlyWait(timeout, SECONDS)
+        assertTextFieldEqualityForTable(expectedResult)
+        driver.manage().timeouts().implicitlyWait(defaultTimeout, SECONDS)
+    }
+
+    @Then("^the error summary list contains the text\$")
+    public void the_error_summary_list_contains_the_text(DataTable expectedText) {
+
+        List<String> errorSummaryTextItems = expectedText.asList(String.class)
+
+        WebElement errorSummaryList = driver.findElement(By.id("error-summary-list"))
+        def errorText = errorSummaryList.text
+
+        errorSummaryTextItems.each {
+            assert errorText.contains(it): "Error text did not contain: $it"
+        }
+    }
+
+    @Then("^the connection attempt count should be (\\d+)\$")
+    def the_connection_attempt_count_should_be_count(int count) {
+        testDataLoader.verifyGetCount(count, incomeUriRegex.replaceFirst("nino", defaultNino))
+    }
+
+    @Then("^the health check response status should be (\\d+)\$")
+    def the_response_status_should_be(int expected) {
+        driver.sleep(700) // Seems to need a delay to let wiremock catch up
+        assert responseStatusFor(rootUrl + "healthz") == expected
+    }
+
 }

@@ -12,8 +12,11 @@
             checkApplication : checkApplication
         };
         function checkApplication(nino, applicationRaisedDate, dependants) {
-            var url = 'incomeproving/v1/individual/'+nino+'/financialstatus?applicationRaisedDate='+applicationRaisedDate + (dependants>0 ? '&dependants='+dependants : '');
-            return $http.get(url)
+            var url = 'incomeproving/v1/individual/'+nino+'/financialstatus';
+            return $http.get(url, {
+                params: { applicationRaisedDate: applicationRaisedDate, dependants: dependants }
+            })
+
                 .then(
                     function success(response) { return response.data },
                     function error(response) { throw response }
