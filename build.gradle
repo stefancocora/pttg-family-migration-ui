@@ -90,6 +90,7 @@ springboot{
 
 test {
     exclude 'acceptance/**'
+    exclude 'test/**'
 }
 
 task acceptanceTest(type: Test) {
