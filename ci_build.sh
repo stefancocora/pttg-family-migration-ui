@@ -7,6 +7,8 @@ GIT_COMMIT=${GIT_COMMIT:-$(git rev-parse --short HEAD)}
 GIT_COMMIT=${GIT_COMMIT:0:7}
 VERSION=$(grep ^version build.gradle | cut -d= -f 2 | tr -d ' ' | sed -e "s|'||g" | sed -e "s|version|v|g")
 
+echo "=== version"
+echo $VERSION
 build_image_for_app_build() {
   docker build -t "${GRADLE_IMAGE}" -f Dockerfile.build .
 }
@@ -36,6 +38,10 @@ set_props() {
 }
 
 build_image_that_runs_app() {
+
+    echo "Docker version "
+    echo ${VERSION}
+
   docker build --build-arg VERSION=${VERSION} --build-arg JAR_PATH=build/libs \
     -t quay.io/ukhomeofficedigital/pttg-income-proving-fm-ui:${VERSION} .
 }
