@@ -7,10 +7,11 @@
     var sass = require('gulp-sass');
     var debug = require('gulp-debug');
     var clean = require('gulp-clean');
-    var karma = require('karma').server;
 
     var client = './client/';
     var server = './src/main/webapp/';
+
+    var KServer = require('karma').Server;
 
     var config = {
         jsOrder: [
@@ -34,6 +35,7 @@
     };
 
     gulp.task('default', ['build']);
+
 
     gulp.task('copy-javascript',['clean'],  function() {
     utils.log('Copying javascript files');
@@ -121,11 +123,11 @@
     });
 
     gulp.task('test', function (done) {
-       karma.start({
-         configFile: __dirname + '/karma.conf.js'
-       }, done);
+      new KServer({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+      }, done).start();
     });
-
 
 })();
 
