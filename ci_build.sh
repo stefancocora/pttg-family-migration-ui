@@ -43,11 +43,11 @@ build_image_that_runs_app() {
     echo ${VERSION}
 
   docker build --build-arg VERSION=${VERSION} --build-arg JAR_PATH=build/libs \
-    -t quay.io/ukhomeofficedigital/pttg-income-proving-fm-ui:${VERSION} .
+    -t quay.io/ukhomeofficedigital/pttg-ip-fm-ui:${VERSION} .
 }
 
 publish() {
-  docker push quay.io/ukhomeofficedigital/pttg-income-proving-fm-ui:${VERSION}
+  docker push quay.io/ukhomeofficedigital/pttg-ip-fm-ui:${VERSION}
 }
 
 docker_credentials() {
