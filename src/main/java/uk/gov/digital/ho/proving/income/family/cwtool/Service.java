@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import static java.util.Arrays.asList;
+import static net.logstash.logback.argument.StructuredArguments.value;
 import static org.springframework.http.HttpMethod.GET;
 import static uk.gov.digital.ho.proving.income.family.cwtool.audit.AuditActions.auditEvent;
 import static uk.gov.digital.ho.proving.income.family.cwtool.audit.AuditEventType.SEARCH;
@@ -58,14 +59,14 @@ public class Service {
                                       @RequestParam(value = "applicationRaisedDate", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate applicationRaisedDate,
                                       @RequestParam(value = "dependants", required = false) Integer dependants) {
 
-        LOGGER.debug("CheckStatus: Nino - {} applicationRaisedDate - {} dependants- {}", nino.getNino(), applicationRaisedDate, dependants);
+        LOGGER.debug("CheckStatus: Nino - {} applicationRaisedDate - {} dependants- {}", value("nino", nino.getNino()), applicationRaisedDate, dependants);
 
         UUID eventId = AuditActions.nextId();
         auditor.publishEvent(auditEvent(SEARCH, eventId, auditData(nino, applicationRaisedDate, dependants)));
 
         ApiResponse apiResult = restTemplate.exchange(buildUrl(nino.getNino(), applicationRaisedDate, dependants), GET, entity(), ApiResponse.class).getBody();
 
-        LOGGER.debug("Api result: {}", apiResult.toString());
+        LOGGER.debug("Api result: {}", value("checkStatusApiResult", apiResult.toString()));
 
         FinancialStatusResponse response = new FinancialStatusResponse(apiResult);
 
