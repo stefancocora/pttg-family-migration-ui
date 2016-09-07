@@ -66,7 +66,7 @@ public class Service {
 
         ApiResponse apiResult = restTemplate.exchange(buildUrl(nino.getNino(), applicationRaisedDate, dependants), GET, entity(), ApiResponse.class).getBody();
 
-        LOGGER.debug("Api result: {}", value("checkStatusApiResult", apiResult.toString()));
+        LOGGER.debug("Api result: {}", value("checkStatusApiResult", apiResult));
 
         FinancialStatusResponse response = new FinancialStatusResponse(apiResult);
 
