@@ -33,7 +33,7 @@ if (System.getenv('VERSION')) {
 
 
 jar {
-    baseName = 'pttg-income-proving-fm-ui'
+    baseName = 'pttg-ip-fm-ui'
     if (System.getenv('BUILD_NUMBER')) {
         version =  version + '-' + System.getenv('BUILD_NUMBER')
     }
@@ -62,6 +62,8 @@ task bowerLocalInstall(type: NodeTask) {
 }
 
 build.dependsOn bowerLocalInstall
+jar.mustRunAfter(gulp_build)
+gulp_build.dependsOn bowerLocalInstall
 
 dependencies {
     compile libraries.groovy
