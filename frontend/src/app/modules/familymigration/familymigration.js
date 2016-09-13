@@ -9,12 +9,12 @@ familymigrationModule.factory('FamilymigrationService', ['IOService', '$state', 
   var lastAPIresponse = {};
   var familyDetails = {
     nino: '',
-    date: '',
+    applicationRaisedDate: '',
     dependants: ''
   };
 
   this.submit = function (nino, dependants, applicationRaisedDate) {
-    IOService.get('incomeproving/v1/individual/' + nino + '/financialstatus', {dependants: dependants, applicationRaisedDate: applicationRaisedDate}).then(function (res) {
+    IOService.get('incomeproving/v1/individual/' + nino + '/financialstatus', {dependants: dependants, applicationRaisedDate: applicationRaisedDate}, {timeout: 5000 }).then(function (res) {
       // console.log(res);
       lastAPIresponse = res;
       $state.go('familymigrationResults');
@@ -71,10 +71,29 @@ function ($rootScope, $scope, $state, $stateParams, FamilymigrationService, IOSe
         }
         return { summary: 'The National Insurance Number is invalid', msg: 'Enter a valid National Insurance Number'};
       }
+    },
+    dependants: {
+      required: false
+    },
+    applicationRaisedDate: {
+      max: moment().format('YYYY-MM-DD'),
+      errors: {
+        required: {
+          msg: 'Enter a valid application raised date'
+        },
+        invalid: {
+          msg: 'Enter a valid application raised date'
+        },
+        max: {
+          msg: 'Enter a valid application raised date'
+        }
+      }
     }
   };
 
-  $scope.detailsSubmit = function () {
-    FamilymigrationService.submit($scope.familyDetails.nino, $scope.familyDetails.dependants, $scope.familyDetails.date);
+  $scope.detailsSubmit = function (isValid) {
+    if (isValid) {
+      FamilymigrationService.submit($scope.familyDetails.nino, $scope.familyDetails.dependants, $scope.familyDetails.applicationRaisedDate);
+    }
   };
 }]);

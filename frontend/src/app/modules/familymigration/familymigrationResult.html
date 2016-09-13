@@ -1,5 +1,8 @@
 <div id="page2" class="ng-scope">
   <div ng-if="haveResult">
+    <h2 id="pageStaticHeading">Financial requirement check</h2>
+    <h3 id="pageStaticSubHeading">Does the applicant meet the Category A financial requirement?</h3>
+
     <div class="govuk-box-highlight" ng-class="{'panel-fail': !success}">
       <h1 class="bold-large" id="pageDynamicHeading"><span id="outcome">{{ heading }}</span></h1>
       <p id="pageDynamicDetail"><span>{{ reason }}</span></p>
@@ -11,6 +14,11 @@
     <h1 class="form-title heading-large"><span id="pageDynamicHeading">{{ heading }}</span></h1>
 
     <p class="lede ng-scope"><span id="pageDynamicDetail" class="ng-binding">{{ reason }}</span></p>
+  </div>
+
+  <div ng-if="!success">
+    <h2 id="whatToDoNextHeading">What to do next</h2>
+    <p id="whatToDoNextSubHeading">You should consider if the applicant meets the financial requirement under any other category.</p>
   </div>
 
 

@@ -38,7 +38,7 @@ familymigrationModule.controller('FamilymigrationResultCtrl', ['$scope', '$state
     return;
   }
 
-  $scope.familyDetails.displayDate = displayDate($scope.familyDetails.date);
+  $scope.familyDetails.displayDate = displayDate($scope.familyDetails.applicationRaisedDate);
   $scope.individual = res.data.individual;
 
   $scope.haveResult = (res.data && res.data.categoryCheck) ? true: false;
@@ -49,15 +49,26 @@ familymigrationModule.controller('FamilymigrationResultCtrl', ['$scope', '$state
       $scope.reason = 'calculated on income information between ' + displayDate(res.data.categoryCheck.assessmentStartDate) + ' and ' + displayDate(res.data.categoryCheck.applicationRaisedDate);
     } else {
       $scope.success = false;
-      $scope.heading = res.data.individual.forename + ' ' + res.data.individual.surname + ' doesn\'t meet the Category A requirement';
-      $scope.reason = 'they haven\'t met the required monthly amount.';
+      $scope.heading = //res.data.individual.forename + ' ' + res.data.individual.surname + ' doesn\'t meet the Category A requirement';
+      $scope.heading = 'They don\'t meet the financial requirement because:';
+
+      switch (res.data.categoryCheck.failureReason) {
+        case 'NOT_ENOUGH_RECORDS':
+          $scope.reason = 'they haven\'t been with their current employer for 6 months.';
+          break;
+
+        default:
+          $scope.reason = 'they haven\'t met the required monthly amount.';
+      }
+
     }
   } else {
     if (res.status === 404) {
       $scope.heading = 'There is no record for ' + $scope.familyDetails.nino + ' with HMRC';
       $scope.reason = 'We couldn\'t perform the financial requirement check as no income information exists with HMRC for the National Insurance Number ' + $scope.familyDetails.nino + '.';
     } else {
-
+      $scope.heading = 'You can’t use this service just now. The problem will be fixed as soon as possible';
+      $scope.reason = 'Please try again later.';
     }
   };
   console.log(res);

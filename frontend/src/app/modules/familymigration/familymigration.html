@@ -14,9 +14,9 @@
     <hod-form name="familyDetails" submit="detailsSubmit">
       <hod-text name="nino" label="National Insurance Number" hint="For example, 'QQ 12 34 56 C'." field="familyDetails.nino" config="conf.nino"></hod-text>
 
-      <hod-number name="numberOfDependants" label="Number of dependants" field="familyDetails.dependants" config="conf.numberOfDependants"></hod-number>
+      <hod-number name="dependants" label="Number of dependants" field="familyDetails.dependants" config="conf.dependants" required="false"></hod-number>
 
-      <hod-date name="date" label="When was the application raised" field="familyDetails.date" hint="For example, 31 3 1980" config="conf.date"></hod-date>
+      <hod-date name="applicationRaisedDate" label="When was the application raised" field="familyDetails.applicationRaisedDate" hint="For example, 31 3 1980" config="conf.applicationRaisedDate"></hod-date>
 
       <hod-submit value="Check eligibility"></hod-submit>
     </hod-form>

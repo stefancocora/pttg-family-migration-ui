@@ -7,7 +7,7 @@ Feature: Page content
       | NINO                    | JL123456A  |
       | Application Raised Date | 15/01/2015 |
     Then the service displays the following result
-      | Page static detail          | They don't meet the financial requirement because:                                             |
+      | Page dynamic heading          | They don't meet the financial requirement because:                                             |
       | What to do next heading     | What to do next                                                                                |
       | What to do next sub heading | You should consider if the applicant meets the financial requirement under any other category. |
 
@@ -18,8 +18,8 @@ Feature: Page content
       | NINO                    | TL123456A  |
       | Application Raised Date | 23/01/2015 |
     Then the service displays the following result
-      | Page heading     | Financial requirement check                                   |
-      | Page sub heading | Does the applicant meet the Category A financial requirement? |
+      | Page static heading     | Financial requirement check                                   |
+      | Page static sub heading | Does the applicant meet the Category A financial requirement? |
 
   Scenario: Page checks for appendix link
     Given Caseworker is using the Income Proving Service Case Worker Tool
