@@ -27,6 +27,7 @@ import static java.util.concurrent.TimeUnit.SECONDS
 @SpringApplicationConfiguration(ServiceRunner.class)
 @WebAppConfiguration
 @IntegrationTest
+//@ActiveProfiles("endtoend")
 @ActiveProfiles("test")
 class ProvingThingsTestSteps {
 

@@ -18,7 +18,7 @@ public class ServiceRunner  {
     }
 
     public static void main(String[] args) throws Exception {
-        LOGGER.debug("starting pttg-family-migration-ui");
+        LOGGER.debug("starting pttg-ip-fm-ui");
 
         run(ServiceRunner.class, args);
     }
