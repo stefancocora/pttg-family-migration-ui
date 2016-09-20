@@ -43,15 +43,15 @@ familymigrationModule.controller('FamilymigrationResultCtrl', ['$scope', '$state
 
   $scope.haveResult = (res.data && res.data.categoryCheck) ? true: false;
   if ($scope.haveResult) {
+    $scope.outcomeBoxIndividualName = res.data.individual.forename + ' ' + res.data.individual.surname;
+    $scope.outcomeFromDate = displayDate(res.data.categoryCheck.assessmentStartDate);
+    $scope.outcomeToDate = displayDate(res.data.categoryCheck.applicationRaisedDate);
+
     if (res.data.categoryCheck.passed) {
       $scope.success = true;
-      $scope.heading = 'Yes, ' + res.data.individual.forename + ' ' + res.data.individual.surname + ' meets the requirement';
-      $scope.reason = 'calculated on income information between ' + displayDate(res.data.categoryCheck.assessmentStartDate) + ' and ' + displayDate(res.data.categoryCheck.applicationRaisedDate);
     } else {
       $scope.success = false;
-      $scope.heading = //res.data.individual.forename + ' ' + res.data.individual.surname + ' doesn\'t meet the Category A requirement';
-      $scope.heading = 'They don\'t meet the financial requirement because:';
-
+      // $scope.heading = res.data.individual.forename + ' ' + res.data.individual.surname + ' doesn\'t meet the Category A requirement';
       switch (res.data.categoryCheck.failureReason) {
         case 'NOT_ENOUGH_RECORDS':
           $scope.reason = 'they haven\'t been with their current employer for 6 months.';

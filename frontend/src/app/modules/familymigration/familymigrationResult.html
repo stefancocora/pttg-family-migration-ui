@@ -3,8 +3,14 @@
     <h2 id="pageStaticHeading">Financial requirement check</h2>
     <h3 id="pageStaticSubHeading">Does the applicant meet the Category A financial requirement?</h3>
 
-    <div class="govuk-box-highlight" ng-class="{'panel-fail': !success}">
-      <h1 class="bold-large" id="pageDynamicHeading"><span id="outcome">{{ heading }}</span></h1>
+    <div class="govuk-box-highlight" id="outcome" ng-if="success">
+      <h1 class="bold-large">Yes, <span id="outcomeBoxIndividualName">{{ outcomeBoxIndividualName }}</span> meets the requirement</h1>
+      <p>calculated on income information between <span id="outcomeFromDate">{{ outcomeFromDate }}</span> and <span id="outcomeToDate">{{ outcomeToDate }}</span></p>
+    </div>
+
+    <div class="govuk-box-highlight panel-fail" id="outcome" ng-if="!success">
+      <h1 class="bold-large" id="pageDynamicHeading"><span id="outcomeBoxIndividualName">{{ outcomeBoxIndividualName }}</span> doesn't meet the Category A requirement</h1>
+      <p id="pageStaticDetail">They don't meet the financial requirement because:</p>
       <p id="pageDynamicDetail"><span>{{ reason }}</span></p>
     </div>
   </div>

@@ -92,6 +92,7 @@ function ($rootScope, $scope, $state, $stateParams, FamilymigrationService, IOSe
   };
 
   $scope.detailsSubmit = function (isValid) {
+    $scope.familyDetails.nino = ($scope.familyDetails.nino.replace(/[^a-zA-Z0-9]/g, '')).toUpperCase();
     if (isValid) {
       FamilymigrationService.submit($scope.familyDetails.nino, $scope.familyDetails.dependants, $scope.familyDetails.applicationRaisedDate);
     }
